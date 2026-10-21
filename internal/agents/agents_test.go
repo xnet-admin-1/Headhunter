@@ -203,14 +203,17 @@ func TestBuiltins(t *testing.T) {
 			t.Errorf("builtin %s has source %q", a.Name, a.Source)
 		}
 	}
-	if byName["general"] == nil {
-		t.Fatal("missing builtin: general")
+	if byName["bigred"] == nil {
+		t.Fatal("missing builtin: bigred")
 	}
 	if byName["explore"] == nil {
 		t.Fatal("missing builtin: explore")
 	}
-	if len(byName["general"].Tools) != 0 {
-		t.Errorf("general should have no tool restriction, got %v", byName["general"].Tools)
+	if len(byName["bigred"].Tools) != 0 {
+		t.Errorf("bigred should have no tool restriction, got %v", byName["bigred"].Tools)
+	}
+	if byName["bigred"].SystemPrompt == "" {
+		t.Error("bigred system prompt must not be empty")
 	}
 	want := []string{"read", "grep", "find", "ls"}
 	got := byName["explore"].Tools
@@ -261,7 +264,7 @@ func TestLoadAgents_Precedence(t *testing.T) {
 	if byName["explore"] != nil {
 		t.Error("disabled project override should remove builtin explore")
 	}
-	if byName["general"] == nil {
-		t.Error("builtin general should still be present")
+	if byName["bigred"] == nil {
+		t.Error("builtin bigred should still be present")
 	}
 }

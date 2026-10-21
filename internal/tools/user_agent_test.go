@@ -20,7 +20,7 @@ func TestRemoteMCPIdentity(t *testing.T) {
 			t.Run(kind+identity, func(t *testing.T) {
 				want := identity
 				if want == "" {
-					want = "KIT"
+					want = "HEADHUNTER"
 				}
 				mcpServer := server.NewMCPServer("identity", "1", server.WithToolCapabilities(false))
 				var handler http.Handler
@@ -95,7 +95,7 @@ func TestMCPOAuthIdentity(t *testing.T) {
 		t.Run(identity, func(t *testing.T) {
 			want := identity
 			if want == "" {
-				want = "KIT"
+				want = "HEADHUNTER"
 			}
 			seen := map[string]int{}
 			var base string

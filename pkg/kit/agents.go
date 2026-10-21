@@ -38,7 +38,7 @@ type AgentDefinition = agents.Agent
 //  1. <cwd>/.agents/agents/ (project, cross-client convention)
 //  2. <cwd>/.kit/agents/ (project, Kit-specific)
 //  3. $XDG_CONFIG_HOME/kit/agents/ (user, default ~/.config/kit/agents/)
-//  4. Built-in agents ("general", "explore")
+//  4. Built-in agents ("bigred", "explore")
 //
 // Higher entries take precedence on name collisions. cwd is the working
 // directory for project-local discovery; if empty, the current working

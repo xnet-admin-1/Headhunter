@@ -194,7 +194,7 @@ func TestBedrockStoredKeyNeedsRegion(t *testing.T) {
 	freshAWSEnv(t)
 	storeTestAPIKey(t, "amazon-bedrock", "from-store")
 	_, err := CreateProvider(t.Context(), &ProviderConfig{ModelString: "amazon-bedrock/us.anthropic.claude-opus-5-5"})
-	if err == nil || !strings.Contains(err.Error(), "kit auth login amazon-bedrock --region") {
+	if err == nil || !strings.Contains(err.Error(), "headhunter auth login amazon-bedrock --region") {
 		t.Fatalf("err = %v, want a missing region error", err)
 	}
 }

@@ -13,7 +13,7 @@ func TestCatalogDownloadUserAgentAndETag(t *testing.T) {
 	calls := 0
 	srv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		calls++
-		if r.Header.Get("User-Agent") != "KIT" {
+		if r.Header.Get("User-Agent") != "HEADHUNTER" {
 			t.Errorf("identity = %q", r.Header.Get("User-Agent"))
 		}
 		if calls == 1 {

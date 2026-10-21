@@ -15,7 +15,7 @@ func TestOAuthUserAgents(t *testing.T) {
 		t.Run(identity, func(t *testing.T) {
 			want := identity
 			if want == "" {
-				want = "KIT"
+				want = "HEADHUNTER"
 			}
 			seen := 0
 			srv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {

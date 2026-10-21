@@ -575,7 +575,7 @@ func TestEndToEndMissingCredentialsIsAuthRequired(t *testing.T) {
 	if !errors.As(err, &re) || re.Code != -32000 {
 		t.Fatalf("session/new without credentials: err = %v, want auth_required (-32000)", err)
 	}
-	if !strings.Contains(fmt.Sprint(re.Data), "kit auth login") {
+	if !strings.Contains(fmt.Sprint(re.Data), "headhunter auth login") {
 		t.Errorf("error data = %v, want steps to fix it", re.Data)
 	}
 }

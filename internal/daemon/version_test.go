@@ -135,7 +135,7 @@ func TestHelloMismatchNamesTheFix(t *testing.T) {
 		t.Fatal("a version mismatch must be an error")
 	}
 	msg := err.Error()
-	for _, want := range []string{"v9.9.9", "kit daemon restart"} {
+	for _, want := range []string{"v9.9.9", "headhunter daemon restart"} {
 		if !strings.Contains(msg, want) {
 			t.Errorf("mismatch message does not mention %q: %s", want, msg)
 		}

@@ -236,7 +236,7 @@ func TestMissingCredentialsError(t *testing.T) {
 		t.Errorf("AsMissingCredentials = %+v", got)
 	}
 	msg := err.Error()
-	for _, want := range []string{"Groq", "GROQ_API_KEY", "kit auth login groq"} {
+	for _, want := range []string{"Groq", "GROQ_API_KEY", "headhunter auth login groq"} {
 		if !strings.Contains(msg, want) {
 			t.Errorf("error %q lacks %q", msg, want)
 		}

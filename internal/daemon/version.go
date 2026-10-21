@@ -258,7 +258,7 @@ func (h Hello) buildHint() string {
 		return ""
 	}
 	if h.Role == RoleDaemon {
-		return fmt.Sprintf(" (the daemon is kit %s; restart it with 'headhunter daemon restart')", h.Build)
+		return fmt.Sprintf(" (the daemon is headhunter %s; restart it with 'headhunter daemon restart')", h.Build)
 	}
 	return fmt.Sprintf(" (the client is kit %s)", h.Build)
 }

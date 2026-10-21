@@ -51,7 +51,7 @@ func TestReconnectPartingDescribesTheSession(t *testing.T) {
 			daemon:  Hello{Version: ProtocolVersion, Features: FeatureReattach},
 		}
 		got := reconnectParting(opts, run, errors.New("connection refused"))
-		for _, want := range []string{"7", "still running", "kit attach 7"} {
+		for _, want := range []string{"7", "still running", "headhunter attach 7"} {
 			if !strings.Contains(got, want) {
 				t.Errorf("parting message does not mention %q:\n%s", want, got)
 			}
