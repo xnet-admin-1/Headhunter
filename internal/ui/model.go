@@ -3690,7 +3690,7 @@ func (m *AppModel) update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		if msg.err != nil {
 			m.printSystemMessage(fmt.Sprintf("Share failed: %v", msg.err))
 		} else {
-			m.printSystemMessage(fmt.Sprintf("Session shared!\n\n  Viewer: %s\n  Gist:   %s", msg.viewerURL, msg.gistURL))
+			m.printSystemMessage(fmt.Sprintf("Session shared!\n\n  Gist:   %s", msg.gistURL))
 		}
 		return m, nil
 
@@ -7302,12 +7302,7 @@ func (m *AppModel) handleShareCommand() tea.Cmd {
 		// gh outputs the gist URL like: https://gist.github.com/username/abc123def456
 		gistURL := strings.TrimSpace(string(output))
 
-		// Extract gist ID (last path segment).
-		parts := strings.Split(gistURL, "/")
-		gistID := parts[len(parts)-1]
-
-		viewerURL := fmt.Sprintf("https://go-kit.dev/session/#%s", gistID)
-		return shareResultMsg{gistURL: gistURL, viewerURL: viewerURL}
+		return shareResultMsg{gistURL: gistURL}
 	}
 }
 
@@ -7537,9 +7532,8 @@ type editFileMsg struct {
 
 // shareResultMsg carries the result of an async gist upload.
 type shareResultMsg struct {
-	err       error
-	gistURL   string
-	viewerURL string
+	err     error
+	gistURL string
 }
 
 // extReloadResultMsg carries the result of an asynchronously executed

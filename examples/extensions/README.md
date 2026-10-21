@@ -82,7 +82,7 @@ kit install github.com/xnet-admin-1/Headhunter/examples/extensions --local
 | `subagent-widget.go` | Widget with subagent updates | Goroutines + widgets |
 | `dev-reload.go` | Hot reload extensions | `ReloadExtensions` |
 
-Kit also has a [native read-only subagent inspector](https://go-kit.dev/advanced/subagents#inspecting-subagent-conversations) with `/subagents`. Use it to inspect retained output without loading a monitoring extension. The `subagent-monitor.go` example provides `/subagent-monitor` (or Ctrl+Alt+S) to open its own transcript overlay. This replaces the example's former `/subagents` command, which is now reserved for the built-in inspector. See [command compatibility](https://go-kit.dev/advanced/subagents#command-compatibility) for migration details.
+Kit also has a native read-only subagent inspector (`/subagents`). Use it to inspect retained output without loading a monitoring extension. The `subagent-monitor.go` example provides `/subagent-monitor` (or Ctrl+Alt+S) to open its own transcript overlay. This replaces the example's former `/subagents` command, which is now reserved for the built-in inspector.
 
 ### Integrations
 

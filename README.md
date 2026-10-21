@@ -777,7 +777,7 @@ The status bar shows active runs with blinking lights and finished results for 1
 
 From the SDK, use `k.SubagentRuns()` for active and retained finished runs, or `k.GetSubagentRun(runID)` for one snapshot. `k.RunningSubagents()` continues to list only active runs. History retains up to 100 finished runs plus all active runs and up to 500 event records per run.
 
-See the [subagent documentation](https://go-kit.dev/advanced/subagents#inspecting-subagent-conversations) for controls, history limits, and SDK examples.
+See [Inspecting Subagent Runs](#inspecting-subagent-runs) for controls, history limits, and SDK examples.
 
 ## GitHub Integration
 

@@ -769,7 +769,7 @@ msg  := kit.ConvertFromLLMMessage(lMsg)  // LLMMessage  → SDK Message
   slices are copied, but event payloads are not deep-copied
 - `KillSubagent(id)` - Stop an active run by execution ID (not child session ID);
   returns false when it is no longer active
-- See [retained run snapshots](https://go-kit.dev/advanced/subagents#retained-run-snapshots)
+- See retained run snapshots with `k.SubagentRuns()`
   for examples, status values, and comparison with live event callbacks
 - `GetAgents()` / `GetAgent(name)` - Query named agent definitions discovered
   at construction (built-ins plus `.agents/agents/` / `.kit/agents/` /
