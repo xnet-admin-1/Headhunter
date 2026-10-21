@@ -9,10 +9,11 @@ import (
 )
 
 // DefaultPrimaryAgent is the built-in agent that acts as the primary chat
-// agent when the user has not configured a system prompt of their own. The
-// Headhunter binary ships this doctrine, so the binary carries its own
-// persona and needs no file to start.
-const DefaultPrimaryAgent = "headhunter"
+// agent when the user has not configured a system prompt of their own. Big
+// Red runs the engagement and tasks the other specialists, so it is the
+// agent that answers by default. The Headhunter binary ships this doctrine,
+// so the binary carries its own persona and needs no file to start.
+const DefaultPrimaryAgent = "bigred"
 
 // SetPrimaryAgent makes the named agent the primary chat agent. The system
 // prompt of the agent replaces the base system prompt of the session. When

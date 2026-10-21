@@ -415,7 +415,7 @@ prompt, and the model and the sampling temperature of the agent are used when
 it names them:
 
 ```go
-// The built-in agent that ships with the binary.
+// The built-in agent that ships with the binary. It is the default.
 err := host.SetPrimaryAgent(ctx, kit.DefaultPrimaryAgent)
 
 // A definition file from .agents/agents/, .kit/agents/ or the user agent

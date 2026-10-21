@@ -119,16 +119,19 @@ func TestSetPrimaryAgentUsesTheBuiltinWithoutDiscovery(t *testing.T) {
 		Providers: map[string]ProviderFactory{"local": recorder.factory("local")},
 	})
 
-	// The built-in agent names a model that this test cannot build, so the
-	// call reports it. The persona is installed in any case.
-	if err := k.SetPrimaryAgent(context.Background(), DefaultPrimaryAgent); err == nil {
-		t.Fatal("the missing model must be reported")
+	if err := k.SetPrimaryAgent(context.Background(), DefaultPrimaryAgent); err != nil {
+		t.Fatalf("SetPrimaryAgent: %v", err)
 	}
 	if k.PrimaryAgent() != DefaultPrimaryAgent {
 		t.Fatalf("primary agent = %q", k.PrimaryAgent())
 	}
-	if prompt := k.GetSystemPrompt(); !strings.Contains(prompt, "HEADHUNTER") {
+	if prompt := k.GetSystemPrompt(); !strings.Contains(prompt, "BIG RED") {
 		t.Fatalf("system prompt does not hold the built-in persona: %q", prompt)
+	}
+	// The built-in agents do not pin a model, so the model of the session
+	// stays the one that works.
+	if k.GetModelString() != "local/tiny-1b" {
+		t.Fatalf("model = %q", k.GetModelString())
 	}
 }
 

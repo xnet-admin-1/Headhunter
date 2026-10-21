@@ -674,7 +674,6 @@ func Builtins() []*Agent {
 		{
 			Name:         "headhunter",
 			Description:  "HEADHUNTER - contract offensive operator for authorised red-team engagements. Hunts the kill chain end to end (recon, exploit, pivot, prove) and reports as a hunt log. Use this for any offensive task against an in-scope target.",
-			Model:        "custom/deepseek-v4-flash",
 			Temperature:  &headhunterTemp,
 			Timeout:      1800 * time.Second,
 			Source:       SourceBuiltin,

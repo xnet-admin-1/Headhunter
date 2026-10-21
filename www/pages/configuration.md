@@ -36,7 +36,7 @@ stream: true
 | `stream` | bool | `true` | Enable streaming output |
 | `debug` | bool | `false` | Enable debug logging |
 | `compact` | bool | `false` | Enable compact output mode |
-| `system-prompt` | string | — | System prompt text or file path. When it is not set, the built-in `headhunter` agent is the primary chat agent, so the binary carries its own persona. Use [`/agent`](/cli/commands#interactive-slash-commands) to pick another one. |
+| `system-prompt` | string | — | System prompt text or file path. When it is not set, the built-in `bigred` agent is the primary chat agent, so the binary carries its own persona. Use [`/agent`](/cli/commands#interactive-slash-commands) to pick another one. |
 | `max-steps` | int | `0` | Maximum agent steps (0 = unlimited) |
 | `thinking-level` | string | `off` | Model-specific reasoning effort. `/thinking` lists catalog choices; explicit unsupported CLI/SDK values return an error. `off` omits effort; `none` is literal. |
 | `provider-api-key` | string | — | API key for the provider |
