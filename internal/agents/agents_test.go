@@ -203,27 +203,20 @@ func TestBuiltins(t *testing.T) {
 			t.Errorf("builtin %s has source %q", a.Name, a.Source)
 		}
 	}
-	if byName["bigred"] == nil {
-		t.Fatal("missing builtin: bigred")
-	}
-	if byName["explore"] == nil {
-		t.Fatal("missing builtin: explore")
+	for _, name := range []string{"bigred", "headhunter", "scout", "doc", "hands", "agentx"} {
+		if byName[name] == nil {
+			t.Errorf("missing builtin: %s", name)
+			continue
+		}
+		if byName[name].SystemPrompt == "" {
+			t.Errorf("%s system prompt must not be empty", name)
+		}
 	}
 	if len(byName["bigred"].Tools) != 0 {
 		t.Errorf("bigred should have no tool restriction, got %v", byName["bigred"].Tools)
 	}
-	if byName["bigred"].SystemPrompt == "" {
-		t.Error("bigred system prompt must not be empty")
-	}
-	want := []string{"read", "grep", "find", "ls"}
-	got := byName["explore"].Tools
-	if len(got) != len(want) {
-		t.Fatalf("explore tools = %v, want %v", got, want)
-	}
-	for i := range want {
-		if got[i] != want[i] {
-			t.Errorf("explore tools = %v, want %v", got, want)
-		}
+	if len(byName["scout"].Tools) != 0 {
+		t.Errorf("scout should have no tool restriction, got %v", byName["scout"].Tools)
 	}
 }
 
@@ -241,7 +234,7 @@ func TestLoadAgents_Precedence(t *testing.T) {
 	// User-level only agent.
 	writeAgent(t, userDir, "tester.md", "---\ndescription: writes tests\n---\nTest prompt.")
 	// Project override disabling a builtin.
-	writeAgent(t, filepath.Join(cwd, ".agents", "agents"), "explore.md", "---\ndescription: off\ndisabled: true\n---\n")
+	writeAgent(t, filepath.Join(cwd, ".agents", "agents"), "scout.md", "---\ndescription: off\ndisabled: true\n---\n")
 
 	loaded, err := LoadAgents(cwd)
 	if err != nil {
@@ -261,8 +254,8 @@ func TestLoadAgents_Precedence(t *testing.T) {
 	if tst := byName["tester"]; tst == nil || tst.Source != SourceUser {
 		t.Errorf("tester should come from user scope, got %+v", tst)
 	}
-	if byName["explore"] != nil {
-		t.Error("disabled project override should remove builtin explore")
+	if byName["scout"] != nil {
+		t.Error("disabled project override should remove builtin scout")
 	}
 	if byName["bigred"] == nil {
 		t.Error("builtin bigred should still be present")
