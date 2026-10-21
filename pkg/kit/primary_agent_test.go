@@ -5,6 +5,7 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
+	"sync"
 	"testing"
 )
 
@@ -103,5 +104,106 @@ func TestClearPrimaryAgentRestoresTheConfiguredPrompt(t *testing.T) {
 	}
 	if after := k.GetSystemPrompt(); after != before {
 		t.Fatalf("system prompt was not restored:\nbefore %q\nafter  %q", before, after)
+	}
+}
+
+// TestSetPrimaryAgentUsesTheBuiltinWithoutDiscovery checks that the built-in
+// agent works as the primary agent when the agent discovery is off. The
+// product needs its own persona in every mode.
+func TestSetPrimaryAgentUsesTheBuiltinWithoutDiscovery(t *testing.T) {
+	t.Setenv("XDG_CONFIG_HOME", t.TempDir())
+	recorder := &recordingFactory{}
+	k := newProviderTestKit(t, &Options{
+		Model:     "local/tiny-1b",
+		Bare:      true,
+		Providers: map[string]ProviderFactory{"local": recorder.factory("local")},
+	})
+
+	// The built-in agent names a model that this test cannot build, so the
+	// call reports it. The persona is installed in any case.
+	if err := k.SetPrimaryAgent(context.Background(), DefaultPrimaryAgent); err == nil {
+		t.Fatal("the missing model must be reported")
+	}
+	if k.PrimaryAgent() != DefaultPrimaryAgent {
+		t.Fatalf("primary agent = %q", k.PrimaryAgent())
+	}
+	if prompt := k.GetSystemPrompt(); !strings.Contains(prompt, "HEADHUNTER") {
+		t.Fatalf("system prompt does not hold the built-in persona: %q", prompt)
+	}
+}
+
+// TestSetPrimaryAgentKeepsThePromptOnAModelSwitch checks that a model change
+// does not take the persona of the agent away.
+func TestSetPrimaryAgentKeepsThePromptOnAModelSwitch(t *testing.T) {
+	k, _ := newPrimaryAgentTestKit(t, map[string]string{
+		"tester.md": testAgentFile("You are the tester."),
+	})
+
+	if err := k.SetPrimaryAgent(context.Background(), "tester"); err != nil {
+		t.Fatalf("SetPrimaryAgent: %v", err)
+	}
+	if err := k.SetModel(context.Background(), "local/other"); err != nil {
+		t.Fatalf("SetModel: %v", err)
+	}
+	if prompt := k.GetSystemPrompt(); !strings.Contains(prompt, "You are the tester.") {
+		t.Fatalf("the persona was lost on the model switch: %q", prompt)
+	}
+	if k.PrimaryAgent() != "tester" {
+		t.Fatalf("primary agent = %q", k.PrimaryAgent())
+	}
+}
+
+// temperatureFactory records the sampling temperature of every provider it
+// builds.
+type temperatureFactory struct {
+	mu           sync.Mutex
+	temperatures []*float32
+}
+
+func (f *temperatureFactory) factory(provider string) ProviderFactory {
+	return func(_ context.Context, config *ProviderConfig, modelName string) (*ProviderResult, error) {
+		f.mu.Lock()
+		f.temperatures = append(f.temperatures, cloneTemperature(config.Temperature))
+		f.mu.Unlock()
+		return &ProviderResult{
+			Model:  LLMLanguageModel(&echoModel{provider: provider, model: modelName}),
+			Closer: closerFunc(func() error { return nil }),
+		}, nil
+	}
+}
+
+func (f *temperatureFactory) last() *float32 {
+	f.mu.Lock()
+	defer f.mu.Unlock()
+	if len(f.temperatures) == 0 {
+		return nil
+	}
+	return f.temperatures[len(f.temperatures)-1]
+}
+
+// TestSetPrimaryAgentAppliesTheTemperature checks that the sampling
+// temperature of the agent reaches the provider.
+func TestSetPrimaryAgentAppliesTheTemperature(t *testing.T) {
+	t.Setenv("XDG_CONFIG_HOME", t.TempDir())
+	dir := filepath.Join(os.Getenv("XDG_CONFIG_HOME"), "kit", "agents")
+	if err := os.MkdirAll(dir, 0o755); err != nil {
+		t.Fatalf("mkdir: %v", err)
+	}
+	content := "---\ndescription: Cold agent\ntemperature: 0.2\n---\nYou are cold.\n"
+	if err := os.WriteFile(filepath.Join(dir, "cold.md"), []byte(content), 0o644); err != nil {
+		t.Fatalf("write agent: %v", err)
+	}
+	factory := &temperatureFactory{}
+	k := newProviderTestKit(t, &Options{
+		Model:     "local/tiny-1b",
+		Providers: map[string]ProviderFactory{"local": factory.factory("local")},
+	})
+
+	if err := k.SetPrimaryAgent(context.Background(), "cold"); err != nil {
+		t.Fatalf("SetPrimaryAgent: %v", err)
+	}
+	temperature := factory.last()
+	if temperature == nil || *temperature != 0.2 {
+		t.Fatalf("provider temperature = %v, want 0.2", temperature)
 	}
 }

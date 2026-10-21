@@ -407,6 +407,28 @@ host.OnMessageUpdate(func(event kit.MessageUpdateEvent) {
 })
 ```
 
+## Primary agent
+
+A named agent can act as the agent that answers in the session, not only as a
+subagent preset. The system prompt of the agent replaces the base system
+prompt, and the model and the sampling temperature of the agent are used when
+it names them:
+
+```go
+// The built-in agent that ships with the binary.
+err := host.SetPrimaryAgent(ctx, kit.DefaultPrimaryAgent)
+
+// A definition file from .agents/agents/, .kit/agents/ or the user agent
+// directory. An empty name restores the configured system prompt.
+err = host.SetPrimaryAgent(ctx, "reviewer")
+
+fmt.Println(host.PrimaryAgent()) // "reviewer"
+```
+
+The built-in agents work even when the agent discovery is off, so a binary
+that sets the primary agent needs no definition file. The prompt of the agent
+survives a model change.
+
 ## Model management
 
 Switch models at runtime and inspect the registry:

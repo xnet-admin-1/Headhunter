@@ -103,7 +103,7 @@ type uiActions struct {
 	emitBeforeSessionSwitch func(string, string) (bool, string)
 	setModel                func(string) error
 	listAgents              func() []ui.AgentOption
-	setPrimaryAgent         func(string) error
+	setPrimaryAgent         func(string) (string, error)
 	saveProviderAPIKey      func(providerID, key string) error
 	emitModelChange         func(string, string, string)
 	emitThinkingLevelChange func(string, string, string)
@@ -620,9 +620,19 @@ func buildUIActions(k *kit.Kit, appInstance *app.App, usageTracker *ui.UsageTrac
 			return agentOptionsForUI(k)
 		},
 		// setPrimaryAgent backs the /agent command. An empty name restores
-		// the configured system prompt.
-		setPrimaryAgent: func(name string) error {
-			return k.SetPrimaryAgent(context.Background(), name)
+		// the configured system prompt. It returns the name of the agent
+		// that is primary now.
+		setPrimaryAgent: func(name string) (string, error) {
+			if name == "" && k.GetSystemPromptSource() == "" {
+				// The user has no system prompt of their own, so the
+				// default is the built-in agent. The persona of the
+				// binary must not disappear.
+				name = kit.DefaultPrimaryAgent
+			}
+			if err := k.SetPrimaryAgent(context.Background(), name); err != nil {
+				return "", err
+			}
+			return k.PrimaryAgent(), nil
 		},
 		// saveProviderAPIKey backs the /connect command. Keys go to the
 		// credentials file and win over environment variables.

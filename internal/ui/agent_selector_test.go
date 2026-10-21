@@ -88,7 +88,7 @@ func TestAgentCommandOpensTheSelector(t *testing.T) {
 		listAgents: func() []AgentOption {
 			return []AgentOption{{Name: "scout", Description: "Recon"}}
 		},
-		setPrimaryAgent: func(string) error { return nil },
+		setPrimaryAgent: func(name string) (string, error) { return name, nil },
 	}
 	m.handleAgentCommand("")
 	if m.state != stateAgentSelector {
@@ -103,9 +103,9 @@ func TestAgentCommandSetsTheAgentDirectly(t *testing.T) {
 	chosen := ""
 	m := &AppModel{
 		listAgents: func() []AgentOption { return nil },
-		setPrimaryAgent: func(name string) error {
+		setPrimaryAgent: func(name string) (string, error) {
 			chosen = name
-			return nil
+			return name, nil
 		},
 	}
 	m.handleAgentCommand("scout")
@@ -117,10 +117,22 @@ func TestAgentCommandSetsTheAgentDirectly(t *testing.T) {
 	}
 }
 
+func TestAgentCommandKeepsTheNameTheCallbackReports(t *testing.T) {
+	m := &AppModel{
+		listAgents: func() []AgentOption { return nil },
+		// The callback resolves the default entry to the product default.
+		setPrimaryAgent: func(string) (string, error) { return "headhunter", nil },
+	}
+	m.applyPrimaryAgent("")
+	if m.primaryAgent != "headhunter" {
+		t.Fatalf("primary agent = %q", m.primaryAgent)
+	}
+}
+
 func TestAgentCommandReportsAFailure(t *testing.T) {
 	m := &AppModel{
 		listAgents:      func() []AgentOption { return nil },
-		setPrimaryAgent: func(string) error { return errors.New("unknown agent") },
+		setPrimaryAgent: func(string) (string, error) { return "", errors.New("unknown agent") },
 	}
 	m.handleAgentCommand("scout")
 	if m.primaryAgent != "" {

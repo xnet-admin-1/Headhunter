@@ -124,10 +124,20 @@ type Kit struct {
 	// system prompt of the agent replaces the base prompt.
 	// Protected by runtimeMu.
 	primaryAgent string
+	// primaryAgentPrompt holds the system prompt of the primary agent. A
+	// model switch uses it as the base prompt, so the persona of the agent
+	// survives a model change.
+	// Protected by runtimeMu.
+	primaryAgentPrompt string
 	// primaryAgentTemperature holds the sampling temperature of the
 	// primary agent. It is nil when the agent does not set one.
 	// Protected by runtimeMu.
 	primaryAgentTemperature *float32
+	// appliedTemperature holds the sampling temperature of the provider
+	// that is in use. It tells SetPrimaryAgent whether the provider must
+	// be rebuilt for a new temperature.
+	// Protected by runtimeMu.
+	appliedTemperature *float32
 
 	// Hook registries — interception layer (see hooks.go).
 	beforeToolCall  *hookRegistry[BeforeToolCallHook, BeforeToolCallResult]
@@ -871,7 +881,11 @@ func (m *Kit) setModelLocked(ctx context.Context, modelString string) error {
 	// When the user hasn't set a custom global system prompt, a configured
 	// per-model system prompt replaces the global base prompt, as in New.
 	basePrompt := m.globalBasePrompt
-	if !m.hasCustomSystemPrompt {
+	if agentPrompt := m.primaryAgentSystemPrompt(); agentPrompt != "" {
+		// The primary agent owns the persona of the session. A model
+		// switch must not replace it with the configured prompt.
+		basePrompt = agentPrompt
+	} else if !m.hasCustomSystemPrompt {
 		if p, ok := modelSystemPrompt(m.v, modelString); ok {
 			basePrompt = p
 		}
@@ -883,6 +897,7 @@ func (m *Kit) setModelLocked(ctx context.Context, modelString string) error {
 	if err := m.agent.SetModel(ctx, cfg); err != nil {
 		return err
 	}
+	m.recordAppliedTemperature(cfg.Temperature)
 
 	// Later runtime changes compose the prompt from the new base prompt.
 	m.runtimeMu.Lock()

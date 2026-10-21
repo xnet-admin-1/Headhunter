@@ -1111,6 +1111,19 @@ func runNormalMode(ctx context.Context) error {
 	}
 	defer func() { _ = kitInstance.Close() }()
 
+	// The binary ships the HEADHUNTER doctrine. When the user has not
+	// configured a system prompt of their own, the built-in agent is the
+	// primary chat agent. The binary then carries its own persona and needs
+	// no file to start.
+	//
+	// The agent names a model. A user who has not configured that model
+	// keeps the model of the session, and the persona is still installed.
+	if kitInstance.GetSystemPromptSource() == "" {
+		if err := kitInstance.SetPrimaryAgent(ctx, kit.DefaultPrimaryAgent); err != nil {
+			fmt.Fprintf(os.Stderr, "Warning: the default primary agent is not fully applied: %v\n", err)
+		}
+	}
+
 	interactive := positionalPrompt == ""
 	systemPromptLoadedMsg := systemPromptLoadedNotice(kitInstance)
 	parsedProvider, modelName, serverNames, toolNames, mcpToolCount, extensionToolCount := CollectAgentMetadata(kitInstance, mcpConfig)

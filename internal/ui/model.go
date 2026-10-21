@@ -663,11 +663,12 @@ type AppModelOptions struct {
 	ListAgents func() []AgentOption
 
 	// SetPrimaryAgent makes the named agent the primary chat agent. An
-	// empty name restores the configured system prompt. It returns an
-	// error when the name is unknown or the agent cannot be used. It may
-	// be nil, in which case /agent reports that agent switching is not
-	// available.
-	SetPrimaryAgent func(name string) error
+	// empty name restores the configured system prompt. It returns the
+	// name of the agent that is primary now, which can differ from the
+	// name that was asked for. It returns an error when the name is
+	// unknown or the agent cannot be used. It may be nil, in which case
+	// /agent reports that agent switching is not available.
+	SetPrimaryAgent func(name string) (string, error)
 
 	// PrimaryAgent is the name of the agent that answers in the session at
 	// startup. It is empty when the session uses the configured system
@@ -964,9 +965,10 @@ type AppModel struct {
 	listAgents func() []AgentOption
 
 	// setPrimaryAgent makes the named agent the primary chat agent. An
-	// empty name restores the configured system prompt. Wired from
-	// cmd/root.go. May be nil if agent switching is not supported.
-	setPrimaryAgent func(name string) error
+	// empty name restores the configured system prompt. It returns the
+	// name of the agent that is primary now. Wired from cmd/root.go. May
+	// be nil if agent switching is not supported.
+	setPrimaryAgent func(name string) (string, error)
 
 	// providerError is non-nil while the active model has no usable
 	// provider (no API key). See AppModelOptions.ProviderError.
@@ -6336,16 +6338,17 @@ func (m *AppModel) applyPrimaryAgent(name string) tea.Cmd {
 		m.printSystemMessage("Agent switching is not available.")
 		return nil
 	}
-	if err := m.setPrimaryAgent(name); err != nil {
+	applied, err := m.setPrimaryAgent(name)
+	if err != nil {
 		m.printSystemMessage(fmt.Sprintf("Could not use agent %s: %v", name, err))
 		return nil
 	}
-	m.primaryAgent = name
-	if name == "" {
+	m.primaryAgent = applied
+	if applied == "" {
 		m.printSystemMessage("Primary agent cleared. The session uses the configured system prompt.")
 		return nil
 	}
-	m.printSystemMessage(fmt.Sprintf("Primary agent set to: %s", name))
+	m.printSystemMessage(fmt.Sprintf("Primary agent set to: %s", applied))
 	return nil
 }
 
