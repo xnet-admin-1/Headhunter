@@ -523,33 +523,127 @@ func ApplyGradient(text string, colorA, colorB color.Color) string {
 	return result.String()
 }
 
-// kitLogoArt is the HEADHUNTER wordmark in block letters, flanked by a
-// crosshair reticle. Lines are left-aligned and not padded to a uniform width
-// — trailing space would only be invisible gradient — so the widest line (the
-// scanner bar) sets the block's footprint. The block can be placed at any left
-// offset without re-centering.
-var kitLogoArt = []string{
+// kitLogoReticle is the crosshair reticle with the tagline of the banner.
+// The wordmark sits under it, so the reticle carries no text of its own.
+var kitLogoReticle = []string{
 	"         ╬",
 	"         ┆",
-	"  ╬┈┈┈┈┈┈┼┈┈┈┈┈┈╬   HEADHUNTER",
-	"         ┆          lock · aim · ship",
+	"  ╬┈┈┈┈┈┈┼┈┈┈┈┈┈╬",
+	"         ┆          lock · aim · exploit",
 	"         ╬",
 	"  ⊕ no target gets a second shot",
-	// Reticle scanner bar, sized to the wordmark's widest row.
-	"░░ ▒▒ ▓▓ »———[ ⊕ ]———« ▓▓ ▒▒ ░░",
+}
+
+// kitLogoGlyphs holds the block letters of the wordmark. Every glyph is four
+// columns wide and five rows tall.
+//
+// The wordmark is built from this table, so a letter is never mistyped and
+// every letter of the word has the same width.
+var kitLogoGlyphs = map[string][5]string{
+	"A": {" ██ ", "█  █", "████", "█  █", "█  █"},
+	"D": {"██  ", "█  █", "█  █", "█  █", "██  "},
+	"E": {"████", "█   ", "███ ", "█   ", "████"},
+	"H": {"█  █", "█  █", "████", "█  █", "█  █"},
+	"N": {"█  █", "██ █", "█ ██", "█  █", "█  █"},
+	"R": {"██  ", "█  █", "██  ", "█  █", "█  █"},
+	"T": {"████", " ██ ", " ██ ", " ██ ", " ██ "},
+	"U": {"█  █", "█  █", "█  █", "█  █", "███ "},
+}
+
+// kitLogoWordmark is the HEADHUNTER wordmark in block letters. It is the
+// biggest element of the banner: the word has to read from across a room.
+var kitLogoWordmark = buildKitLogoWordmark("HEADHUNTER")
+
+// kitLogoWordmarkWidth is the width of the wordmark, in columns. It is the
+// width of the widest row of the wordmark, because the rows are trimmed and
+// so are not all the same length.
+var kitLogoWordmarkWidth = widestLine(kitLogoWordmark)
+
+// kitLogoArt is the banner: the crosshair reticle, a gap, the HEADHUNTER
+// wordmark in block letters, and the reticle scanner bar under it. Lines are
+// left-aligned and not padded to a uniform width — trailing space would only
+// be invisible gradient — so the widest line (the wordmark) sets the block's
+// footprint. The block can be placed at any left offset without re-centering.
+var kitLogoArt = buildKitLogoArt()
+
+// buildKitLogoWordmark renders the word in block letters. Every row of the
+// result is one row of every letter, laid side by side with one space
+// between the letters.
+//
+// The trailing spaces of a row are trimmed: they carry no ink, and a line
+// that ends in a space breaks the rule that the banner has no trailing
+// whitespace.
+func buildKitLogoWordmark(word string) []string {
+	rows := make([]string, 0, 5)
+	for row := 0; row < 5; row++ {
+		var b strings.Builder
+		for i, letter := range word {
+			if i > 0 {
+				b.WriteString(" ")
+			}
+			glyph, ok := kitLogoGlyphs[string(letter)]
+			if !ok {
+				continue
+			}
+			b.WriteString(glyph[row])
+		}
+		rows = append(rows, strings.TrimRight(b.String(), " "))
+	}
+	return rows
+}
+
+// buildKitLogoArt assembles the banner from its parts.
+func buildKitLogoArt() []string {
+	art := make([]string, 0, len(kitLogoReticle)+len(kitLogoWordmark)+2)
+	art = append(art, kitLogoReticle...)
+	art = append(art, "")
+	art = append(art, kitLogoWordmark...)
+	art = append(art, buildKitLogoScannerBar(kitLogoWordmarkWidth))
+	return art
+}
+
+// buildKitLogoScannerBar builds the reticle scanner bar at the given width:
+// shades of block that grow towards a reticle in the middle and shrink away
+// from it again. The bar is as wide as the wordmark, so the sweep travels the
+// whole mark.
+func buildKitLogoScannerBar(width int) string {
+	const left = "░░ ▒▒ ▓▓ "
+	const right = " ▓▓ ▒▒ ░░"
+	const reticle = "[ ⊕ ]"
+	fill := width - len([]rune(left)) - len([]rune(right)) - len([]rune(reticle)) - 2
+	if fill < 0 {
+		fill = 0
+	}
+	return left + "»" + strings.Repeat("—", fill/2) + reticle + strings.Repeat("—", fill-fill/2) + "«" + right
 }
 
 // kitLogoWidth is the width of the widest line in kitLogoArt, i.e. the number
 // of columns the block needs to render without wrapping. KitLogoLines falls
 // back to a plain wordmark below this width.
-const kitLogoWidth = 37
+var kitLogoWidth = widestKitLogoLine()
+
+// widestKitLogoLine returns the width of the widest line of the banner.
+func widestKitLogoLine() int {
+	return widestLine(kitLogoArt)
+}
+
+// widestLine returns the width of the widest of the lines, in columns.
+func widestLine(lines []string) int {
+	width := 0
+	for _, line := range lines {
+		if n := len([]rune(line)); n > width {
+			width = n
+		}
+	}
+	return width
+}
 
 // kitLogoScannerRow is the index of the reticle scanner bar within kitLogoArt.
 // The startup animation drives that row separately from the wordmark above it.
-const kitLogoScannerRow = 6
+var kitLogoScannerRow = len(kitLogoReticle) + 1 + len(kitLogoWordmark)
 
 // KitLogoHeight is the number of rows the wordmark block occupies.
-const KitLogoHeight = 7
+var KitLogoHeight = len(kitLogoArt)
 
 // KitLogoFits reports whether the block art will render at the given content
 // width, or whether KitLogoLines will fall back to a plain "KIT".

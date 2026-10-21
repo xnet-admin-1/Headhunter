@@ -52,6 +52,51 @@ func TestKitLogoLinesHaveNoTrailingSpace(t *testing.T) {
 	}
 }
 
+// The wordmark has to spell the name, and it has to spell it in block
+// letters: the letters come from the glyph table, so a row of the wordmark is
+// the glyph row of every letter, side by side.
+func TestKitLogoWordmarkSpellsTheName(t *testing.T) {
+	const word = "HEADHUNTER"
+	rows := buildKitLogoWordmark(word)
+
+	if len(rows) != len(kitLogoGlyphs["H"]) {
+		t.Fatalf("wordmark has %d rows, want %d", len(rows), len(kitLogoGlyphs["H"]))
+	}
+	for row := range rows {
+		var want strings.Builder
+		for i, letter := range word {
+			if i > 0 {
+				want.WriteString(" ")
+			}
+			want.WriteString(kitLogoGlyphs[string(letter)][row])
+		}
+		if got := rows[row]; got != strings.TrimRight(want.String(), " ") {
+			t.Errorf("row %d = %q, want %q", row, got, want.String())
+		}
+	}
+}
+
+// The banner says what the product does. The tagline names the last step of
+// the hunt, and that step is the exploit.
+func TestKitLogoTaglineNamesTheExploit(t *testing.T) {
+	banner := strings.Join(kitLogoArt, "\n")
+	if !strings.Contains(banner, "lock · aim · exploit") {
+		t.Error("the tagline must read lock · aim · exploit")
+	}
+	if strings.Contains(banner, "ship") {
+		t.Error("the tagline must not read ship")
+	}
+}
+
+// The scanner bar sweeps under the wordmark, so it has to be as wide as the
+// wordmark is.
+func TestKitLogoScannerBarSpansTheWordmark(t *testing.T) {
+	bar := kitLogoArt[kitLogoScannerRow]
+	if got := len([]rune(bar)); got != kitLogoWordmarkWidth {
+		t.Errorf("scanner bar is %d columns, want the wordmark width %d", got, kitLogoWordmarkWidth)
+	}
+}
+
 // The animation has to actually animate, and it has to settle. Frames before
 // the end differ from the resting logo; frames at or past the end are the
 // resting logo exactly.
