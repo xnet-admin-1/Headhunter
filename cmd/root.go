@@ -13,6 +13,8 @@ import (
 	tea "charm.land/bubbletea/v2"
 	"github.com/charmbracelet/colorprofile"
 	charmlog "github.com/charmbracelet/log"
+	"github.com/spf13/cobra"
+	"github.com/spf13/viper"
 	"github.com/xnet-admin-1/Headhunter/internal/app"
 	"github.com/xnet-admin-1/Headhunter/internal/config"
 	"github.com/xnet-admin-1/Headhunter/internal/daemon"
@@ -23,8 +25,6 @@ import (
 	"github.com/xnet-admin-1/Headhunter/internal/ui/commands"
 	"github.com/xnet-admin-1/Headhunter/internal/ui/termgfx"
 	kit "github.com/xnet-admin-1/Headhunter/pkg/kit"
-	"github.com/spf13/cobra"
-	"github.com/spf13/viper"
 	"golang.org/x/term"
 )
 
@@ -1166,6 +1166,7 @@ func runNormalMode(ctx context.Context) error {
 			thinkingLevel:            kitInstance.GetThinkingLevel(),
 			modelMode:                kitInstance.CurrentModelMode(),
 			modelModes:               modelModeOptions(kitInstance, parsedProvider+"/"+modelName),
+			primaryAgent:             kitInstance.PrimaryAgent(),
 			startupExtensionMessages: startupExtensionMessages,
 			providerError:            kitInstance.ProviderError(),
 		},
@@ -1452,6 +1453,9 @@ func runInteractiveModeBubbleTea(_ context.Context, deps runModeDeps) error {
 		GetShortcutList:          prov.getShortcutList,
 		GetExtensionCommands:     prov.getExtensionCommands,
 		SetModel:                 act.setModel,
+		ListAgents:               act.listAgents,
+		SetPrimaryAgent:          act.setPrimaryAgent,
+		PrimaryAgent:             snap.primaryAgent,
 		ProviderError:            snap.providerError,
 		SaveProviderAPIKey:       act.saveProviderAPIKey,
 		EmitModelChange:          act.emitModelChange,

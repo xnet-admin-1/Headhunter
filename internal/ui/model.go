@@ -70,6 +70,9 @@ const (
 	// stateModelModeSelector means the /mode selector overlay is active.
 	stateModelModeSelector
 
+	// stateAgentSelector means the /agent selector overlay is active.
+	stateAgentSelector
+
 	// stateThemeSelector means the /theme selector overlay is active.
 	stateThemeSelector
 
@@ -654,6 +657,23 @@ type AppModelOptions struct {
 	SetThinkingLevel func(level string) error
 	SetModelMode     func(mode string) error
 
+	// ListAgents returns the named agents that can act as the primary chat
+	// agent. It is called when the /agent selector opens. It may be nil,
+	// in which case /agent reports that agent switching is not available.
+	ListAgents func() []AgentOption
+
+	// SetPrimaryAgent makes the named agent the primary chat agent. An
+	// empty name restores the configured system prompt. It returns an
+	// error when the name is unknown or the agent cannot be used. It may
+	// be nil, in which case /agent reports that agent switching is not
+	// available.
+	SetPrimaryAgent func(name string) error
+
+	// PrimaryAgent is the name of the agent that answers in the session at
+	// startup. It is empty when the session uses the configured system
+	// prompt.
+	PrimaryAgent string
+
 	// GetMCPResources, if non-nil, returns FileSuggestion entries for all
 	// MCP resources available from connected servers. Used by the @
 	// autocomplete popup to merge resource suggestions with local files.
@@ -938,6 +958,16 @@ type AppModel struct {
 	// May be nil if model switching is not supported.
 	setModel func(modelString string) error
 
+	// listAgents returns the named agents that can act as the primary chat
+	// agent. Wired from cmd/root.go. May be nil if agent switching is not
+	// supported.
+	listAgents func() []AgentOption
+
+	// setPrimaryAgent makes the named agent the primary chat agent. An
+	// empty name restores the configured system prompt. Wired from
+	// cmd/root.go. May be nil if agent switching is not supported.
+	setPrimaryAgent func(name string) error
+
 	// providerError is non-nil while the active model has no usable
 	// provider (no API key). See AppModelOptions.ProviderError.
 	providerError error
@@ -976,6 +1006,13 @@ type AppModel struct {
 	// stateThinkingLevelSelector.
 	thinkingLevelSelector *ThinkingLevelSelectorComponent
 	modelModeSelector     *ModelModeSelectorComponent
+
+	// agentSelector is the primary-agent picker, active in stateAgentSelector.
+	agentSelector *AgentSelectorComponent
+
+	// primaryAgent names the agent that answers in this session. It is
+	// empty when the session uses the configured system prompt.
+	primaryAgent string
 
 	// killSubagentSelector is the /kill-subagent picker. It is not tied to
 	// an appState: subagents run while the agent works, so the state stays
@@ -1270,6 +1307,9 @@ func NewAppModel(appCtrl AppController, opts AppModelOptions) *AppModel {
 	m.getShortcutList = opts.GetShortcutList
 	m.getExtensionCommands = opts.GetExtensionCommands
 	m.setModel = opts.SetModel
+	m.listAgents = opts.ListAgents
+	m.setPrimaryAgent = opts.SetPrimaryAgent
+	m.primaryAgent = opts.PrimaryAgent
 	m.providerError = opts.ProviderError
 	m.saveProviderAPIKey = opts.SaveProviderAPIKey
 	m.emitModelChange = opts.EmitModelChange
@@ -2070,6 +2110,16 @@ func (m *AppModel) update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		m.state = stateInput
 		return m, nil
 
+	// ── Primary agent selector events ────────────────────────────────────
+	case AgentSelectedMsg:
+		m.agentSelector = nil
+		m.state = stateInput
+		return m, m.applyPrimaryAgent(msg.Name)
+	case AgentSelectorCancelledMsg:
+		m.agentSelector = nil
+		m.state = stateInput
+		return m, nil
+
 	// ── Kill-subagent selector events ───────────────────────────────────
 	// The state is not changed here: the picker does not own an appState.
 	case KillSubagentSelectedMsg:
@@ -2422,6 +2472,14 @@ func (m *AppModel) update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		if m.state == stateModelModeSelector && m.modelModeSelector != nil {
 			updated, cmd := m.modelModeSelector.Update(msg)
 			m.modelModeSelector = updated.(*ModelModeSelectorComponent)
+			cmds = append(cmds, cmd)
+			return m, tea.Batch(cmds...)
+		}
+
+		// Route to the primary agent selector when active.
+		if m.state == stateAgentSelector && m.agentSelector != nil {
+			updated, cmd := m.agentSelector.Update(msg)
+			m.agentSelector = updated.(*AgentSelectorComponent)
 			cmds = append(cmds, cmd)
 			return m, tea.Batch(cmds...)
 		}
@@ -3904,6 +3962,11 @@ func (m *AppModel) View() tea.View {
 		finalContent = compositeCentered(finalContent, m.modelModeSelector.RenderOverlay(), m.width, m.height)
 	}
 
+	// Primary agent selector.
+	if m.state == stateAgentSelector && m.agentSelector != nil {
+		finalContent = compositeCentered(finalContent, m.agentSelector.RenderOverlay(), m.width, m.height)
+	}
+
 	// Kill-subagent selector.
 	if m.killSubagentOpen() {
 		finalContent = compositeCentered(finalContent, m.killSubagentSelector.RenderOverlay(), m.width, m.height)
@@ -4929,6 +4992,8 @@ func (m *AppModel) handleSlashCommand(sc *commands.SlashCommand, args string) te
 		m.printResetUsage()
 	case "/model":
 		return m.handleModelCommand(args)
+	case "/agent":
+		return m.handleAgentCommand(args)
 	case "/connect":
 		return m.handleConnectCommand(args)
 	case "/theme":
@@ -6243,6 +6308,44 @@ func (m *AppModel) handleModelCommand(args string) tea.Cmd {
 
 	// Direct model switch with the provided model string.
 	m.switchModel(args)
+	return nil
+}
+
+// handleAgentCommand handles the /agent slash command. Without an argument
+// it opens the agent selector. With an argument it makes that agent the
+// primary chat agent directly.
+func (m *AppModel) handleAgentCommand(args string) tea.Cmd {
+	if m.setPrimaryAgent == nil || m.listAgents == nil {
+		m.printSystemMessage("Agent switching is not available.")
+		return nil
+	}
+
+	if args == "" {
+		m.agentSelector = NewAgentSelector(m.listAgents(), m.primaryAgent, m.width, m.height)
+		m.state = stateAgentSelector
+		return nil
+	}
+
+	return m.applyPrimaryAgent(args)
+}
+
+// applyPrimaryAgent makes the named agent the primary chat agent and
+// reports the result. An empty name restores the configured system prompt.
+func (m *AppModel) applyPrimaryAgent(name string) tea.Cmd {
+	if m.setPrimaryAgent == nil {
+		m.printSystemMessage("Agent switching is not available.")
+		return nil
+	}
+	if err := m.setPrimaryAgent(name); err != nil {
+		m.printSystemMessage(fmt.Sprintf("Could not use agent %s: %v", name, err))
+		return nil
+	}
+	m.primaryAgent = name
+	if name == "" {
+		m.printSystemMessage("Primary agent cleared. The session uses the configured system prompt.")
+		return nil
+	}
+	m.printSystemMessage(fmt.Sprintf("Primary agent set to: %s", name))
 	return nil
 }
 

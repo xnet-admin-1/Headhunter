@@ -12,6 +12,7 @@ import (
 	charmlog "github.com/charmbracelet/log"
 	"github.com/spf13/viper"
 
+	"github.com/xnet-admin-1/Headhunter/internal/agents"
 	"github.com/xnet-admin-1/Headhunter/internal/app"
 	"github.com/xnet-admin-1/Headhunter/internal/config"
 	"github.com/xnet-admin-1/Headhunter/internal/daemon"
@@ -66,6 +67,7 @@ type startupSnapshot struct {
 	thinkingLevel            string
 	modelMode                string
 	modelModes               []ui.ModelModeOption
+	primaryAgent             string
 	startupExtensionMessages []string // interactive only
 	providerError            error    // non-nil when the model has no usable credentials
 }
@@ -100,6 +102,8 @@ type uiActions struct {
 	emitBeforeFork          func(string, bool, string) (bool, string)
 	emitBeforeSessionSwitch func(string, string) (bool, string)
 	setModel                func(string) error
+	listAgents              func() []ui.AgentOption
+	setPrimaryAgent         func(string) error
 	saveProviderAPIKey      func(providerID, key string) error
 	emitModelChange         func(string, string, string)
 	emitThinkingLevelChange func(string, string, string)
@@ -556,6 +560,40 @@ func modelModeOptions(_ *kit.Kit, modelString string) []ui.ModelModeOption {
 	return options
 }
 
+// agentOptionsForUI lists the named agents that can act as the primary chat
+// agent. The agent that is the primary one now is marked.
+func agentOptionsForUI(k *kit.Kit) []ui.AgentOption {
+	definitions := k.GetAgents()
+	current := k.PrimaryAgent()
+	options := make([]ui.AgentOption, 0, len(definitions))
+	for _, definition := range definitions {
+		if definition == nil {
+			continue
+		}
+		options = append(options, ui.AgentOption{
+			Name:        definition.Name,
+			Description: definition.Description,
+			Badge:       agentSourceBadge(definition.Source),
+			Model:       definition.Model,
+			Current:     definition.Name == current,
+		})
+	}
+	return options
+}
+
+// agentSourceBadge gives a short label for the place a definition came from.
+func agentSourceBadge(source string) string {
+	switch source {
+	case agents.SourceBuiltin:
+		return "builtin"
+	case agents.SourceUser:
+		return "user"
+	case agents.SourceProject:
+		return "project"
+	}
+	return ""
+}
+
 func buildUIActions(k *kit.Kit, appInstance *app.App, usageTracker *ui.UsageTracker) uiActions {
 	return uiActions{
 		expandMCPPrompt:         expandMCPPromptForUI(k),
@@ -576,6 +614,15 @@ func buildUIActions(k *kit.Kit, appInstance *app.App, usageTracker *ui.UsageTrac
 			// Update usage tracker with new model info for correct token counting.
 			ui.UpdateUsageTrackerForModel(usageTracker, modelString, k.IsOAuth())
 			return nil
+		},
+		// listAgents backs the /agent command.
+		listAgents: func() []ui.AgentOption {
+			return agentOptionsForUI(k)
+		},
+		// setPrimaryAgent backs the /agent command. An empty name restores
+		// the configured system prompt.
+		setPrimaryAgent: func(name string) error {
+			return k.SetPrimaryAgent(context.Background(), name)
 		},
 		// saveProviderAPIKey backs the /connect command. Keys go to the
 		// credentials file and win over environment variables.

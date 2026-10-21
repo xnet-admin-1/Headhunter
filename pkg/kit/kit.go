@@ -119,6 +119,15 @@ type Kit struct {
 	// the configured system prompt, or the built-in default when none is
 	// configured. A model switch starts from it. Set in New, then constant.
 	globalBasePrompt string
+	// primaryAgent names the agent that acts as the primary chat agent. It
+	// is empty when the session uses the configured system prompt. The
+	// system prompt of the agent replaces the base prompt.
+	// Protected by runtimeMu.
+	primaryAgent string
+	// primaryAgentTemperature holds the sampling temperature of the
+	// primary agent. It is nil when the agent does not set one.
+	// Protected by runtimeMu.
+	primaryAgentTemperature *float32
 
 	// Hook registries — interception layer (see hooks.go).
 	beforeToolCall  *hookRegistry[BeforeToolCallHook, BeforeToolCallResult]
@@ -846,9 +855,11 @@ func (m *Kit) setModelLocked(ctx context.Context, modelString string) error {
 		ThinkingLevel:          thinkingLevel,
 		ThinkingLevelInherited: modelString != m.modelString,
 		ModelMode:              mode,
-		DisableCaching:         false, // Caching enabled by default, works with thinking
-		ConfigStore:            m.v,
-		SessionIDFunc:          m.GetSessionID,
+		// The primary agent sets the sampling temperature of the session.
+		Temperature:    m.primaryAgentSamplingTemperature(),
+		DisableCaching: false, // Caching enabled by default, works with thinking
+		ConfigStore:    m.v,
+		SessionIDFunc:  m.GetSessionID,
 		// Instance provider factories (snapshot of Options.Providers).
 		ProviderFactories: m.providers,
 	}

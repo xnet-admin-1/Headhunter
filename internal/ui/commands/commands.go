@@ -76,6 +76,12 @@ var SlashCommands = []SlashCommand{
 		Aliases:     []string{"/m"},
 	},
 	{
+		Name:        "/agent",
+		Description: "Choose the agent that answers in this session",
+		Category:    "System",
+		Aliases:     []string{"/ag"},
+	},
+	{
 		Name:        "/connect",
 		Description: "Add an API key for a provider (saved in the credentials file)",
 		Category:    "System",
