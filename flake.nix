@@ -17,10 +17,10 @@
     # .github/workflows/release.yml rewrites the url below after every tagged
     # release, so the pin on the default branch always names the newest tag.
     #
-    # Keep the `# nix:kit-release-tag` marker on the url line:
+    # Keep the `# nix:headhunter-release-tag` marker on the url line:
     # scripts/bump-flake-release-pin.sh matches on it.
-    kit-release = {
-      url = "github:xnet-admin-1/Headhunter/v0.132.0"; # nix:kit-release-tag
+    headhunter-release = {
+      url = "github:xnet-admin-1/Headhunter/v0.132.0"; # nix:headhunter-release-tag
       flake = false;
     };
   };
@@ -29,20 +29,20 @@
     {
       self,
       nixpkgs,
-      kit-release,
+      headhunter-release,
       ...
     }:
     let
       inherit (nixpkgs) lib;
 
-      # Version of the release pinned by inputs.kit-release above, without the
+      # Version of the release pinned by inputs.headhunter-release above, without the
       # "v". scripts/bump-flake-release-pin.sh writes both lines from one tag
       # and refuses to run when they disagree.
       #
       # It cannot be derived from the input: a `flake = false` input arrives in
       # the outputs as a bare store path, so the tag in the url is not visible
       # here.
-      version = "0.132.0"; # nix:kit-release-version
+      version = "0.132.0"; # nix:headhunter-release-version
 
       # The platforms goreleaser builds. Keep them in sync with .goreleaser.yaml.
       systems = [
@@ -149,7 +149,7 @@
         pkgs:
         mkKit {
           inherit pkgs version;
-          src = kit-release;
+          src = headhunter-release;
         };
     in
     {

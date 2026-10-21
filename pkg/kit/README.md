@@ -52,7 +52,7 @@ after Kit's boundary and is responsible for its own policy.
 ## Installation
 
 ```bash
-go get github.com/mark3labs/kit
+go get github.com/xnet-admin-1/Headhunter
 ```
 
 ## Basic Usage
@@ -65,7 +65,7 @@ import (
     "fmt"
     "log"
 
-    kit "github.com/mark3labs/kit/pkg/kit"
+    kit "github.com/xnet-admin-1/Headhunter/pkg/kit"
 )
 
 func main() {

@@ -169,7 +169,7 @@ real bubbletea program under Yaegi.
    real, wrap, ptr, Init       OK hostiface._KitTool
    real, NO wrap, val, main    EVAL ERROR: reflect: call of reflect.Value.Type on zero Value  (control)
    ```
-   Extensions would import `github.com/mark3labs/kit/ext` rather than `kit/ext`.
+   Extensions would import `github.com/xnet-admin-1/Headhunter/ext` rather than `kit/ext`.
    This argues for promoting the extension API out of `internal/` into a real
    published package — which also fits the existing `pkg/kit/` SDK direction.
 

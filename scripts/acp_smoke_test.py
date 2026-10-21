@@ -32,7 +32,7 @@ deletes the sessions it created when it ends.
 
 Environment variables:
   MODEL       model to use (default: opencode/kimi-k3)
-  KIT_BIN     kit binary (default: ../output/kit)
+  KIT_BIN     kit binary (default: ../output/headhunter)
   SKIP_TOOLS  set to 1 to skip the tool steps (7-11)
   TIMEOUT     seconds to wait for each prompt (default: 120)
 """
@@ -49,7 +49,7 @@ import threading
 import time
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-KIT_BIN = os.environ.get("KIT_BIN", os.path.join(HERE, "..", "output", "kit"))
+KIT_BIN = os.environ.get("KIT_BIN", os.path.join(HERE, "..", "output", "headhunter"))
 MODEL = os.environ.get("MODEL", "opencode/kimi-k3")
 SKIP_TOOLS = os.environ.get("SKIP_TOOLS") == "1"
 TIMEOUT = float(os.environ.get("TIMEOUT", "120"))

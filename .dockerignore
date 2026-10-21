@@ -19,7 +19,7 @@ kit
 *.test
 *.out
 
-# Docs, site and assets — not needed to compile ./cmd/kit
+# Docs, site and assets — not needed to compile ./cmd/headhunter
 www
 contribute
 skills

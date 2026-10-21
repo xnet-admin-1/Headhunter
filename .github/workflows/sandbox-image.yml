@@ -1,15 +1,15 @@
 name: Sandbox Image
 
-# Build the official Kit sandbox image and publish it to GHCR. The image is a
-# ready-to-run Linux userland (Go + kit + gh/glab/tea + git/ssh) intended to be
+# Build the official Headhunter sandbox image and publish it to GHCR. The image is a
+# ready-to-run Linux userland (Go + headhunter + gh/glab/tea + git/ssh) intended to be
 # registered as a workdir.dev custom image:
 #
 #   POST /v1/images
 #   { "source": { "type": "oci",
-#                 "image_ref": "ghcr.io/mark3labs/kit-sandbox:latest" },
-#     "name": "custom/mark3labs/kit-sandbox" }
+#                 "image_ref": "ghcr.io/xnet-admin-1/Headhunter-sandbox:latest" },
+#     "name": "custom/xnet-admin-1/Headhunter-sandbox" }
 #
-# Then create sandboxes with { "image": "custom/mark3labs/kit-sandbox", ... }.
+# Then create sandboxes with { "image": "custom/xnet-admin-1/Headhunter-sandbox", ... }.
 
 on:
   push:
@@ -17,7 +17,7 @@ on:
     paths:
       - "deploy/sandbox/**"
       - ".github/workflows/sandbox-image.yml"
-  # Rebuild on every release so the image tracks the latest kit binary.
+  # Rebuild on every release so the image tracks the latest headhunter binary.
   #
   # This is driven by release.yml calling us (needs: goreleaser) rather than by
   # a `release: [published]` trigger. Goreleaser publishes the release using the
@@ -27,14 +27,14 @@ on:
   # image tags below resolve instead of silently going missing.
   workflow_call:
     inputs:
-      kit_version:
-        description: "kit version to install (go install ...@VERSION)"
+      headhunter_version:
+        description: "headhunter version to install (go install ...@VERSION)"
         required: true
         type: string
   workflow_dispatch:
     inputs:
-      kit_version:
-        description: "kit version to install (go install ...@VERSION)"
+      headhunter_version:
+        description: "headhunter version to install (go install ...@VERSION)"
         required: false
         type: string
         default: "latest"
@@ -45,7 +45,7 @@ concurrency:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository }}-sandbox # ghcr.io/mark3labs/kit-sandbox
+  IMAGE_NAME: ${{ github.repository }}-sandbox # ghcr.io/xnet-admin-1/Headhunter-sandbox
 
 jobs:
   build:
@@ -61,18 +61,18 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: Resolve kit version
-        id: kitver
+      - name: Resolve headhunter version
+        id: headhunterver
         env:
           # Set for both workflow_call (the release tag) and workflow_dispatch.
           # Empty on a plain master push, which builds against @latest.
-          INPUT_KIT_VERSION: ${{ inputs.kit_version || '' }}
+          INPUT_HEADHUNTER_VERSION: ${{ inputs.headhunter_version || '' }}
         run: |
-          version="${INPUT_KIT_VERSION:-latest}"
+          version="${INPUT_HEADHUNTER_VERSION:-latest}"
           # Reject anything that could smuggle shell/newlines into later steps.
           case "$version" in
             *$'\n'*|*$'\r'*|*' '*|*';'*|*'&'*|*'|'*|*'$'*|*'`'*)
-              echo "invalid kit version: $version" >&2; exit 1 ;;
+              echo "invalid headhunter version: $version" >&2; exit 1 ;;
           esac
           printf 'version=%s\n' "$version" >> "$GITHUB_OUTPUT"
 
@@ -118,6 +118,6 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           build-args: |
-            KIT_VERSION=${{ steps.kitver.outputs.version }}
+            HEADHUNTER_VERSION=${{ steps.headhunterver.outputs.version }}
           cache-from: type=gha
           cache-to: type=gha,mode=max

@@ -61,8 +61,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   # Keep the floating major tag (e.g. v1) pointing at the latest release,
-  # so the composite action can be referenced as `mark3labs/kit@v1` — which
-  # is exactly what `kit github install` scaffolds into a user's workflow
+  # so the composite action can be referenced as `xnet-admin-1/Headhunter@v1` — which
+  # is exactly what `headhunter github install` scaffolds into a user's workflow
   # (see cmd/github.go). This tag is load-bearing: leaving it behind pins
   # every scaffolded workflow to whatever release it last pointed at.
   #
@@ -94,8 +94,8 @@ jobs:
           git tag -f "$MAJOR" "$FULL_TAG"
           git push -f origin "refs/tags/$MAJOR"
 
-  # Keep the flake's `kit-release` input on the newest tag. Without it,
-  # `nix profile install github:mark3labs/kit` would install whatever the
+  # Keep the flake's `headhunter-release` input on the newest tag. Without it,
+  # `nix profile install github:xnet-admin-1/Headhunter` would install whatever the
   # default branch holds instead of a release: a flake input cannot say
   # "latest tag", so flake.nix pins a tag and this job moves the pin.
   # Same bot-push pattern as action-tags above, same reason for fetch-depth.
@@ -151,7 +151,7 @@ jobs:
       packages: write
     uses: ./.github/workflows/sandbox-image.yml
     with:
-      kit_version: ${{ github.ref_name }}
+      headhunter_version: ${{ github.ref_name }}
 
   npm-publish:
     runs-on: ubuntu-latest
@@ -195,7 +195,7 @@ jobs:
             -d "{
               \"embeds\": [{
                 \"title\": \"New Release: $TAG_NAME\",
-                \"description\": \"A new version of kit has been released!\",
+                \"description\": \"A new version of headhunter has been released!\",
                 \"color\": 5814783,
                 \"fields\": [
                   {
@@ -205,7 +205,7 @@ jobs:
                   },
                   {
                     \"name\": \"Repository\",
-                    \"value\": \"[kit](https://github.com/${{ github.repository }})\",
+                    \"value\": \"[headhunter](https://github.com/${{ github.repository }})\",
                     \"inline\": true
                   }
                 ],

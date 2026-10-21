@@ -83,8 +83,8 @@ go install github.com/xnet-admin-1/Headhunter/cmd/headhunter@latest
 
 ```bash
 git clone https://github.com/xnet-admin-1/Headhunter.git
-cd kit
-go build -o kit ./cmd/headhunter
+cd Headhunter
+go build -o headhunter ./cmd/headhunter
 ```
 
 ## Verifying the installation

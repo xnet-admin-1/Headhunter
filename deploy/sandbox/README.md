@@ -105,11 +105,11 @@ exported to the GHA cache — they only speed up local rebuilds.
 ## CI / publishing
 
 `.github/workflows/sandbox-image.yml` builds the image and pushes it to GHCR
-(`ghcr.io/mark3labs/kit-sandbox`) on:
+(`ghcr.io/xnet-admin-1/Headhunter-sandbox`) on:
 
 - pushes to `master` touching `deploy/sandbox/**`,
-- published releases (the image is rebuilt against the released `kit` tag),
-- manual `workflow_dispatch` (optionally pinning `kit_version`).
+- published releases (the image is rebuilt against the released `headhunter` tag),
+- manual `workflow_dispatch` (optionally pinning `headhunter_version`).
 
 Tags published: `latest` (default branch), `sha-<short>`, branch name, and
 `vX.Y.Z` / `vX.Y` on releases.
@@ -127,8 +127,8 @@ curl -fsSL -X POST https://api.workdir.dev/v1/images \
   -H "Content-Type: application/json" \
   -d '{
     "source": { "type": "oci",
-                "image_ref": "ghcr.io/mark3labs/kit-sandbox:v0.82.1" },
-    "name": "custom/mark3labs/kit-sandbox",
+                "image_ref": "ghcr.io/xnet-admin-1/Headhunter-sandbox:v0.82.1" },
+    "name": "custom/xnet-admin-1/Headhunter-sandbox",
     "resources_hint": { "cpu": 2, "memory_mb": 4096, "disk_gb": 16 }
   }'
 ```
@@ -138,7 +138,7 @@ and `build_log`. Then create sandboxes against it:
 
 ```jsonc
 POST /v1/sandboxes
-{ "image": "custom/mark3labs/kit-sandbox",
+{ "image": "custom/xnet-admin-1/Headhunter-sandbox",
   "image_version": "2026-06-10-ab12cd" }
 ```
 

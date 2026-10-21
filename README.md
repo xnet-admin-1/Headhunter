@@ -28,10 +28,48 @@
 
 # HEADHUNTER
 
-A powerful, extensible AI coding agent CLI with multi-provider support, built-in tools, and a rich extension system. Lock on, line up the shot, ship the fix.
+> Lock on. Line up the shot. Take the domain.
+
+**HEADHUNTER is a red-team offensive agent platform.** It is the command brain of the kill chain — a multi-agent AI strike package that hunts from first recon to the last shell you hold. It is built to be aimed at an adversary's network, coupled to a Kali tool server, and its named agents are the specialist operators who walk the chain end to end.
+
+## The strike package
+
+Headhunter is not one agent: it is a task force. Under a lead operator running overwatch, each named agent carries doctrine, a tool allowlist, and a mission:
+
+| Agent | Role |
+|-------|------|
+| **Big Red** | Command — overwatch, op board, coordination, tasking |
+| **Headhunter** | Point operator — hunts the kill chain: recon, exploit, pivot, prove |
+| **Scout** | Eyes and ears — reachability, ports, banners, exposed seams |
+| **Hands** | Fabricator — builds honeypots, sensors, proxies, custom tooling, and proofs it |
+| **Doc** | Combat medic — detects infections, patches holes, cleans compromised hosts |
+| **Agent X** | Spymaster — the human side: social engineering, cover, quiet work |
+
+All of it rides one infrastructure spine: an agent client that speaks MCP and carries arbitrary tools, so the operators above reach a live offensive toolset instead of a sandbox.
+
+## Coupled with zebbern-kali-mcp
+
+Headhunter is designed to be fired through a Kali MCP server. It ships to find [zebbern-kali-mcp](https://github.com/zebbern/zebbern-kali-mcp) — the capability-aware MCP client for the Docker-hosted Kali Linux tools API — as its primary tool surface.
+
+- **Repository:** <https://github.com/zebbern/zebbern-kali-mcp>
+- Configure it under `.kit.yml`:
+  ```yaml
+  mcpServers:
+    kali:
+      type: local
+      command: [/path/to/kali-mcp.sh]   # token-injected zebbern-kali-mcp launcher
+  ```
+- That unlocks the full `kali.*` surface — nmap, masscan, msfconsole, payloads, SSH/Chisel/Ligolo pivots, reverse-shell callbacks, AD tooling — as tools Headhunter's agents call directly.
+
+With the Kali server on the wire, Headhunter goes from a coding agent to a live red-team operator: discover the attack surface, take the foothold, pivot through the network, and hold the shell.
+
+## Under the hood
+
+Beyond the operator frame, Headhunter is an extensible, multi-provider agent CLI (see [Features](#features)): named-agent presets with per-agent tool allowlists, an interpreted-Go extension system, MCP client integration, a tree-based session model, detachable/remote daemon sessions, and a public Go SDK — everything a strike package needs to be aimed, instrumented, and re-built in the field.
 
 ## Features
 
+- **Named-Agent Strike Package**: a pre-assembled red-team roster (Big Red, Headhunter, Scout, Hands, Doc, Agent X) delivered as markdown presets with per-agent tool allowlists — taskable, replaceable, and hidden from the catalog on demand
 - **Multi-Provider LLM Support**: Anthropic, OpenAI, Google Gemini, Ollama, Azure OpenAI, AWS Bedrock, OpenRouter, and more
 - **Built-in Core Tools**: shell (configurable shell, bash by default, with interactive sudo password prompt), read, write, edit, grep, find, ls, subagent - no MCP overhead
 - **Named Agents**: Reusable subagent presets defined in markdown with per-agent tool allowlists, advertised to the LLM for delegation. A built-in status bar above parent activity shows active runs and recent results
@@ -117,8 +155,8 @@ go install github.com/xnet-admin-1/Headhunter/cmd/headhunter@latest
 
 ```bash
 git clone https://github.com/xnet-admin-1/Headhunter.git
-cd kit
-go build -o kit ./cmd/headhunter
+cd Headhunter
+go build -o headhunter ./cmd/headhunter
 ```
 
 ## Quick Start
@@ -1335,7 +1373,7 @@ tmux kill-session -t kittest
 
 ```bash
 # Build
-go build -o output/kit ./cmd/headhunter
+go build -o output/headhunter ./cmd/headhunter
 
 # Run tests
 go test -race ./...

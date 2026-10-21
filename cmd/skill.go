@@ -92,7 +92,7 @@ func runSkillInstall(_ *cobra.Command, _ []string) error {
 	args := []string{
 		"skills",
 		"add",
-		"mark3labs/kit",
+		"xnet-admin-1/Headhunter",
 	}
 
 	cmd := exec.Command(npx, args...)

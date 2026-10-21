@@ -10,7 +10,7 @@ ogImage: /og-image.png
 
 ```bash
 # Build
-go build -o output/kit ./cmd/headhunter
+go build -o output/headhunter ./cmd/headhunter
 
 # Run all tests
 go test -race ./...

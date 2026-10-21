@@ -12,7 +12,7 @@ tape_dir="$repo_root/www/tapes"
 
 # Build a fresh kit and put it first on PATH so tapes can just call `kit`.
 echo "==> building kit"
-(cd "$repo_root" && go build -o output/kit ./cmd/headhunter)
+(cd "$repo_root" && go build -o output/headhunter ./cmd/headhunter)
 export PATH="$repo_root/output:$PATH"
 
 # Tapes may run stateful commands on camera (`/theme`, `/model`), which Kit
@@ -86,7 +86,7 @@ done
 # silently shadow it, which produces a demo of the wrong version.
 if command -v kit >/dev/null 2>&1; then
   resolved="$(command -v kit)"
-  if [ "$resolved" != "$repo_root/output/kit" ]; then
+  if [ "$resolved" != "$repo_root/output/headhunter" ]; then
     echo "    note: 'kit' resolves to $resolved outside this script;"
     echo "          tapes must prepend ../../output to PATH themselves."
   fi

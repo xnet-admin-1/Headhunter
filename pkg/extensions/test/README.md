@@ -1,6 +1,6 @@
 # Testing Kit Extensions
 
-The `github.com/mark3labs/kit/pkg/extensions/test` package provides utilities for testing Kit extensions using standard Go testing patterns.
+The `github.com/xnet-admin-1/Headhunter/pkg/extensions/test` package provides utilities for testing Kit extensions using standard Go testing patterns.
 
 ## Overview
 
@@ -17,15 +17,15 @@ Add Kit to your extension repository and import two packages: the harness, and
 the types the harness speaks in.
 
 ```bash
-go get github.com/mark3labs/kit
+go get github.com/xnet-admin-1/Headhunter
 ```
 
 ```go
 import (
     "testing"
 
-    "github.com/mark3labs/kit/pkg/extensions"      // events, results, configs
-    "github.com/mark3labs/kit/pkg/extensions/test" // harness and assertions
+    "github.com/xnet-admin-1/Headhunter/pkg/extensions"      // events, results, configs
+    "github.com/xnet-admin-1/Headhunter/pkg/extensions/test" // harness and assertions
 )
 ```
 
@@ -44,8 +44,8 @@ package main
 
 import (
     "testing"
-    "github.com/mark3labs/kit/pkg/extensions/test"
-    "github.com/mark3labs/kit/pkg/extensions"
+    "github.com/xnet-admin-1/Headhunter/pkg/extensions/test"
+    "github.com/xnet-admin-1/Headhunter/pkg/extensions"
 )
 
 func TestMyExtension(t *testing.T) {
@@ -348,8 +348,8 @@ package main
 
 import (
     "testing"
-    "github.com/mark3labs/kit/pkg/extensions/test"
-    "github.com/mark3labs/kit/pkg/extensions"
+    "github.com/xnet-admin-1/Headhunter/pkg/extensions/test"
+    "github.com/xnet-admin-1/Headhunter/pkg/extensions"
 )
 
 // Test that the extension properly blocks dangerous tools

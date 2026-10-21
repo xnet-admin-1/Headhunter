@@ -455,7 +455,7 @@ func AuthoredSearchPaths() []SearchPath {
 //
 // Packagers can point it somewhere else at build time:
 //
-//	go build -ldflags "-X github.com/xnet-admin-1/Headhunter/internal/extensions.SystemExtensionsDir=/opt/kit/extensions" ./cmd/kit
+//	go build -ldflags "-X github.com/xnet-admin-1/Headhunter/internal/extensions.SystemExtensionsDir=/opt/kit/extensions" ./cmd/headhunter
 //
 // Set it to an empty string to disable system-wide discovery.
 var SystemExtensionsDir = "/usr/share/kit/extensions"

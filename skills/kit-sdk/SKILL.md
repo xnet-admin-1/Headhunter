@@ -12,13 +12,13 @@ This file is the entry point. It gives the installation, a quick start, the core
 ## Installation
 
 ```bash
-go get github.com/mark3labs/kit
+go get github.com/xnet-admin-1/Headhunter
 ```
 
 Import path (alias recommended):
 
 ```go
-import kit "github.com/mark3labs/kit/pkg/kit"
+import kit "github.com/xnet-admin-1/Headhunter/pkg/kit"
 ```
 
 ## Quick Start
@@ -31,7 +31,7 @@ import (
     "fmt"
     "log"
 
-    kit "github.com/mark3labs/kit/pkg/kit"
+    kit "github.com/xnet-admin-1/Headhunter/pkg/kit"
 )
 
 func main() {
@@ -134,16 +134,16 @@ Read the file that matches the task. Paths are relative to this skill's root dir
 
 ## Key Files for Reference
 
-- [`pkg/kit/kit.go`](https://github.com/mark3labs/kit/blob/master/pkg/kit/kit.go) — Kit struct, New(), Prompt methods, Subagent, Close
-- [`pkg/kit/extension_api.go`](https://github.com/mark3labs/kit/blob/master/pkg/kit/extension_api.go) — ExtensionAPI interface, kit.Extensions() accessor
-- [`pkg/kit/types.go`](https://github.com/mark3labs/kit/blob/master/pkg/kit/types.go) — Re-exported types from internal packages
-- [`pkg/kit/tools.go`](https://github.com/mark3labs/kit/blob/master/pkg/kit/tools.go) — Tool constructors and bundles
-- [`pkg/kit/events.go`](https://github.com/mark3labs/kit/blob/master/pkg/kit/events.go) — Event types, EventBus, typed subscribers
-- [`pkg/kit/hooks.go`](https://github.com/mark3labs/kit/blob/master/pkg/kit/hooks.go) — Hook system (BeforeToolCall, AfterToolResult, etc.)
-- [`pkg/kit/sessions.go`](https://github.com/mark3labs/kit/blob/master/pkg/kit/sessions.go) — Session management
-- [`pkg/kit/compaction.go`](https://github.com/mark3labs/kit/blob/master/pkg/kit/compaction.go) — Context compaction
-- [`pkg/kit/models.go`](https://github.com/mark3labs/kit/blob/master/pkg/kit/models.go) — Model registry lookups
-- [`pkg/kit/config.go`](https://github.com/mark3labs/kit/blob/master/pkg/kit/config.go) — Config initialization and defaults
-- [`pkg/kit/skills.go`](https://github.com/mark3labs/kit/blob/master/pkg/kit/skills.go) — Skills loading and prompt building
-- [`pkg/kit/auth.go`](https://github.com/mark3labs/kit/blob/master/pkg/kit/auth.go) — Credential management
-- [`examples/sdk/`](https://github.com/mark3labs/kit/tree/master/examples/sdk) — Working example programs
+- [`pkg/kit/kit.go`](https://github.com/xnet-admin-1/Headhunter/blob/master/pkg/kit/kit.go) — Kit struct, New(), Prompt methods, Subagent, Close
+- [`pkg/kit/extension_api.go`](https://github.com/xnet-admin-1/Headhunter/blob/master/pkg/kit/extension_api.go) — ExtensionAPI interface, kit.Extensions() accessor
+- [`pkg/kit/types.go`](https://github.com/xnet-admin-1/Headhunter/blob/master/pkg/kit/types.go) — Re-exported types from internal packages
+- [`pkg/kit/tools.go`](https://github.com/xnet-admin-1/Headhunter/blob/master/pkg/kit/tools.go) — Tool constructors and bundles
+- [`pkg/kit/events.go`](https://github.com/xnet-admin-1/Headhunter/blob/master/pkg/kit/events.go) — Event types, EventBus, typed subscribers
+- [`pkg/kit/hooks.go`](https://github.com/xnet-admin-1/Headhunter/blob/master/pkg/kit/hooks.go) — Hook system (BeforeToolCall, AfterToolResult, etc.)
+- [`pkg/kit/sessions.go`](https://github.com/xnet-admin-1/Headhunter/blob/master/pkg/kit/sessions.go) — Session management
+- [`pkg/kit/compaction.go`](https://github.com/xnet-admin-1/Headhunter/blob/master/pkg/kit/compaction.go) — Context compaction
+- [`pkg/kit/models.go`](https://github.com/xnet-admin-1/Headhunter/blob/master/pkg/kit/models.go) — Model registry lookups
+- [`pkg/kit/config.go`](https://github.com/xnet-admin-1/Headhunter/blob/master/pkg/kit/config.go) — Config initialization and defaults
+- [`pkg/kit/skills.go`](https://github.com/xnet-admin-1/Headhunter/blob/master/pkg/kit/skills.go) — Skills loading and prompt building
+- [`pkg/kit/auth.go`](https://github.com/xnet-admin-1/Headhunter/blob/master/pkg/kit/auth.go) — Credential management
+- [`examples/sdk/`](https://github.com/xnet-admin-1/Headhunter/tree/master/examples/sdk) — Working example programs

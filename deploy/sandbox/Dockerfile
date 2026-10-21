@@ -1,18 +1,18 @@
 # syntax=docker/dockerfile:1
 #
-# Official Kit sandbox image.
+# Official Headhunter sandbox image.
 #
-# A ready-to-run Linux userland for the Kit coding agent, designed to be
+# A ready-to-run Linux userland for the Headhunter coding agent, designed to be
 # registered as a workdir.dev custom image (`POST /v1/images` with
 # `source.type = "oci"`). It pre-bakes the toolchain that the dev-sandbox
 # integration otherwise installs at runtime on every boot:
 #
-#   * Go (compiler + toolchain) and the Kit CLI (`kit`)
+#   * Go (compiler + toolchain) and the Headhunter CLI (`headhunter`)
 #   * The three git-forge CLIs: gh (GitHub), glab (GitLab), tea (Gitea)
 #   * uv (Python package manager) and bun (JS runtime + package manager)
 #   * nix (single-user, flakes enabled) + direnv for flake/.envrc dev shells
 #   * git + openssh-client for SSH-based clones
-#   * the `127.0.0.1 localhost` /etc/hosts entry Kit's OAuth listener needs
+#   * the `127.0.0.1 localhost` /etc/hosts entry Headhunter's OAuth listener needs
 #
 # The base apt layer mirrors workdir's curated base image
 # (deploy/images/base/Dockerfile in mv37-org/workdir). We deliberately do NOT
@@ -38,12 +38,12 @@
 #      stages / cache mounts.
 #
 # Within the final stage, COPYs are ordered least-volatile -> most-volatile:
-# nix and the pinned CLIs first, `kit` (rebuilt on every release) last, so a
+# nix and the pinned CLIs first, `headhunter` (rebuilt on every release) last, so a
 # release bump only invalidates the final two layers.
 #
 # Build (linux/amd64 only — workdir runs x86_64 Firecracker, and the pinned
 # SHA256 checksums below are amd64-specific):
-#   docker buildx build --platform linux/amd64 -f deploy/sandbox/Dockerfile -t kit-sandbox .
+#   docker buildx build --platform linux/amd64 -f deploy/sandbox/Dockerfile -t headhunter-sandbox .
 #
 # Pinned tool versions — override at build time with --build-arg. Each download
 # is verified against the matching SHA256 so a tampered mirror/asset fails the
@@ -54,13 +54,13 @@
 
 ARG UBUNTU_VERSION=24.04
 
-# Where the `kit` binary comes from:
-#   proxy — `go install github.com/mark3labs/kit/cmd/kit@${KIT_VERSION}`
+# Where the `headhunter` binary comes from:
+#   proxy — `go install github.com/xnet-admin-1/Headhunter/cmd/headhunter@${HEADHUNTER_VERSION}`
 #           (default; verified through the Go checksum database, and the build
 #           context is never even transferred)
-#   local — build from this repo checkout (`--build-arg KIT_SOURCE=local`),
-#           useful for testing an unreleased kit inside the sandbox image
-ARG KIT_SOURCE=proxy
+#   local — build from this repo checkout (`--build-arg HEADHUNTER_SOURCE=local`),
+#           useful for testing an unreleased headhunter inside the sandbox image
+ARG HEADHUNTER_SOURCE=proxy
 
 # ---------------------------------------------------------------------------
 # base — apt userland shared by every stage below.
@@ -117,7 +117,7 @@ ENV GOTOOLCHAIN=auto
 #   * goimports      — import management / formatting
 #
 # One RUN per tool so bumping one version doesn't recompile the ones above it,
-# and the module/build caches are mounts (shared with the kit stage, never
+# and the module/build caches are mounts (shared with the headhunter stage, never
 # baked into a layer) instead of something we have to `go clean` away.
 # ---------------------------------------------------------------------------
 FROM golang AS gotools
@@ -147,28 +147,28 @@ RUN --mount=type=cache,target=/root/.cache/go-build \
     go install "golang.org/x/tools/cmd/goimports@${GOIMPORTS_VERSION}"
 
 # ---------------------------------------------------------------------------
-# kit — the main payload, built two possible ways (see ARG KIT_SOURCE).
+# kit — the main payload, built two possible ways (see ARG HEADHUNTER_SOURCE).
 #
 # Either way the version ldflag is injected (matching .goreleaser.yaml) so
-# `kit --version` reports the build instead of "dev"; on release builds
-# KIT_VERSION is the real tag.
+# `headhunter --version` reports the build instead of "dev"; on release builds
+# HEADHUNTER_VERSION is the real tag.
 # ---------------------------------------------------------------------------
-FROM golang AS kit-proxy
+FROM golang AS headhunter-proxy
 
-ARG KIT_VERSION=latest
+ARG HEADHUNTER_VERSION=latest
 RUN --mount=type=cache,target=/root/.cache/go-build \
     --mount=type=cache,target=/root/go/pkg/mod \
     GOBIN=/out/bin go install \
-      -ldflags "-s -w -X main.version=${KIT_VERSION}" \
-      "github.com/mark3labs/kit/cmd/kit@${KIT_VERSION}"
+      -ldflags "-s -w -X main.version=${HEADHUNTER_VERSION}" \
+      "github.com/xnet-admin-1/Headhunter/cmd/headhunter@${HEADHUNTER_VERSION}"
 
 # Local-source build. go.mod/go.sum are copied (and downloaded) *before* the
-# rest of the tree, so editing Go files re-links kit without re-resolving the
+# rest of the tree, so editing Go files re-links headhunter without re-resolving the
 # module graph. Keep .dockerignore tight — everything it lets through busts
 # this stage's cache.
-FROM golang AS kit-local
+FROM golang AS headhunter-local
 
-ARG KIT_VERSION=dev
+ARG HEADHUNTER_VERSION=dev
 WORKDIR /src
 COPY go.mod go.sum ./
 RUN --mount=type=cache,target=/root/.cache/go-build \
@@ -177,11 +177,11 @@ RUN --mount=type=cache,target=/root/.cache/go-build \
 COPY . .
 RUN --mount=type=cache,target=/root/.cache/go-build \
     --mount=type=cache,target=/root/go/pkg/mod \
-    go build -trimpath -ldflags "-s -w -X main.version=${KIT_VERSION}" \
-      -o /out/bin/kit ./cmd/kit
+    go build -trimpath -ldflags "-s -w -X main.version=${HEADHUNTER_VERSION}" \
+      -o /out/bin/headhunter ./cmd/headhunter
 
-# Selects kit-proxy or kit-local; the unselected stage is never built.
-FROM kit-${KIT_SOURCE} AS kit
+# Selects headhunter-proxy or headhunter-local; the unselected stage is never built.
+FROM headhunter-${HEADHUNTER_SOURCE} AS headhunter
 
 # ---------------------------------------------------------------------------
 # Single-binary CLI fetch stages. Each is independent, so they download in
@@ -285,7 +285,7 @@ RUN curl -fsSL "https://releases.nixos.org/nix/nix-${NIX_VERSION}/nix-${NIX_VERS
 
 # ---------------------------------------------------------------------------
 # Final image: Go toolchain + everything above, assembled least-volatile
-# (rarely-bumped tools) to most-volatile (`kit`, rebuilt every release).
+# (rarely-bumped tools) to most-volatile (`headhunter`, rebuilt every release).
 # ---------------------------------------------------------------------------
 FROM golang AS final
 
@@ -333,14 +333,14 @@ RUN ln -sf /usr/local/bin/bun /usr/local/bin/bunx
 # Go developer tooling (gopls, golangci-lint, dlv, staticcheck, goimports).
 COPY --from=gotools /out/bin/ /usr/local/bin/
 
-# The Kit CLI itself — last, because it is the one thing that changes on every
-# release; nothing above it is invalidated by a KIT_VERSION bump.
-COPY --from=kit /out/bin/kit /usr/local/bin/kit
+# The Headhunter CLI itself — last, because it is the one thing that changes on every
+# release; nothing above it is invalidated by a HEADHUNTER_VERSION bump.
+COPY --from=headhunter /out/bin/headhunter /usr/local/bin/headhunter
 
 WORKDIR /workspace
 
 # Smoke-check that every CLI resolves on PATH at build time. No `|| true`:
-# `kit` is the main payload, so a broken binary must fail the build. The
+# `headhunter` is the main payload, so a broken binary must fail the build. The
 # `nix eval` also proves the copied-in store + /etc/nix config are usable.
 RUN set -e; \
     go version; \
@@ -349,7 +349,7 @@ RUN set -e; \
     dlv version; \
     staticcheck --version; \
     goimports -h 2>/dev/null || true; \
-    kit --version; \
+    headhunter --version; \
     gh --version; \
     glab --version; \
     tea --version; \

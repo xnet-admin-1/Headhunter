@@ -6,15 +6,15 @@
 
 Kit provides a testing package to help you write unit tests for your extensions.
 
-> **Scope:** `Harness.Emit` takes event types from `github.com/mark3labs/kit/internal/extensions`, which Go only lets you import from inside the Kit module. The example below therefore works for tests that live in the Kit repository (for instance `examples/extensions/*_test.go`) or in a fork. From an external extension repository, use `harness.EmitJSON(toolName, input)` for tool-call tests and the `test.Assert*` helpers, which need no internal types.
+> **Scope:** `Harness.Emit` takes event types from `github.com/xnet-admin-1/Headhunter/internal/extensions`, which Go only lets you import from inside the Kit module. The example below therefore works for tests that live in the Kit repository (for instance `examples/extensions/*_test.go`) or in a fork. From an external extension repository, use `harness.EmitJSON(toolName, input)` for tool-call tests and the `test.Assert*` helpers, which need no internal types.
 
 ```go
 package main
 
 import (
     "testing"
-    "github.com/mark3labs/kit/pkg/extensions/test"
-    "github.com/mark3labs/kit/internal/extensions"
+    "github.com/xnet-admin-1/Headhunter/pkg/extensions/test"
+    "github.com/xnet-admin-1/Headhunter/internal/extensions"
 )
 
 func TestMyExtension(t *testing.T) {
@@ -171,7 +171,7 @@ Include this in your extension repo's README.md:
 ```markdown
 # My Kit Extensions
 
-A collection of extensions for [Kit](https://github.com/mark3labs/kit).
+A collection of extensions for [Kit](https://github.com/xnet-admin-1/Headhunter).
 
 ## Installation
 

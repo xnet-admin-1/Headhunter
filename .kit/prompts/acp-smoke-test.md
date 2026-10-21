@@ -10,7 +10,7 @@ The script acts as an editor client. It advertises the `fs` and `terminal` capab
 
 1. Build the kit binary:
    ```bash
-   go build -o output/kit ./cmd/kit
+   go build -o output/headhunter ./cmd/headhunter
    ```
 
 2. Run the unit and in-process end-to-end tests of the ACP server (no model or API key needed):
@@ -48,15 +48,15 @@ The script acts as an editor client. It advertises the `fs` and `terminal` capab
    `⚠ WARN` lines do not fail the test. Examples: no `agent_thought_chunk` (the model does not stream reasoning), the model did not call `update_plan`, or the prompt finished before the cancel arrived.
 
 5. If the test fails, check:
-   - `output/kit` exists and is executable
+   - `output/headhunter` exists and is executable
    - `OPENCODE_API_KEY` or `OPENCODE_ZEN_API_KEY` is set
    - The model is available and serves requests:
      ```bash
-     kit models opencode | grep kimi-k3
-     kit --quiet --no-session --no-extensions -m opencode/kimi-k3 "Say OK"
+     headhunter models opencode | grep kimi-k3
+     headhunter --quiet --no-session --no-extensions -m opencode/kimi-k3 "Say OK"
      ```
      If the provider says the endpoint is gone, pick another model (see step 6).
-   - The `[stderr]`, `[permission]`, `[terminal]` and `[fs write]` lines in the output (run `kit acp --debug` for more logs)
+   - The `[stderr]`, `[permission]`, `[terminal]` and `[fs write]` lines in the output (run `headhunter acp --debug` for more logs)
 
 6. To test with a different model, set `MODEL`. Other settings: `KIT_BIN` (binary path), `TIMEOUT` (seconds per prompt, default 120), `SKIP_TOOLS=1` (skip the tool steps for models without tool support):
    ```bash

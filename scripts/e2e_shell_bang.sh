@@ -9,7 +9,7 @@ set -uo pipefail
 # the script's own location so the script works on any checkout, and can be
 # overridden for a build that lives elsewhere.
 REPO=${REPO:-$(git -C "$(dirname "$0")/.." rev-parse --show-toplevel)}
-KIT=${KIT:-$REPO/output/kit}
+KIT=${KIT:-$REPO/output/headhunter}
 SESSION=${1:-kitbash}
 W=110
 H=38

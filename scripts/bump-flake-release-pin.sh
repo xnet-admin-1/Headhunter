@@ -2,9 +2,9 @@
 # Point the flake at a new kit release.
 #
 # A flake input cannot say "latest tag": `nix profile install
-# github:mark3labs/kit` evaluates the flake on the default branch, and a bare
-# `github:mark3labs/kit` input would resolve that branch (unreleased master)
-# instead of a release. flake.nix therefore pins the `kit-release` input to a
+# github:xnet-admin-1/Headhunter` evaluates the flake on the default branch, and a bare
+# `github:xnet-admin-1/Headhunter` input would resolve that branch (unreleased master)
+# instead of a release. flake.nix therefore pins the `headhunter-release` input to a
 # full tag, and the `nix-release-pin` job in .github/workflows/release.yml
 # runs this script after every tagged release so the pin on the default branch
 # always names the newest tag.
@@ -12,8 +12,8 @@
 # The tag is written once and lands in two places. The markers sit at the END
 # of their lines, and no other line may end with them:
 #
-#   url     = "github:xnet-admin-1/Headhunter/v0.99.0"; # nix:kit-release-tag
-#   version = "0.99.0";                       # nix:kit-release-version
+#   url     = "github:xnet-admin-1/Headhunter/v0.99.0"; # nix:headhunter-release-tag
+#   version = "0.99.0";                       # nix:headhunter-release-version
 #
 # The version line exists because a `flake = false` input reaches the flake
 # outputs as a bare store path, so the tag inside the url is not visible there
@@ -33,8 +33,8 @@ FLAKE_NIX="$(cd "$(dirname "$0")/.." && pwd)/flake.nix"
 
 # The pinned lines, matched on the marker at end of line. Plain `grep marker`
 # would also hit the prose comments that mention the markers.
-pin_url()     { grep -E 'url[[:space:]]*=.*# nix:kit-release-tag$' "$FLAKE_NIX" || true; }
-pin_version() { grep -E 'version[[:space:]]*=.*# nix:kit-release-version$' "$FLAKE_NIX" || true; }
+pin_url()     { grep -E 'url[[:space:]]*=.*# nix:headhunter-release-tag$' "$FLAKE_NIX" || true; }
+pin_version() { grep -E 'version[[:space:]]*=.*# nix:headhunter-release-version$' "$FLAKE_NIX" || true; }
 
 # The tag and version the pins name, empty when the pin line is missing.
 # `|| true` keeps an unmatched grep from tripping pipefail before the caller
@@ -59,8 +59,8 @@ check_single_pin() {
 
 CURRENT_TAG="$(url_tag)"
 CURRENT_VERSION="$(version_value)"
-check_single_pin "$(pin_url)" '# nix:kit-release-tag'
-check_single_pin "$(pin_version)" '# nix:kit-release-version'
+check_single_pin "$(pin_url)" '# nix:headhunter-release-tag'
+check_single_pin "$(pin_version)" '# nix:headhunter-release-version'
 
 # Sanity check before touching anything: the two pins must agree right now, or
 # the file was edited by hand and a blind rewrite would hide the drift.
@@ -75,18 +75,18 @@ if [[ "$CURRENT_TAG" == "$TAG" ]]; then
 fi
 
 sed -i -E \
-  "s|(url[[:space:]]*=[[:space:]]*\"github:xnet-admin-1/Headhunter/)${CURRENT_TAG}(\"[[:space:]]*;[[:space:]]*)# nix:kit-release-tag$|\1${TAG}\2# nix:kit-release-tag|" \
+  "s|(url[[:space:]]*=[[:space:]]*\"github:xnet-admin-1/Headhunter/)${CURRENT_TAG}(\"[[:space:]]*;[[:space:]]*)# nix:headhunter-release-tag$|\1${TAG}\2# nix:headhunter-release-tag|" \
   "$FLAKE_NIX"
 sed -i -E \
-  "s|(version[[:space:]]*=[[:space:]]*\")${CURRENT_VERSION}(\"[[:space:]]*;[[:space:]]*)# nix:kit-release-version$|\1${VERSION}\2# nix:kit-release-version|" \
+  "s|(version[[:space:]]*=[[:space:]]*\")${CURRENT_VERSION}(\"[[:space:]]*;[[:space:]]*)# nix:headhunter-release-version$|\1${VERSION}\2# nix:headhunter-release-version|" \
   "$FLAKE_NIX"
 
 # The rewritten file must still parse and must name the new tag; a broken pin
 # breaks `nix profile install` for everyone, so fail loudly instead of pushing.
 NEW_TAG="$(url_tag)"
 NEW_VERSION="$(version_value)"
-check_single_pin "$(pin_url)" '# nix:kit-release-tag'
-check_single_pin "$(pin_version)" '# nix:kit-release-version'
+check_single_pin "$(pin_url)" '# nix:headhunter-release-tag'
+check_single_pin "$(pin_version)" '# nix:headhunter-release-version'
 if [[ "$NEW_TAG" != "$TAG" || "$NEW_VERSION" != "$VERSION" ]]; then
   echo "error: rewrite failed, flake.nix now pins tag ${NEW_TAG:-none} version ${NEW_VERSION:-none}" >&2
   exit 1

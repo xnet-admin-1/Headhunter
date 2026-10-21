@@ -3,7 +3,7 @@
 Always talk in ASD-STE100 Simplified Technical English
 
 ## Build/Test Commands
-- **Build**: `go build -o output/kit ./cmd/kit`
+- **Build**: `go build -o output/headhunter ./cmd/headhunter`
 - **Test all**: `go test -race ./...`
 - **Test single**: `go test -race ./cmd -run TestScriptExecution`
 - **Lint**: `go vet ./...`
@@ -105,7 +105,7 @@ func OldName() { return NewName() }
 ### Interactive TUI Testing with tmux
 Use tmux to test Kit interactively without blocking the agent:
 ```bash
-tmux new-session -d -s kittest -x 120 -y 40 "output/kit -e examples/extensions/my-ext.go --no-session 2>kit_stderr.log"
+tmux new-session -d -s kittest -x 120 -y 40 "output/headhunter -e examples/extensions/my-ext.go --no-session 2>kit_stderr.log"
 sleep 3
 tmux capture-pane -t kittest -p          # read screen
 tmux send-keys -t kittest '/command' Enter  # send input

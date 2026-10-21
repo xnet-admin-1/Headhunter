@@ -13,7 +13,7 @@ Kit's interactive TUI can be tested non-interactively using tmux. This is useful
 ```bash
 # Start Kit in a detached tmux session
 tmux new-session -d -s kittest -x 120 -y 40 \
-  "output/kit -e ext.go --no-session 2>kit_stderr.log"
+  "output/headhunter -e ext.go --no-session 2>kit_stderr.log"
 
 # Wait for startup
 sleep 3
@@ -50,7 +50,7 @@ go build -o output/headhunter ./cmd/headhunter
 
 # Start with extension
 tmux new-session -d -s kittest -x 120 -y 40 \
-  "output/kit -e examples/extensions/widget-status.go --no-session 2>kit_stderr.log"
+  "output/headhunter -e examples/extensions/widget-status.go --no-session 2>kit_stderr.log"
 
 sleep 3
 
