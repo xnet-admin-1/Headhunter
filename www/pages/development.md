@@ -95,5 +95,4 @@ Contributions are welcome! Please see the [contribution guide](https://github.co
 
 ## Community
 
-- [Discord](https://discord.gg/RqSS2NQVsY)
 - [GitHub Issues](https://github.com/xnet-admin-1/Headhunter/issues)

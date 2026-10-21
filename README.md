@@ -1,8 +1,4 @@
 <p align="center">
-  <img src="logo.jpg" alt="HEADHUNTER" width="400">
-</p>
-
-<p align="center">
   <a href="https://github.com/xnet-admin-1/Headhunter/actions/workflows/ci.yml"><img src="https://github.com/xnet-admin-1/Headhunter/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
   <a href="https://github.com/xnet-admin-1/Headhunter/releases/latest"><img src="https://img.shields.io/github/v/release/xnet-admin-1/Headhunter?style=flat&color=blue" alt="Release"></a>
   <a href="https://www.npmjs.com/package/@xnet-admin-1/headhunter"><img src="https://img.shields.io/npm/v/@xnet-admin-1/headhunter?style=flat&color=cb3837" alt="npm"></a>
@@ -1555,6 +1551,5 @@ Contributions are welcome! Please see the [contribution guide](contribute/contri
 
 ## Community
 
-- [Discord](https://discord.gg/RqSS2NQVsY)
 - [GitHub Issues](https://github.com/xnet-admin-1/Headhunter/issues)
 - [Documentation](https://github.com/xnet-admin-1/Headhunter/wiki)
