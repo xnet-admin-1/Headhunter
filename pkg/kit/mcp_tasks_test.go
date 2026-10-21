@@ -6,7 +6,7 @@ import (
 
 	"github.com/spf13/viper"
 
-	"github.com/mark3labs/kit/internal/tools"
+	"github.com/xnet-admin-1/Headhunter/internal/tools"
 )
 
 func TestMCPTaskStatusIsTerminal(t *testing.T) {

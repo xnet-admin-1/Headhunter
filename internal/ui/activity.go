@@ -11,8 +11,8 @@ import (
 
 	"charm.land/lipgloss/v2"
 
-	"github.com/mark3labs/kit/internal/toolargs"
-	"github.com/mark3labs/kit/internal/ui/style"
+	"github.com/xnet-admin-1/Headhunter/internal/toolargs"
+	"github.com/xnet-admin-1/Headhunter/internal/ui/style"
 )
 
 // The activity row is the single live-status line rendered directly above the

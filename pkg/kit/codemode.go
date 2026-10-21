@@ -8,8 +8,8 @@ import (
 
 	"github.com/spf13/viper"
 
-	"github.com/mark3labs/kit/internal/codemode"
-	"github.com/mark3labs/kit/internal/core"
+	"github.com/xnet-admin-1/Headhunter/internal/codemode"
+	"github.com/xnet-admin-1/Headhunter/internal/core"
 )
 
 // CodeModeToolName is the name of the code mode tool.

@@ -19,14 +19,14 @@ import (
 	"github.com/charmbracelet/log"
 	"github.com/creack/pty"
 
-	"github.com/mark3labs/kit/internal/clipboard"
+	"github.com/xnet-admin-1/Headhunter/internal/clipboard"
 )
 
 // Serve runs the daemon until ctx is cancelled: bind the stable endpoint
 // derived from the daemon identity, then host remote sessions for paired
 // clients. Each client authenticates by signing the handshake with its
 // pairing key; the signature is checked against the allowlist written by
-// `kit daemon pair`. First-time clients pair through `kit daemon pair`,
+// `headhunter daemon pair`. First-time clients pair through `headhunter daemon pair`,
 // which runs its own short-lived bootstrap endpoint.
 func Serve(ctx context.Context) error {
 	// Single instance per user: the lock is held for the daemon's lifetime
@@ -40,7 +40,7 @@ func Serve(ctx context.Context) error {
 	rt := newDaemonRuntime(lock)
 
 	fmt.Println()
-	fmt.Println("  kit daemon")
+	fmt.Println("  headhunter daemon")
 	fmt.Println()
 
 	// The session table outlives tunnel restarts AND this daemon: logical
@@ -99,14 +99,14 @@ func Serve(ctx context.Context) error {
 		}
 		log.Warn("daemon: remote sessions are disabled", "error", remoteErr)
 		fmt.Println("  Remote sessions: unavailable")
-		fmt.Println("  Attach locally with: kit attach")
+		fmt.Println("  Attach locally with: headhunter attach")
 		fmt.Println()
 	} else {
 		defer listener.close()
 		nodeID := listener.endpointID()
 		rt.setEndpoint(nodeID)
 		fmt.Printf("  Endpoint:     %s\n", shortEndpoint(nodeID))
-		fmt.Println("  Waiting for paired clients. Pair a new one with: kit daemon pair")
+		fmt.Println("  Waiting for paired clients. Pair a new one with: headhunter daemon pair")
 		fmt.Println()
 		go listener.run(ctx)
 		go func() {
@@ -150,7 +150,7 @@ func shutdown(table *sessionTable) error {
 	released, ended := table.releaseSessions()
 	if released > 0 {
 		log.Info("daemon: leaving sessions running for the next daemon", "count", released)
-		fmt.Printf("\n  %s left running. Reattach with: kit attach\n",
+		fmt.Printf("\n  %s left running. Reattach with: headhunter attach\n",
 			capitalise(countSessions(released)))
 	}
 	if ended > 0 {
@@ -1262,7 +1262,7 @@ func homeDir() string {
 }
 
 // reportSessions publishes the session counts into the state file
-// `kit daemon status` reads.
+// `headhunter daemon status` reads.
 //
 // Both numbers, because the difference is what a user needs: a hosted
 // session comes back after a restart and a directly-hosted one does not.

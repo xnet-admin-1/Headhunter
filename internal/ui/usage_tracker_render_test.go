@@ -5,7 +5,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/mark3labs/kit/internal/models"
+	"github.com/xnet-admin-1/Headhunter/internal/models"
 )
 
 // stripAnsi removes ANSI escape codes from a string for test comparisons.

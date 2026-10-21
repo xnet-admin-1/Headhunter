@@ -6,7 +6,7 @@ import (
 	"os"
 	"testing"
 
-	"github.com/mark3labs/kit/internal/clipboard"
+	"github.com/xnet-admin-1/Headhunter/internal/clipboard"
 )
 
 // TestReadImageIntegration tests reading an image from the system clipboard.

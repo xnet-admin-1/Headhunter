@@ -7,8 +7,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/mark3labs/kit/pkg/extensions"
-	"github.com/mark3labs/kit/pkg/extensions/test"
+	"github.com/xnet-admin-1/Headhunter/pkg/extensions"
+	"github.com/xnet-admin-1/Headhunter/pkg/extensions/test"
 )
 
 // extensionFiles returns all single-file extensions in the current directory.

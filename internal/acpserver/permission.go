@@ -7,11 +7,11 @@ import (
 	"github.com/charmbracelet/log"
 	acp "github.com/coder/acp-go-sdk"
 
-	kit "github.com/mark3labs/kit/pkg/kit"
+	kit "github.com/xnet-admin-1/Headhunter/pkg/kit"
 )
 
 // Tool approval modes. A client changes the mode of a session through the
-// "approval" config option; `kit acp --approval` sets the default.
+// "approval" config option; `headhunter acp --approval` sets the default.
 const (
 	// approvalAsk asks the client before every tool that can change
 	// something: edits, commands, subagents, MCP and extension tools.

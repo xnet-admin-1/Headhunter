@@ -12,7 +12,7 @@ import (
 	acp "github.com/coder/acp-go-sdk"
 	"github.com/spf13/viper"
 
-	"github.com/mark3labs/kit/internal/prompts"
+	"github.com/xnet-admin-1/Headhunter/internal/prompts"
 )
 
 // commandsDelay is how long announceCommands waits before it sends the

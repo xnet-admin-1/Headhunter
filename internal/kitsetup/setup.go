@@ -10,12 +10,12 @@ import (
 
 	"charm.land/fantasy"
 
-	"github.com/mark3labs/kit/internal/agent"
-	"github.com/mark3labs/kit/internal/config"
-	"github.com/mark3labs/kit/internal/core"
-	"github.com/mark3labs/kit/internal/extensions"
-	"github.com/mark3labs/kit/internal/models"
-	"github.com/mark3labs/kit/internal/tools"
+	"github.com/xnet-admin-1/Headhunter/internal/agent"
+	"github.com/xnet-admin-1/Headhunter/internal/config"
+	"github.com/xnet-admin-1/Headhunter/internal/core"
+	"github.com/xnet-admin-1/Headhunter/internal/extensions"
+	"github.com/xnet-admin-1/Headhunter/internal/models"
+	"github.com/xnet-admin-1/Headhunter/internal/tools"
 	"github.com/spf13/viper"
 )
 

@@ -32,15 +32,15 @@ func TestRenderGitHubWorkflow(t *testing.T) {
 	out := renderGitHubWorkflow("anthropic/claude-sonnet-4-5-20250929", "ANTHROPIC_API_KEY")
 
 	wantSubstrings := []string{
-		"name: kit",
+		"name: headhunter",
 		"issue_comment:",
 		"pull_request_review_comment:",
-		"startsWith(github.event.comment.body, '/kit ')",
-		"github.event.comment.body == '/kit'",
+		"startsWith(github.event.comment.body, '/headhunter ')",
+		"github.event.comment.body == '/headhunter'",
 		"github.event.comment.author_association == 'OWNER'",
 		"github.event.comment.author_association == 'COLLABORATOR'",
 		"persist-credentials: false",
-		"uses: mark3labs/kit@v0",
+		"uses: xnet-admin-1/Headhunter@v0",
 		"model: anthropic/claude-sonnet-4-5-20250929",
 		"GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}",
 		"ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}",

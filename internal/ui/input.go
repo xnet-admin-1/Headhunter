@@ -12,12 +12,12 @@ import (
 	"charm.land/lipgloss/v2"
 	"github.com/charmbracelet/log"
 
-	"github.com/mark3labs/kit/internal/clipboard"
-	"github.com/mark3labs/kit/internal/ui/commands"
-	"github.com/mark3labs/kit/internal/ui/core"
-	"github.com/mark3labs/kit/internal/ui/imagepreview"
-	"github.com/mark3labs/kit/internal/ui/style"
-	"github.com/mark3labs/kit/internal/ui/termgfx"
+	"github.com/xnet-admin-1/Headhunter/internal/clipboard"
+	"github.com/xnet-admin-1/Headhunter/internal/ui/commands"
+	"github.com/xnet-admin-1/Headhunter/internal/ui/core"
+	"github.com/xnet-admin-1/Headhunter/internal/ui/imagepreview"
+	"github.com/xnet-admin-1/Headhunter/internal/ui/style"
+	"github.com/xnet-admin-1/Headhunter/internal/ui/termgfx"
 )
 
 // InputComponent is the interactive text input field for the parent AppModel.
@@ -161,7 +161,7 @@ const inputMaxContentRows = 10000
 // defaultPlaceholder doubles as the submit hint. Folding the hint into the
 // placeholder means the composer needs no separate help line, and the hint
 // disappears exactly when it stops being useful — as soon as the user types.
-const defaultPlaceholder = "Ask kit anything…   ↵ send"
+const defaultPlaceholder = "Ask headhunter anything…   ↵ send"
 
 // clipboardImageMsg is the result of an async clipboard image read.
 type clipboardImageMsg struct {

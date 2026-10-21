@@ -6,8 +6,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/mark3labs/kit/internal/models"
-	"github.com/mark3labs/kit/pkg/kit"
+	"github.com/xnet-admin-1/Headhunter/internal/models"
+	"github.com/xnet-admin-1/Headhunter/pkg/kit"
 	"github.com/spf13/viper"
 )
 

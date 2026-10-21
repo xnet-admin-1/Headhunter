@@ -14,7 +14,7 @@ import (
 
 	log "github.com/charmbracelet/log"
 
-	"github.com/mark3labs/kit/internal/config"
+	"github.com/xnet-admin-1/Headhunter/internal/config"
 	"github.com/mark3labs/mcp-go/client"
 	"github.com/mark3labs/mcp-go/mcp"
 )

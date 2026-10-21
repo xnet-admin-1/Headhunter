@@ -11,7 +11,7 @@ The `pkg/kit` package lets you embed Kit as a library in your Go applications.
 ## Installation
 
 ```bash
-go get github.com/mark3labs/kit/pkg/kit
+go get github.com/xnet-admin-1/Headhunter/pkg/kit
 ```
 
 ## Basic usage
@@ -23,7 +23,7 @@ import (
     "context"
     "log"
 
-    kit "github.com/mark3labs/kit/pkg/kit"
+    kit "github.com/xnet-admin-1/Headhunter/pkg/kit"
 )
 
 func main() {

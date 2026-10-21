@@ -135,7 +135,7 @@ const sessionOwnerEnv = "KIT_DAEMON_HOME"
 //
 //   - Pids are recycled, so a registry that outlived a reboot can name a
 //     pid now held by something else entirely.
-//   - A kit session child looks identical whichever daemon spawned it, so
+//   - A headhunter session child looks identical whichever daemon spawned it, so
 //     the command line alone cannot distinguish our sessions from a
 //     concurrently running daemon's.
 //
@@ -169,7 +169,7 @@ func isSessionChild(pid int, owner string) bool {
 // gets, and what every session child got before specs existed.
 const pickDirFlagName = "--pick-dir"
 
-// isSessionChildCmdline reports whether a command line is a kit session
+// isSessionChildCmdline reports whether a command line is a headhunter session
 // child's.
 //
 // Two markers are accepted. --daemon-session is on every child this

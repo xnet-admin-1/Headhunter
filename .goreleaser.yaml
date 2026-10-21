@@ -2,8 +2,8 @@
 version: 2
 
 builds:
-  - main: ./cmd/kit
-    binary: kit
+  - main: ./cmd/headhunter
+    binary: headhunter
     env:
       - CGO_ENABLED=0
     goos:
@@ -35,17 +35,17 @@ release:
 
     ```bash
     # Install script (macOS / Linux)
-    curl -fsSL https://raw.githubusercontent.com/mark3labs/kit/master/install.sh | bash
+    curl -fsSL https://raw.githubusercontent.com/xnet-admin-1/Headhunter/master/install.sh | bash
 
     # Bun / npm
-    bun add -g @mark3labs/kit
-    # or: npm install -g @mark3labs/kit
+    bun add -g @xnet-admin-1/headhunter
+    # or: npm install -g @xnet-admin-1/headhunter
 
     # Nix
-    nix profile install github:mark3labs/kit
+    nix profile install github:xnet-admin-1/Headhunter
 
     # Go install (requires Go 1.27+)
-    go install github.com/mark3labs/kit/cmd/kit@latest
+    go install github.com/xnet-admin-1/Headhunter/cmd/headhunter@latest
 
     # Or download from assets below
     ```

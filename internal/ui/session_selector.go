@@ -11,8 +11,8 @@ import (
 	"charm.land/lipgloss/v2"
 	"github.com/charmbracelet/log"
 
-	"github.com/mark3labs/kit/internal/app"
-	"github.com/mark3labs/kit/internal/ui/style"
+	"github.com/xnet-admin-1/Headhunter/internal/app"
+	"github.com/xnet-admin-1/Headhunter/internal/ui/style"
 )
 
 // SessionSelectedMsg is sent when the user selects a session from the picker.

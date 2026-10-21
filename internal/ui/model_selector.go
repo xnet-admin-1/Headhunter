@@ -7,7 +7,7 @@ import (
 
 	tea "charm.land/bubbletea/v2"
 
-	"github.com/mark3labs/kit/internal/models"
+	"github.com/xnet-admin-1/Headhunter/internal/models"
 )
 
 // ModelEntry holds display metadata for a single model in the selector.

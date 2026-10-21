@@ -4,7 +4,7 @@ import (
 	"context"
 	"testing"
 
-	kitpkg "github.com/mark3labs/kit/pkg/kit"
+	kitpkg "github.com/xnet-admin-1/Headhunter/pkg/kit"
 )
 
 // testModel is a first-party model that is always present in the bundled

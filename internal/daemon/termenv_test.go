@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/mark3labs/kit/internal/clipboard"
-	"github.com/mark3labs/kit/internal/ui/termgfx"
+	"github.com/xnet-admin-1/Headhunter/internal/clipboard"
+	"github.com/xnet-admin-1/Headhunter/internal/ui/termgfx"
 )
 
 // envValue returns the value of key in an environment slice, and whether it

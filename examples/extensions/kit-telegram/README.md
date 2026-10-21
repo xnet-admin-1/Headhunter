@@ -25,7 +25,7 @@ A Kit extension that relays all Kit agent runs to Telegram and lets approved Tel
 ### 1. Install the extension
 
 ```bash
-kit install github.com/mark3labs/kit/examples/extensions/kit-telegram
+kit install github.com/xnet-admin-1/Headhunter/examples/extensions/kit-telegram
 ```
 
 Or run directly:

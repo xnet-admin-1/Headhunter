@@ -21,21 +21,21 @@ import (
 	"github.com/charmbracelet/x/editor"
 	"github.com/spf13/viper"
 
-	"github.com/mark3labs/kit/internal/app"
-	"github.com/mark3labs/kit/internal/auth"
-	"github.com/mark3labs/kit/internal/core"
-	"github.com/mark3labs/kit/internal/message"
-	"github.com/mark3labs/kit/internal/models"
-	"github.com/mark3labs/kit/internal/prompts"
-	"github.com/mark3labs/kit/internal/ui/clipboard"
-	"github.com/mark3labs/kit/internal/ui/commands"
-	uicore "github.com/mark3labs/kit/internal/ui/core"
-	"github.com/mark3labs/kit/internal/ui/fileutil"
-	"github.com/mark3labs/kit/internal/ui/imagepreview"
-	"github.com/mark3labs/kit/internal/ui/prefs"
-	"github.com/mark3labs/kit/internal/ui/style"
-	"github.com/mark3labs/kit/internal/ui/termgfx"
-	kit "github.com/mark3labs/kit/pkg/kit"
+	"github.com/xnet-admin-1/Headhunter/internal/app"
+	"github.com/xnet-admin-1/Headhunter/internal/auth"
+	"github.com/xnet-admin-1/Headhunter/internal/core"
+	"github.com/xnet-admin-1/Headhunter/internal/message"
+	"github.com/xnet-admin-1/Headhunter/internal/models"
+	"github.com/xnet-admin-1/Headhunter/internal/prompts"
+	"github.com/xnet-admin-1/Headhunter/internal/ui/clipboard"
+	"github.com/xnet-admin-1/Headhunter/internal/ui/commands"
+	uicore "github.com/xnet-admin-1/Headhunter/internal/ui/core"
+	"github.com/xnet-admin-1/Headhunter/internal/ui/fileutil"
+	"github.com/xnet-admin-1/Headhunter/internal/ui/imagepreview"
+	"github.com/xnet-admin-1/Headhunter/internal/ui/prefs"
+	"github.com/xnet-admin-1/Headhunter/internal/ui/style"
+	"github.com/xnet-admin-1/Headhunter/internal/ui/termgfx"
+	kit "github.com/xnet-admin-1/Headhunter/pkg/kit"
 )
 
 // appState represents the current state of the parent TUI model.
@@ -2113,7 +2113,7 @@ func (m *AppModel) update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		m.providerConnect = nil
 		m.state = stateInput
 		m.printSystemMessage(fmt.Sprintf(
-			"%s uses device login instead of an API key. Quit and run:\n\n  kit auth login copilot",
+			"%s uses device login instead of an API key. Quit and run:\n\n  headhunter auth login copilot",
 			msg.ProviderName))
 		return m, tea.Batch(cmds...)
 
@@ -6452,7 +6452,7 @@ func (m *AppModel) providerErrorNotice() string {
 		var b strings.Builder
 		fmt.Fprintf(&b, "No API key is set for %s, so the model %s cannot be used yet.\n\n", name, model)
 		if mc.Provider == "copilot" || mc.Provider == "github-copilot" {
-			b.WriteString("GitHub Copilot uses device login: quit and run `kit auth login copilot`.")
+			b.WriteString("GitHub Copilot uses device login: quit and run `headhunter auth login copilot`.")
 			return b.String()
 		}
 		fmt.Fprintf(&b, "  • Run /connect to add a key for %s (saved to %s)\n", name, tildeHome(credentialsPathOrDefault()))

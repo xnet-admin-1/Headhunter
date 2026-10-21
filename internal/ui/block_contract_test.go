@@ -9,7 +9,7 @@ import (
 
 	"charm.land/lipgloss/v2"
 
-	"github.com/mark3labs/kit/internal/ui/style"
+	"github.com/xnet-admin-1/Headhunter/internal/ui/style"
 )
 
 // The transcript is a single column of text with markers hanging in the left

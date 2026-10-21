@@ -6,7 +6,7 @@ import (
 
 	tea "charm.land/bubbletea/v2"
 
-	"github.com/mark3labs/kit/internal/ui/clipboard"
+	"github.com/xnet-admin-1/Headhunter/internal/ui/clipboard"
 )
 
 // selectionModel returns a test model with five two-line items and a mouse

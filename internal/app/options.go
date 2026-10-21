@@ -3,9 +3,9 @@ package app
 import (
 	"context"
 
-	"github.com/mark3labs/kit/internal/config"
-	"github.com/mark3labs/kit/internal/session"
-	kit "github.com/mark3labs/kit/pkg/kit"
+	"github.com/xnet-admin-1/Headhunter/internal/config"
+	"github.com/xnet-admin-1/Headhunter/internal/session"
+	kit "github.com/xnet-admin-1/Headhunter/pkg/kit"
 )
 
 // UsageUpdater is the interface the app layer uses to record token usage after

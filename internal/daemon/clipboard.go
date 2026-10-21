@@ -11,7 +11,7 @@ import (
 //
 // Terminals cannot paste binary image data through bracketed paste, and the
 // host TUI reads the HOST's clipboard on ctrl+v — which is the wrong one
-// when the session is driven via `kit remote`. Instead the CLIENT
+// when the session is driven via `headhunter remote`. Instead the CLIENT
 // intercepts a bare ctrl+v, reads the client machine's clipboard
 // (internal/clipboard), and streams the image to the daemon as chunked
 // FrameClipboard frames. The daemon reassembles the bytes into a tempfile

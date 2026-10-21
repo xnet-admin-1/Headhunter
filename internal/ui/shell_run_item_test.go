@@ -9,7 +9,7 @@ import (
 
 	xansi "github.com/charmbracelet/x/ansi"
 
-	"github.com/mark3labs/kit/internal/ui/style"
+	"github.com/xnet-admin-1/Headhunter/internal/ui/style"
 )
 
 func TestShellRunItemShowsHeaderImmediately(t *testing.T) {

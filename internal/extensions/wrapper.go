@@ -7,7 +7,7 @@ import (
 
 	"charm.land/fantasy"
 
-	"github.com/mark3labs/kit/internal/toolargs"
+	"github.com/xnet-admin-1/Headhunter/internal/toolargs"
 )
 
 // WrapToolsWithExtensions wraps each tool so that ToolCall and ToolResult

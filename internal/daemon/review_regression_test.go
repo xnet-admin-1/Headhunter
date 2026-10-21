@@ -158,7 +158,7 @@ func TestSessionDurabilityDistinguishesSilenceFromNo(t *testing.T) {
 // TestPartingMessageForASessionThatDiedWithTheDaemon checks the client
 // does not hand out a reattach command for work that is gone.
 func TestPartingMessageForASessionThatDiedWithTheDaemon(t *testing.T) {
-	opts := AttachOptions{Reattach: "kit attach"}
+	opts := AttachOptions{Reattach: "headhunter attach"}
 	run := clientRun{
 		current:           4,
 		daemon:            Hello{Version: ProtocolVersion, Features: FeatureReattach},

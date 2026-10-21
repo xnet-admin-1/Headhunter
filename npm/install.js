@@ -6,8 +6,8 @@ const path = require("path");
 const https = require("https");
 const { createWriteStream, mkdirSync, chmodSync, unlinkSync } = fs;
 
-const REPO = "mark3labs/kit";
-const BINARY = "kit";
+const REPO = "xnet-admin-1/Headhunter";
+const BINARY = "headhunter";
 
 // Get version from package.json
 const packageJson = require("./package.json");
@@ -128,7 +128,7 @@ async function main() {
     // Extract
     extract(archivePath, binDir, platform);
 
-    // Rename binary (archive contains "kit", we want "kit-bin" on Unix)
+    // Rename binary (archive contains "headhunter", we want "headhunter-bin" on Unix)
     const extractedName = platform === "windows" ? `${BINARY}.exe` : BINARY;
     const extractedPath = path.join(binDir, extractedName);
     if (extractedPath !== binaryPath && fs.existsSync(extractedPath)) {

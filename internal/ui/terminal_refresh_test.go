@@ -7,7 +7,7 @@ import (
 	tea "charm.land/bubbletea/v2"
 	"github.com/charmbracelet/colorprofile"
 
-	"github.com/mark3labs/kit/internal/ui/style"
+	"github.com/xnet-admin-1/Headhunter/internal/ui/style"
 )
 
 func TestRemoteCapabilitiesRefreshOnWindowSize(t *testing.T) {

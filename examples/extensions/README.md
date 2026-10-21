@@ -6,17 +6,17 @@ A collection of example extensions demonstrating various Kit capabilities. These
 
 ### Install all examples
 ```bash
-kit install github.com/mark3labs/kit/examples/extensions
+kit install github.com/xnet-admin-1/Headhunter/examples/extensions
 ```
 
 ### Install with interactive selection
 ```bash
-kit install github.com/mark3labs/kit/examples/extensions --select
+kit install github.com/xnet-admin-1/Headhunter/examples/extensions --select
 ```
 
 ### Install locally in your project
 ```bash
-kit install github.com/mark3labs/kit/examples/extensions --local
+kit install github.com/xnet-admin-1/Headhunter/examples/extensions --local
 ```
 
 ## Extension Index
@@ -178,7 +178,7 @@ kit extensions list
 kit extensions validate
 
 # Run with a specific extension
-kit -e ~/.local/share/kit/git/github.com/mark3labs/kit/examples/extensions/plan-mode.go
+kit -e ~/.local/share/kit/git/github.com/xnet-admin-1/Headhunter/examples/extensions/plan-mode.go
 ```
 
 ## Creating Your Own
@@ -194,11 +194,11 @@ kit -e ~/.local/share/kit/git/github.com/mark3labs/kit/examples/extensions/plan-
 To get the latest examples:
 
 ```bash
-kit install github.com/mark3labs/kit/examples/extensions --update
+kit install github.com/xnet-admin-1/Headhunter/examples/extensions --update
 ```
 
 ## See Also
 
-- [Kit Extensions Guide](https://github.com/mark3labs/kit/blob/master/.agents/skills/kit-extensions/SKILL.md)
-- [API Reference](https://github.com/mark3labs/kit/blob/master/internal/extensions/api.go)
-- [Example Extensions Source](https://github.com/mark3labs/kit/tree/master/examples/extensions)
+- [Kit Extensions Guide](https://github.com/xnet-admin-1/Headhunter/blob/master/.agents/skills/kit-extensions/SKILL.md)
+- [API Reference](https://github.com/xnet-admin-1/Headhunter/blob/master/internal/extensions/api.go)
+- [Example Extensions Source](https://github.com/xnet-admin-1/Headhunter/tree/master/examples/extensions)

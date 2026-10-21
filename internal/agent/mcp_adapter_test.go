@@ -9,7 +9,7 @@ import (
 
 	"charm.land/fantasy"
 
-	"github.com/mark3labs/kit/internal/tools"
+	"github.com/xnet-admin-1/Headhunter/internal/tools"
 )
 
 // stubExecutor lets each test script the (result, err) pair returned by

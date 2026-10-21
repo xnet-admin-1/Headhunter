@@ -172,8 +172,8 @@ func TestKitLogoNarrowFallback(t *testing.T) {
 		if len(lines) != 1 {
 			t.Fatalf("width %d: got %d lines, want a single-line fallback", w, len(lines))
 		}
-		if !strings.Contains(logoSGR.ReplaceAllString(lines[0], ""), "KIT") {
-			t.Errorf("width %d: fallback should read KIT, got %q", w, lines[0])
+		if !strings.Contains(logoSGR.ReplaceAllString(lines[0], ""), "HEADHUNTER") {
+			t.Errorf("width %d: fallback should read HEADHUNTER, got %q", w, lines[0])
 		}
 		if KitLogoFits(w) {
 			t.Errorf("KitLogoFits(%d) should be false", w)

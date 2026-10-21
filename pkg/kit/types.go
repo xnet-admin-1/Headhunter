@@ -5,11 +5,11 @@ import (
 
 	"charm.land/fantasy"
 
-	"github.com/mark3labs/kit/internal/compaction"
-	"github.com/mark3labs/kit/internal/config"
-	"github.com/mark3labs/kit/internal/message"
-	"github.com/mark3labs/kit/internal/models"
-	"github.com/mark3labs/kit/internal/session"
+	"github.com/xnet-admin-1/Headhunter/internal/compaction"
+	"github.com/xnet-admin-1/Headhunter/internal/config"
+	"github.com/xnet-admin-1/Headhunter/internal/message"
+	"github.com/xnet-admin-1/Headhunter/internal/models"
+	"github.com/xnet-admin-1/Headhunter/internal/session"
 	"github.com/mark3labs/mcp-go/client/transport"
 	"github.com/mark3labs/mcp-go/server"
 )

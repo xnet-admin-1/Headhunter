@@ -13,7 +13,7 @@ import (
 
 	"charm.land/fantasy"
 
-	"github.com/mark3labs/kit/internal/codemode"
+	"github.com/xnet-admin-1/Headhunter/internal/codemode"
 )
 
 // CodeModeToolName is the name of the code mode core tool.

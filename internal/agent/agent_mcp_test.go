@@ -11,7 +11,7 @@ import (
 
 	"charm.land/fantasy"
 
-	"github.com/mark3labs/kit/internal/config"
+	"github.com/xnet-admin-1/Headhunter/internal/config"
 )
 
 // mockModel is a minimal LanguageModel that satisfies the interface

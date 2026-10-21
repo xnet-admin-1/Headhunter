@@ -8,7 +8,7 @@ import (
 
 	xansi "github.com/charmbracelet/x/ansi"
 
-	"github.com/mark3labs/kit/internal/app"
+	"github.com/xnet-admin-1/Headhunter/internal/app"
 )
 
 // An extension that prints its own summary of the MCP servers hides the

@@ -9,7 +9,7 @@ import (
 
 	"charm.land/fantasy/providers/google"
 
-	"github.com/mark3labs/kit/internal/httpclient"
+	"github.com/xnet-admin-1/Headhunter/internal/httpclient"
 )
 
 // templatePlaceholderRe matches "${NAME}" placeholders in URL templates from

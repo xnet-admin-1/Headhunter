@@ -6,7 +6,7 @@ import (
 
 	"charm.land/fantasy"
 
-	"github.com/mark3labs/kit/internal/tools"
+	"github.com/xnet-admin-1/Headhunter/internal/tools"
 )
 
 // mcpExecutor is the subset of *tools.MCPToolManager that the adapter

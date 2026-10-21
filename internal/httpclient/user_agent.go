@@ -7,8 +7,8 @@ import (
 	"strings"
 )
 
-// DefaultUserAgent identifies Kit-controlled requests.
-const DefaultUserAgent = "KIT"
+// DefaultUserAgent identifies Headhunter-controlled requests.
+const DefaultUserAgent = "HEADHUNTER"
 
 // ResolveUserAgent validates identity without trimming valid input.
 func ResolveUserAgent(value string) (string, error) {

@@ -3,7 +3,7 @@ package app
 import (
 	"testing"
 
-	kit "github.com/mark3labs/kit/pkg/kit"
+	kit "github.com/xnet-admin-1/Headhunter/pkg/kit"
 )
 
 // makeTextMsg builds a minimal kit.LLMMessage with the given role and text.

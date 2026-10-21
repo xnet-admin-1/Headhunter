@@ -43,12 +43,12 @@ const (
 	altScreenLeave = "\x1b[?1049l"
 )
 
-// PairOptions controls `kit remote --pair`. Code is required; all other
+// PairOptions controls `headhunter remote --pair`. Code is required; all other
 // fields are optional.
 type PairOptions struct {
 	// Name pre-selects the saved host name (skips the interactive prompt).
 	Name string
-	// Code is the one-time pairing code shown by 'kit daemon pair'.
+	// Code is the one-time pairing code shown by 'headhunter daemon pair'.
 	Code string
 }
 
@@ -62,7 +62,7 @@ type PairOptions struct {
 func RunPair(ctx context.Context, opts PairOptions) error {
 	rawCode := opts.Code
 	if rawCode == "" {
-		return fmt.Errorf("daemon: --pair needs the code shown by 'kit daemon pair' on the host")
+		return fmt.Errorf("daemon: --pair needs the code shown by 'headhunter daemon pair' on the host")
 	}
 	code, err := NormalizeCode(rawCode)
 	if err != nil {
@@ -97,7 +97,7 @@ func RunPair(ctx context.Context, opts PairOptions) error {
 	}
 
 	fmt.Fprintf(os.Stderr, "Paired with host %q (fp %s).\n", name, fingerprintShort(Fingerprint(mustHexDecode(hostID))))
-	fmt.Fprintf(os.Stderr, "Connect with: kit remote --host %s\n", name)
+	fmt.Fprintf(os.Stderr, "Connect with: headhunter remote --host %s\n", name)
 	return nil
 }
 
@@ -130,7 +130,7 @@ func promptHostName(ctx context.Context) string {
 }
 
 // RunHost attaches the local terminal to a paired daemon by name:
-// `kit remote --host homelab`. Authentication is by client signing key; no
+// `headhunter remote --host homelab`. Authentication is by client signing key; no
 // pairing code is involved.
 //
 // The verified frame stream is handed to RunClient, which owns everything
@@ -163,8 +163,8 @@ func RunHost(ctx context.Context, name string, opts AttachOptions) error {
 	opts.Spec = nil
 	if opts.Reattach == "" {
 		// The hint is completed with the session id, and only 'kit attach'
-		// takes one: 'kit remote --host X 1' is not a valid command line.
-		opts.Reattach = "kit attach --host " + name
+		// takes one: 'headhunter remote --host X 1' is not a valid command line.
+		opts.Reattach = "headhunter attach --host " + name
 	}
 	// A remote daemon is restarted the same way a local one is, and its
 	// sessions survive it the same way. Redial by NAME rather than by
@@ -207,11 +207,11 @@ func dialHostQuiet(ctx context.Context, name string, entry HostEntry, quiet bool
 		var denied *deniedError
 		switch {
 		case errors.As(err, &denied) && strings.Contains(denied.reason, "client not paired"):
-			return nil, fmt.Errorf("the host no longer knows this machine — pair again with 'kit remote --pair <code>'")
+			return nil, fmt.Errorf("the host no longer knows this machine — pair again with 'headhunter remote --pair <code>'")
 		case errors.Is(err, errHostUnresolved):
-			return nil, fmt.Errorf("could not resolve the daemon's endpoint (is 'kit daemon' running on the host?)")
+			return nil, fmt.Errorf("could not resolve the daemon's endpoint (is 'headhunter daemon' running on the host?)")
 		case errors.Is(err, errHostTimeout):
-			return nil, fmt.Errorf("%s did not answer — check that 'kit daemon' is running there, or that the network allows the connection", name)
+			return nil, fmt.Errorf("%s did not answer — check that 'headhunter daemon' is running there, or that the network allows the connection", name)
 		}
 		return nil, fmt.Errorf("daemon: %w", err)
 	}

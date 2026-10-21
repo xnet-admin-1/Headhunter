@@ -5,7 +5,7 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/mark3labs/kit/internal/models"
+	"github.com/xnet-admin-1/Headhunter/internal/models"
 )
 
 // ErrUnsupportedModelMode means that the active model does not support a mode.

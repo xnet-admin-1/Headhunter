@@ -6,7 +6,7 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/mark3labs/kit/pkg/kit"
+	"github.com/xnet-admin-1/Headhunter/pkg/kit"
 )
 
 // writeSkill creates a minimal skill directory and returns its path.

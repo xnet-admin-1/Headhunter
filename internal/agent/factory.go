@@ -6,10 +6,10 @@ import (
 
 	"charm.land/fantasy"
 
-	"github.com/mark3labs/kit/internal/config"
-	"github.com/mark3labs/kit/internal/core"
-	"github.com/mark3labs/kit/internal/models"
-	"github.com/mark3labs/kit/internal/tools"
+	"github.com/xnet-admin-1/Headhunter/internal/config"
+	"github.com/xnet-admin-1/Headhunter/internal/core"
+	"github.com/xnet-admin-1/Headhunter/internal/models"
+	"github.com/xnet-admin-1/Headhunter/internal/tools"
 )
 
 // SpinnerFunc is a function type for showing spinners during agent creation.

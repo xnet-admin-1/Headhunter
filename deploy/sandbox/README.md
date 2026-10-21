@@ -1,6 +1,6 @@
 # Kit sandbox image
 
-An official, pre-baked Linux image for running the [Kit](https://github.com/mark3labs/kit)
+An official, pre-baked Linux image for running the [Kit](https://github.com/xnet-admin-1/Headhunter)
 coding agent inside a [workdir.dev](https://workdir.dev) sandbox.
 
 It exists so the dev-sandbox integration no longer has to `apt-get install` and
@@ -13,7 +13,7 @@ Based on `ubuntu:24.04`, mirroring workdir's curated base apt layer, plus:
 | Tool | Purpose |
 | --- | --- |
 | **Go** (`/usr/local/go`) | toolchain for building/running Go code |
-| **kit** | the Kit coding agent CLI (`go install github.com/mark3labs/kit/cmd/kit`) |
+| **kit** | the Kit coding agent CLI (`go install github.com/xnet-admin-1/Headhunter/cmd/headhunter`) |
 | **gh** | GitHub CLI — open PRs, manage repos |
 | **glab** | GitLab CLI — open MRs |
 | **tea** | Gitea CLI |
@@ -57,7 +57,7 @@ Override pinned versions with `--build-arg` (`GO_VERSION`, `KIT_VERSION`,
 ### Building an unreleased `kit`
 
 By default `kit` is installed from the module proxy
-(`go install github.com/mark3labs/kit/cmd/kit@${KIT_VERSION}`), so the build
+(`go install github.com/xnet-admin-1/Headhunter/cmd/headhunter@${KIT_VERSION}`), so the build
 never reads the build context at all. To bake in the *working tree* instead:
 
 ```bash

@@ -13,10 +13,10 @@ import (
 	"charm.land/lipgloss/v2"
 	xansi "github.com/charmbracelet/x/ansi"
 
-	uicore "github.com/mark3labs/kit/internal/ui/core"
-	"github.com/mark3labs/kit/internal/ui/imagepreview"
-	"github.com/mark3labs/kit/internal/ui/style"
-	"github.com/mark3labs/kit/internal/ui/termgfx"
+	uicore "github.com/xnet-admin-1/Headhunter/internal/ui/core"
+	"github.com/xnet-admin-1/Headhunter/internal/ui/imagepreview"
+	"github.com/xnet-admin-1/Headhunter/internal/ui/style"
+	"github.com/xnet-admin-1/Headhunter/internal/ui/termgfx"
 )
 
 // A directly-placed image must land inside the composer, immediately above the

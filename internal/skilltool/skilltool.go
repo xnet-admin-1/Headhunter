@@ -11,7 +11,7 @@ import (
 	"sync"
 
 	"charm.land/fantasy"
-	"github.com/mark3labs/kit/internal/skills"
+	"github.com/xnet-admin-1/Headhunter/internal/skills"
 )
 
 type SkillProvider func() []*skills.Skill

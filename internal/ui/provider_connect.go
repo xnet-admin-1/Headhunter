@@ -9,9 +9,9 @@ import (
 	tea "charm.land/bubbletea/v2"
 	"charm.land/lipgloss/v2"
 
-	"github.com/mark3labs/kit/internal/auth"
-	"github.com/mark3labs/kit/internal/models"
-	"github.com/mark3labs/kit/internal/ui/style"
+	"github.com/xnet-admin-1/Headhunter/internal/auth"
+	"github.com/xnet-admin-1/Headhunter/internal/models"
+	"github.com/xnet-admin-1/Headhunter/internal/ui/style"
 )
 
 // ProviderConnectEntry describes one provider in the /connect picker.
@@ -146,7 +146,7 @@ func NewProviderConnect(preselect string, width, height int) *ProviderConnectCom
 	for _, e := range entries {
 		desc := strings.Join(e.EnvVars, " / ")
 		if e.OAuthOnly {
-			desc = "device login (kit auth login copilot)"
+			desc = "device login (headhunter auth login copilot)"
 		}
 		items = append(items, PopupItem{
 			Label:       e.Name,

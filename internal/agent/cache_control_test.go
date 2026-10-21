@@ -7,7 +7,7 @@ import (
 	"charm.land/fantasy"
 	"charm.land/fantasy/providers/anthropic"
 
-	"github.com/mark3labs/kit/internal/models"
+	"github.com/xnet-admin-1/Headhunter/internal/models"
 )
 
 // cacheTestTool is a minimal AgentTool used by the cache-control tests. It

@@ -5,7 +5,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/mark3labs/kit/internal/core"
+	"github.com/xnet-admin-1/Headhunter/internal/core"
 )
 
 // The exported surface of the shell tool: the current spelling, the earlier

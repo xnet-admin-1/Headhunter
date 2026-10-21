@@ -11,7 +11,7 @@ import (
 
 	"charm.land/fantasy"
 
-	"github.com/mark3labs/kit/internal/auth"
+	"github.com/xnet-admin-1/Headhunter/internal/auth"
 )
 
 // TestResolveAPIKeyPrecedence checks flag > stored key > environment.

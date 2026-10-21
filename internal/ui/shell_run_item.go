@@ -10,7 +10,7 @@ import (
 	"charm.land/lipgloss/v2"
 	xansi "github.com/charmbracelet/x/ansi"
 
-	"github.com/mark3labs/kit/internal/ui/style"
+	"github.com/xnet-admin-1/Headhunter/internal/ui/style"
 )
 
 // ShellRunItem is the transcript block for one bang-mode shell command — the

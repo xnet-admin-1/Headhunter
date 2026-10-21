@@ -13,7 +13,7 @@ import (
 
 	"charm.land/fantasy"
 
-	"github.com/mark3labs/kit/internal/message"
+	"github.com/xnet-admin-1/Headhunter/internal/message"
 )
 
 // newAssistantToolCallMsg builds an assistant message carrying one tool call.

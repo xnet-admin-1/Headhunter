@@ -6,7 +6,7 @@ import (
 
 	"charm.land/huh/v2"
 	"github.com/charmbracelet/log"
-	"github.com/mark3labs/kit/internal/extensions"
+	"github.com/xnet-admin-1/Headhunter/internal/extensions"
 )
 
 // multiSelectForInstall runs a multi-select prompt for extension selection.

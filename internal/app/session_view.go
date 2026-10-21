@@ -8,9 +8,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/mark3labs/kit/internal/daemon"
-	"github.com/mark3labs/kit/internal/message"
-	"github.com/mark3labs/kit/internal/session"
+	"github.com/xnet-admin-1/Headhunter/internal/daemon"
+	"github.com/xnet-admin-1/Headhunter/internal/message"
+	"github.com/xnet-admin-1/Headhunter/internal/session"
 )
 
 // ErrNoSession is returned by session mutation methods when no tree session

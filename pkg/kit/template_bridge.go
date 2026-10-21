@@ -5,10 +5,10 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/mark3labs/kit/internal/extensions"
-	"github.com/mark3labs/kit/internal/models"
-	"github.com/mark3labs/kit/internal/prompts"
-	"github.com/mark3labs/kit/internal/skills"
+	"github.com/xnet-admin-1/Headhunter/internal/extensions"
+	"github.com/xnet-admin-1/Headhunter/internal/models"
+	"github.com/xnet-admin-1/Headhunter/internal/prompts"
+	"github.com/xnet-admin-1/Headhunter/internal/skills"
 )
 
 // ---------------------------------------------------------------------------

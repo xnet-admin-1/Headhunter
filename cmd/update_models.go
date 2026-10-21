@@ -11,8 +11,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/mark3labs/kit/internal/httpclient"
-	"github.com/mark3labs/kit/internal/models"
+	"github.com/xnet-admin-1/Headhunter/internal/httpclient"
+	"github.com/xnet-admin-1/Headhunter/internal/models"
 	"github.com/spf13/cobra"
 )
 
@@ -33,10 +33,10 @@ Sources:
   embedded    Reset to the built-in database shipped with this binary
 
 Examples:
-  kit update-models
-  kit update-models https://models.dev/api.json
-  kit update-models /path/to/models.json
-  kit update-models embedded`,
+  headhunter update-models
+  headhunter update-models https://models.dev/api.json
+  headhunter update-models /path/to/models.json
+  headhunter update-models embedded`,
 	Args: cobra.MaximumNArgs(1),
 	RunE: runUpdateModels,
 }

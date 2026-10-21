@@ -7,9 +7,9 @@ import (
 
 	"charm.land/fantasy"
 
-	"github.com/mark3labs/kit/internal/core"
-	"github.com/mark3labs/kit/internal/media"
-	"github.com/mark3labs/kit/internal/models"
+	"github.com/xnet-admin-1/Headhunter/internal/core"
+	"github.com/xnet-admin-1/Headhunter/internal/media"
+	"github.com/xnet-admin-1/Headhunter/internal/models"
 )
 
 // Model strings from the embedded catalog. The test fails loudly if the

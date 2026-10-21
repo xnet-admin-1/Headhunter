@@ -9,7 +9,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/mark3labs/kit/internal/daemon"
+	"github.com/xnet-admin-1/Headhunter/internal/daemon"
 	"github.com/spf13/cobra"
 	"golang.org/x/term"
 )

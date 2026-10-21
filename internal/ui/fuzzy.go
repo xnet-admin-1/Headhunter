@@ -3,7 +3,7 @@ package ui
 import (
 	"strings"
 
-	"github.com/mark3labs/kit/internal/ui/commands"
+	"github.com/xnet-admin-1/Headhunter/internal/ui/commands"
 )
 
 // FuzzyMatch represents the result of a fuzzy string matching operation,

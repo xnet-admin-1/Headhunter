@@ -13,7 +13,7 @@ import (
 	"charm.land/fantasy"
 	"charm.land/fantasy/providers/openaicompat"
 
-	"github.com/mark3labs/kit/internal/message"
+	"github.com/xnet-admin-1/Headhunter/internal/message"
 )
 
 // Regression guard for issue #124: some OpenAI-compatible providers (e.g.

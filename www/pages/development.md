@@ -10,7 +10,7 @@ ogImage: /og-image.png
 
 ```bash
 # Build
-go build -o output/kit ./cmd/kit
+go build -o output/kit ./cmd/headhunter
 
 # Run all tests
 go test -race ./...
@@ -36,13 +36,13 @@ nix develop
 
 The shell puts `go` (the version `go.mod` asks for), `gopls`, and
 `golangci-lint` on your `$PATH` — it ships no prebuilt `kit`, so build it
-yourself with `go build ./cmd/kit`. To build or install a released `kit`
+yourself with `go build ./cmd/headhunter`. To build or install a released `kit`
 binary instead, see [Using Nix](/installation#using-nix).
 
 ## Project structure
 
 ```
-cmd/kit/             - CLI entry point (main.go)
+cmd/headhunter/             - CLI entry point (main.go)
 cmd/                 - CLI command implementations (root, auth, models, etc.)
 pkg/kit/             - Go SDK for embedding Kit
 internal/app/        - Application orchestrator (agent loop, message store, queue)
@@ -91,9 +91,9 @@ The interactive terminal UI is built with [Bubble Tea v2](https://github.com/cha
 
 ## Contributing
 
-Contributions are welcome! Please see the [contribution guide](https://github.com/mark3labs/kit/blob/master/contribute/contribute.md) for guidelines.
+Contributions are welcome! Please see the [contribution guide](https://github.com/xnet-admin-1/Headhunter/blob/master/contribute/contribute.md) for guidelines.
 
 ## Community
 
 - [Discord](https://discord.gg/RqSS2NQVsY)
-- [GitHub Issues](https://github.com/mark3labs/kit/issues)
+- [GitHub Issues](https://github.com/xnet-admin-1/Headhunter/issues)

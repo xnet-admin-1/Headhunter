@@ -271,7 +271,7 @@ func TestHostSwitchRefusesAForeignHostSession(t *testing.T) {
 //
 // chooseSession returns bare ids for --new and for a direct target. If
 // those carry no host, hostSwitch reads them as a switch to the local
-// daemon and `kit attach --host NAME` silently bounces home.
+// daemon and `headhunter attach --host NAME` silently bounces home.
 func TestChooseSessionTagsChoicesWithTheCurrentHost(t *testing.T) {
 	for _, host := range []string{"", "violet"} {
 		t.Run("host="+host, func(t *testing.T) {

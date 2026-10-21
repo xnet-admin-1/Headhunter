@@ -11,7 +11,7 @@ import (
 	"github.com/spf13/viper"
 	"golang.org/x/term"
 
-	"github.com/mark3labs/kit/internal/daemon"
+	"github.com/xnet-admin-1/Headhunter/internal/daemon"
 )
 
 // Deciding whether a plain `kit` runs in this process or as a detachable

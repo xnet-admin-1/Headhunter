@@ -261,7 +261,7 @@ func authorizeRemoteClient(clientPub, cNonce, sNonce, sig []byte) (bool, string)
 	}
 	if !authorized {
 		log.Warn("client not paired", "fp", fp)
-		return false, "client not paired — run 'kit daemon pair' on the host"
+		return false, "client not paired — run 'headhunter daemon pair' on the host"
 	}
 	pub, err := hex.DecodeString(entry.PubKey)
 	if err != nil || len(pub) != ed25519.PublicKeySize {

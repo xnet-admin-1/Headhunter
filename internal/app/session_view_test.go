@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/mark3labs/kit/internal/message"
-	"github.com/mark3labs/kit/internal/session"
+	"github.com/xnet-admin-1/Headhunter/internal/message"
+	"github.com/xnet-admin-1/Headhunter/internal/session"
 )
 
 // newSessionApp creates an App backed by an in-memory tree session.

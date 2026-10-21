@@ -4,7 +4,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/mark3labs/kit/internal/ui/style"
+	"github.com/xnet-admin-1/Headhunter/internal/ui/style"
 )
 
 // A stopped clock is the zero value, so an AppModel with nothing animating

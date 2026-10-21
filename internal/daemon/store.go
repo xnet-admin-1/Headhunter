@@ -169,7 +169,7 @@ func GetHost(name string) (HostEntry, error) {
 			return h, nil
 		}
 	}
-	return HostEntry{}, fmt.Errorf("daemon: no paired host named %q — run 'kit remote --pair <code>' first", name)
+	return HostEntry{}, fmt.Errorf("daemon: no paired host named %q — run 'headhunter remote --pair <code>' first", name)
 }
 
 // ListHosts returns all paired hosts, sorted by name.
@@ -407,7 +407,7 @@ func revokeClientLocked(fpOrPrefix string) (ClientEntry, error) {
 		}
 	}
 	if len(matches) == 0 {
-		return ClientEntry{}, fmt.Errorf("daemon: no paired client with fingerprint prefix %q — see 'kit daemon pair --list'", fpOrPrefix)
+		return ClientEntry{}, fmt.Errorf("daemon: no paired client with fingerprint prefix %q — see 'headhunter daemon pair --list'", fpOrPrefix)
 	}
 	if len(matches) > 1 {
 		return ClientEntry{}, fmt.Errorf("daemon: fingerprint prefix %q matches %d clients — be more specific", fpOrPrefix, len(matches))

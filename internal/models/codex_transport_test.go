@@ -9,7 +9,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/mark3labs/kit/internal/auth"
+	"github.com/xnet-admin-1/Headhunter/internal/auth"
 )
 
 type codexTestRoundTripper func(*http.Request) (*http.Response, error)

@@ -12,8 +12,8 @@ import (
 
 	"github.com/spf13/cobra"
 
-	"github.com/mark3labs/kit/internal/daemon"
-	"github.com/mark3labs/kit/internal/ui"
+	"github.com/xnet-admin-1/Headhunter/internal/daemon"
+	"github.com/xnet-admin-1/Headhunter/internal/ui"
 )
 
 // Flags for `kit attach`.
@@ -66,8 +66,8 @@ func hubPicker(ctx context.Context, entries []daemon.SessionEntry, input *os.Fil
 
 var attachCmd = &cobra.Command{
 	Use:   "attach [session-id]",
-	Short: "Attach to a kit session on this machine or a paired host",
-	Long: `Attach to a kit session.
+	Short: "Attach to a headhunter session on this machine or a paired host",
+	Long: `Attach to a headhunter session.
 
 With no arguments, lists the live sessions — on this machine and on every
 paired host — and lets you pick one, or start a new one. A local daemon is
@@ -232,7 +232,7 @@ func runHubAttach(cmd *cobra.Command, opts daemon.AttachOptions) error {
 	entries = append(entries, remote...)
 	reportSkippedHosts(skipped)
 	if len(entries) == 0 {
-		fmt.Println("No live sessions anywhere. Start one with: kit session attach")
+		fmt.Println("No live sessions anywhere. Start one with: headhunter session attach")
 		return nil
 	}
 
@@ -327,7 +327,7 @@ func appendRemoteSessions(ctx context.Context, entries []daemon.SessionEntry) ([
 
 var lsCmd = &cobra.Command{
 	Use:   "ls",
-	Short: "List live kit sessions",
+	Short: "List live headhunter sessions",
 	Long: `List the live sessions on the local daemon.
 
 With --all, also queries every paired host. Hosts that do not answer are
@@ -357,7 +357,7 @@ skipped.`,
 			return cerr
 		}
 		if len(entries) == 0 {
-			fmt.Println("No live sessions. Start one with: kit session attach")
+			fmt.Println("No live sessions. Start one with: headhunter session attach")
 			return nil
 		}
 		printSessionTable(entries)
@@ -365,7 +365,7 @@ skipped.`,
 	},
 }
 
-// printSessionTable renders the session list for `kit session ls`.
+// printSessionTable renders the session list for `headhunter session ls`.
 func printSessionTable(entries []daemon.SessionEntry) {
 	fmt.Printf("%-6s %-10s %-10s %-10s %s\n", "ID", "HOST", "CLIENTS", "UPTIME", "DIRECTORY")
 	for _, e := range entries {
@@ -397,8 +397,8 @@ func init() {
 	sessionCmd.AddCommand(attachCmd, lsCmd)
 	rootCmd.AddCommand(sessionCmd)
 	attachAlias := *attachCmd
-	attachAlias.Deprecated = "use 'kit session attach'"
+	attachAlias.Deprecated = "use 'headhunter session attach'"
 	lsAlias := *lsCmd
-	lsAlias.Deprecated = "use 'kit session ls'"
+	lsAlias.Deprecated = "use 'headhunter session ls'"
 	rootCmd.AddCommand(&attachAlias, &lsAlias)
 }

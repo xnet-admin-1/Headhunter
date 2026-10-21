@@ -3,7 +3,7 @@ package ui
 import (
 	"fmt"
 
-	"github.com/mark3labs/kit/internal/models"
+	"github.com/xnet-admin-1/Headhunter/internal/models"
 )
 
 // AgentInterface defines the minimal interface required from the agent package

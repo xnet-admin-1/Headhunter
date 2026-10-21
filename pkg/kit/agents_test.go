@@ -5,7 +5,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/mark3labs/kit/internal/agents"
+	"github.com/xnet-admin-1/Headhunter/internal/agents"
 )
 
 func TestApplyAgentDefinition_FillsDefaults(t *testing.T) {

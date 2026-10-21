@@ -1,7 +1,7 @@
 // Package daemon implements kit's remote-session transport: a daemon mode
-// (`kit daemon`) that hosts kit sessions for paired clients, and a client
-// mode (`kit remote --host <name>`) that attaches a local terminal to that
-// remote session. New clients pair via `kit daemon pair` + `kit remote
+// (`headhunter daemon`) that hosts headhunter sessions for paired clients, and a client
+// mode (`headhunter remote --host <name>`) that attaches a local terminal to that
+// remote session. New clients pair via `headhunter daemon pair` + `headhunter remote
 // --pair <code>`.
 //
 // The transport is iroh, in-process (see iroh.go): endpoint binding, n0

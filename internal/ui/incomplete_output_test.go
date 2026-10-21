@@ -5,7 +5,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/mark3labs/kit/internal/app"
+	"github.com/xnet-admin-1/Headhunter/internal/app"
 )
 
 func TestFailedTurnRetainsVisiblyIncompleteText(t *testing.T) {

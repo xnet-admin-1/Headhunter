@@ -5,9 +5,9 @@ import (
 	"io/fs"
 	"os"
 
-	"github.com/mark3labs/kit/internal/extensions"
-	"github.com/mark3labs/kit/internal/skills"
-	"github.com/mark3labs/kit/internal/trust"
+	"github.com/xnet-admin-1/Headhunter/internal/extensions"
+	"github.com/xnet-admin-1/Headhunter/internal/skills"
+	"github.com/xnet-admin-1/Headhunter/internal/trust"
 )
 
 // ==== Skills Types ====

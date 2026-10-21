@@ -4,7 +4,7 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/mark3labs/kit/internal/config"
+	"github.com/xnet-admin-1/Headhunter/internal/config"
 )
 
 func TestSplitCommandLine(t *testing.T) {

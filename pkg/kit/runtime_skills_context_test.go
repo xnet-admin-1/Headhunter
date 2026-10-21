@@ -7,8 +7,8 @@ import (
 	"sync"
 	"testing"
 
-	"github.com/mark3labs/kit/internal/agent"
-	"github.com/mark3labs/kit/internal/skills"
+	"github.com/xnet-admin-1/Headhunter/internal/agent"
+	"github.com/xnet-admin-1/Headhunter/internal/skills"
 )
 
 // TestAddSkill_AddsAndDeduplicates verifies that AddSkill registers new skills

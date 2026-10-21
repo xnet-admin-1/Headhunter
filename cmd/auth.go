@@ -10,10 +10,10 @@ import (
 	"charm.land/huh/v2"
 	"github.com/spf13/cobra"
 
-	"github.com/mark3labs/kit/internal/auth"
-	"github.com/mark3labs/kit/internal/models"
-	"github.com/mark3labs/kit/internal/ui"
-	kit "github.com/mark3labs/kit/pkg/kit"
+	"github.com/xnet-admin-1/Headhunter/internal/auth"
+	"github.com/xnet-admin-1/Headhunter/internal/models"
+	"github.com/xnet-admin-1/Headhunter/internal/ui"
+	kit "github.com/xnet-admin-1/Headhunter/pkg/kit"
 )
 
 // authCmd represents the auth command for managing AI provider authentication.
@@ -40,13 +40,13 @@ take precedence over the provider's environment variable. Inside the TUI,
 /connect does the same thing.
 
 Examples:
-  kit auth login anthropic
-  kit auth login openai
-  kit auth login copilot
-  kit auth login groq
-  kit auth login openrouter --api-key sk-or-...
-  kit auth logout anthropic
-  kit auth status`,
+  headhunter auth login anthropic
+  headhunter auth login openai
+  headhunter auth login copilot
+  headhunter auth login groq
+  headhunter auth login openrouter --api-key sk-or-...
+  headhunter auth logout anthropic
+  headhunter auth status`,
 }
 
 // authLoginCmd represents the login subcommand for authenticating with AI providers.
@@ -65,7 +65,7 @@ Available providers:
   - anthropic: Anthropic Claude API (OAuth)
   - openai:    OpenAI ChatGPT Plus/Pro (Codex OAuth)
   - copilot:   GitHub Copilot (GitHub device login, experimental)
-  - any other provider ID from 'kit models' (API key, prompted or --api-key)
+  - any other provider ID from 'headhunter models' (API key, prompted or --api-key)
 
 Flags:
   --set-default   Set this provider's default model as the system default
@@ -74,13 +74,13 @@ Flags:
                   without it, the region stored before is kept)
 
 Examples:
-  kit auth login anthropic
-  kit auth login openai
-  kit auth login copilot
-  kit auth login copilot --set-default
-  kit auth login groq
-  kit auth login google --api-key AIza...
-  kit auth login amazon-bedrock --region eu-central-1`,
+  headhunter auth login anthropic
+  headhunter auth login openai
+  headhunter auth login copilot
+  headhunter auth login copilot --set-default
+  headhunter auth login groq
+  headhunter auth login google --api-key AIza...
+  headhunter auth login amazon-bedrock --region eu-central-1`,
 	Args: cobra.ExactArgs(1),
 	RunE: runAuthLogin,
 }
@@ -102,9 +102,9 @@ Available providers:
   - copilot:   GitHub Copilot
 
 Example:
-  kit auth logout anthropic
-  kit auth logout openai
-  kit auth logout copilot`,
+  headhunter auth logout anthropic
+  headhunter auth logout openai
+  headhunter auth logout copilot`,
 	Args: cobra.ExactArgs(1),
 	RunE: runAuthLogout,
 }
@@ -121,7 +121,7 @@ This command displays which providers have stored credentials and when they were
 It does not display the actual API keys for security reasons.
 
 Example:
-  kit auth status`,
+  headhunter auth status`,
 	RunE: runAuthStatus,
 }
 
@@ -159,8 +159,8 @@ func setDefaultModelIfRequested(provider string) error {
 	return nil
 }
 
-// init adds the login, logout and status subcommands to 'kit auth' and
-// registers the flags of 'kit auth login'.
+// init adds the login, logout and status subcommands to 'headhunter auth' and
+// registers the flags of 'headhunter auth login'.
 func init() {
 	authCmd.AddCommand(authLoginCmd)
 	authCmd.AddCommand(authLogoutCmd)
@@ -204,7 +204,7 @@ func loginProviderAPIKey(provider string) error {
 	registry := models.GetGlobalRegistry()
 	info := registry.GetProviderInfo(provider)
 	if info == nil {
-		return fmt.Errorf("unknown provider: %s (see 'kit models' for provider IDs)", provider)
+		return fmt.Errorf("unknown provider: %s (see 'headhunter models' for provider IDs)", provider)
 	}
 	bedrock := info.ID == "amazon-bedrock"
 	region := strings.TrimSpace(loginRegion)
@@ -342,7 +342,7 @@ func finishLogin(cm *kit.CredentialManager, provider, displayName, shortName, us
 		fmt.Println(line)
 	}
 	fmt.Printf("\n🎉 %s\n", usageNote)
-	fmt.Println("💡 You can check your authentication status with: kit auth status")
+	fmt.Println("💡 You can check your authentication status with: headhunter auth status")
 
 	// Set default model if requested
 	if err := setDefaultModelIfRequested(provider); err != nil {
@@ -352,7 +352,7 @@ func finishLogin(cm *kit.CredentialManager, provider, displayName, shortName, us
 	// Remind users how to set this as default if they didn't use --set-default
 	if !loginSetDefault {
 		fmt.Printf("\n💡 To set %s as your default model, run:\n", shortName)
-		fmt.Printf("   kit auth login %s --set-default\n", provider)
+		fmt.Printf("   headhunter auth login %s --set-default\n", provider)
 	}
 
 	return nil
@@ -524,10 +524,10 @@ func runAuthStatus(cmd *cobra.Command, args []string) error {
 	}
 
 	fmt.Println("\nTo authenticate with a provider:")
-	fmt.Println("  kit auth login anthropic")
-	fmt.Println("  kit auth login openai")
-	fmt.Println("  kit auth login copilot")
-	fmt.Println("  kit auth login <provider>   # any API-key provider, e.g. groq")
+	fmt.Println("  headhunter auth login anthropic")
+	fmt.Println("  headhunter auth login openai")
+	fmt.Println("  headhunter auth login copilot")
+	fmt.Println("  headhunter auth login <provider>   # any API-key provider, e.g. groq")
 
 	return nil
 }
@@ -720,6 +720,6 @@ func logoutCopilot() error {
 		(*kit.CredentialManager).HasCopilotCredentials,
 		(*kit.CredentialManager).RemoveCopilotCredentials,
 		"✓ Successfully logged out from GitHub Copilot!",
-		"You will need to authenticate again with 'kit auth login copilot'.",
+		"You will need to authenticate again with 'headhunter auth login copilot'.",
 		"Tip: this removes local credentials only. Revoke the GitHub OAuth grant at https://github.com/settings/applications")
 }

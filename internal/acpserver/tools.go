@@ -9,7 +9,7 @@ import (
 
 	acp "github.com/coder/acp-go-sdk"
 
-	kit "github.com/mark3labs/kit/pkg/kit"
+	kit "github.com/xnet-admin-1/Headhunter/pkg/kit"
 )
 
 // acpToolKind maps a Kit tool name to an ACP tool kind. Clients use the kind

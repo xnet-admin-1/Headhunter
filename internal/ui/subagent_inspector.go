@@ -9,7 +9,7 @@ import (
 	tea "charm.land/bubbletea/v2"
 	"github.com/charmbracelet/x/ansi"
 
-	kit "github.com/mark3labs/kit/pkg/kit"
+	kit "github.com/xnet-admin-1/Headhunter/pkg/kit"
 )
 
 type subagentInspectorController interface {

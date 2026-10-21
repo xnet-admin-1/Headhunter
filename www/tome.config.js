@@ -61,7 +61,7 @@ export default {
     },
   ],
   socialLinks: [
-    { platform: "github", url: "https://github.com/mark3labs/kit" },
+    { platform: "github", url: "https://github.com/xnet-admin-1/Headhunter" },
     { platform: "discord", url: "https://discord.gg/RqSS2NQVsY" },
   ],
 };

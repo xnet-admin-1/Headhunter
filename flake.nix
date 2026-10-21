@@ -1,5 +1,5 @@
 {
-  description = "kit — an agent toolkit for the terminal (Nix flake)";
+  description = "headhunter — an agent toolkit for the terminal (Nix flake)";
 
   # flake.lock is deliberately not committed. The only inputs are nixpkgs and
   # the pinned release below, and an unlocked nixpkgs is what keeps the build
@@ -9,9 +9,9 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
-    # The release that `nix profile install github:mark3labs/kit` installs.
+    # The release that `nix profile install github:xnet-admin-1/Headhunter` installs.
     #
-    # A flake input cannot say "latest tag". A bare `github:mark3labs/kit`
+    # A flake input cannot say "latest tag". A bare `github:xnet-admin-1/Headhunter`
     # resolves to the default branch, so an unpinned input would install
     # unreleased master instead of a release. The `nix-release-pin` job in
     # .github/workflows/release.yml rewrites the url below after every tagged
@@ -20,7 +20,7 @@
     # Keep the `# nix:kit-release-tag` marker on the url line:
     # scripts/bump-flake-release-pin.sh matches on it.
     kit-release = {
-      url = "github:mark3labs/kit/v0.132.0"; # nix:kit-release-tag
+      url = "github:xnet-admin-1/Headhunter/v0.132.0"; # nix:kit-release-tag
       flake = false;
     };
   };
@@ -106,12 +106,12 @@
           version,
         }:
         (goModuleBuilder pkgs src) {
-          pname = "kit";
+          pname = "headhunter";
           inherit src version;
 
           # Only the CLI. The rest of the tree holds libraries, tests and
           # example extensions that an install does not need.
-          subPackages = [ "cmd/kit" ];
+          subPackages = [ "cmd/headhunter" ];
 
           # Fetch the modules in a fixed-output derivation and vendor them for
           # the build. The hash pins the module tree that the pinned release's
@@ -136,10 +136,10 @@
           doCheck = false;
 
           meta = {
-            description = "kit — an agent toolkit for the terminal";
-            homepage = "https://github.com/mark3labs/kit";
+            description = "headhunter — an agent toolkit for the terminal";
+            homepage = "https://github.com/xnet-admin-1/Headhunter";
             license = lib.licenses.mit;
-            mainProgram = "kit";
+            mainProgram = "headhunter";
             platforms = systems;
           };
         };
@@ -172,7 +172,7 @@
         rec {
           kit = {
             type = "app";
-            program = "${releaseFor pkgs}/bin/kit";
+            program = "${releaseFor pkgs}/bin/headhunter";
           };
           default = kit;
         }
@@ -191,7 +191,7 @@
           default = pkgs.mkShell {
             packages = [
               # The Go the tree asks for, plus the usual Go tooling. Build and
-              # run kit from here with `task build` / `go build ./cmd/kit` —
+              # run kit from here with `task build` / `go build ./cmd/headhunter` —
               # the shell deliberately ships no prebuilt kit, because the nix
               # build vendors the *pinned release's* modules behind a hash,
               # and a working tree with newer deps would fight it.
@@ -206,7 +206,7 @@
       formatter = eachSystem ({ pkgs, ... }: pkgs.nixfmt-rfc-style);
 
       # For projects that prefer a nixpkgs-style package:
-      #   inputs.kit.url = "github:mark3labs/kit";
+      #   inputs.kit.url = "github:xnet-admin-1/Headhunter";
       #   inputs.kit.overlays.default
       overlays.default = final: _prev: { kit = releaseFor final; };
     };

@@ -5,7 +5,7 @@ import (
 	"testing"
 
 	"charm.land/fantasy"
-	"github.com/mark3labs/kit/internal/message"
+	"github.com/xnet-admin-1/Headhunter/internal/message"
 )
 
 // TestCompactionCreatesNewLeaf verifies that after compaction, the compaction

@@ -6,7 +6,7 @@ import (
 
 	"github.com/spf13/viper"
 
-	"github.com/mark3labs/kit/internal/config"
+	"github.com/xnet-admin-1/Headhunter/internal/config"
 )
 
 // TestBuildKitOptionsNilAuthHandlerIsTrueNil guards the typed-nil pitfall:

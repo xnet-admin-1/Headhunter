@@ -11,7 +11,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/mark3labs/kit/internal/config"
+	"github.com/xnet-admin-1/Headhunter/internal/config"
 )
 
 // testdataDir returns the absolute path to the testdata directory.

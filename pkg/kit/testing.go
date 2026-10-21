@@ -2,7 +2,7 @@
 
 package kit
 
-import "github.com/mark3labs/kit/internal/config"
+import "github.com/xnet-admin-1/Headhunter/internal/config"
 
 // ResetForTesting clears package-global state that survives across tests in
 // the same binary. It is intended for test-binary teardown / between-test

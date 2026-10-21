@@ -12,7 +12,7 @@
 # The tag is written once and lands in two places. The markers sit at the END
 # of their lines, and no other line may end with them:
 #
-#   url     = "github:mark3labs/kit/v0.99.0"; # nix:kit-release-tag
+#   url     = "github:xnet-admin-1/Headhunter/v0.99.0"; # nix:kit-release-tag
 #   version = "0.99.0";                       # nix:kit-release-version
 #
 # The version line exists because a `flake = false` input reaches the flake
@@ -75,7 +75,7 @@ if [[ "$CURRENT_TAG" == "$TAG" ]]; then
 fi
 
 sed -i -E \
-  "s|(url[[:space:]]*=[[:space:]]*\"github:mark3labs/kit/)${CURRENT_TAG}(\"[[:space:]]*;[[:space:]]*)# nix:kit-release-tag$|\1${TAG}\2# nix:kit-release-tag|" \
+  "s|(url[[:space:]]*=[[:space:]]*\"github:xnet-admin-1/Headhunter/)${CURRENT_TAG}(\"[[:space:]]*;[[:space:]]*)# nix:kit-release-tag$|\1${TAG}\2# nix:kit-release-tag|" \
   "$FLAKE_NIX"
 sed -i -E \
   "s|(version[[:space:]]*=[[:space:]]*\")${CURRENT_VERSION}(\"[[:space:]]*;[[:space:]]*)# nix:kit-release-version$|\1${VERSION}\2# nix:kit-release-version|" \

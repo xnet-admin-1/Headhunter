@@ -11,8 +11,8 @@
 //	import (
 //	    "testing"
 //
-//	    "github.com/mark3labs/kit/pkg/extensions"
-//	    "github.com/mark3labs/kit/pkg/extensions/test"
+//	    "github.com/xnet-admin-1/Headhunter/pkg/extensions"
+//	    "github.com/xnet-admin-1/Headhunter/pkg/extensions/test"
 //	)
 //
 //	func TestMyExtension(t *testing.T) {
@@ -37,7 +37,7 @@
 //	}
 //
 // Events, results and every other type in these signatures come from
-// github.com/mark3labs/kit/pkg/extensions, so extension authors can write
+// github.com/xnet-admin-1/Headhunter/pkg/extensions, so extension authors can write
 // these tests from their own module without importing anything internal.
 //
 // The harness provides a mock Context that records all interactions,
@@ -49,8 +49,8 @@ import (
 	"reflect"
 	"testing"
 
-	internalext "github.com/mark3labs/kit/internal/extensions"
-	"github.com/mark3labs/kit/pkg/extensions"
+	internalext "github.com/xnet-admin-1/Headhunter/internal/extensions"
+	"github.com/xnet-admin-1/Headhunter/pkg/extensions"
 	"github.com/traefik/yaegi/interp"
 	"github.com/traefik/yaegi/stdlib"
 	"github.com/traefik/yaegi/stdlib/unrestricted"

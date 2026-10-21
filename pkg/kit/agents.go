@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/mark3labs/kit/internal/agents"
-	"github.com/mark3labs/kit/internal/core"
+	"github.com/xnet-admin-1/Headhunter/internal/agents"
+	"github.com/xnet-admin-1/Headhunter/internal/core"
 )
 
 // ==== Named Agent Types ====

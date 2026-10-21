@@ -7,9 +7,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/mark3labs/kit/internal/agent"
-	"github.com/mark3labs/kit/internal/kitsetup"
-	"github.com/mark3labs/kit/internal/models"
+	"github.com/xnet-admin-1/Headhunter/internal/agent"
+	"github.com/xnet-admin-1/Headhunter/internal/kitsetup"
+	"github.com/xnet-admin-1/Headhunter/internal/models"
 )
 
 const modelModesTestModel = "openai/gpt-4o"

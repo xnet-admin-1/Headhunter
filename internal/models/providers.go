@@ -28,10 +28,10 @@ import (
 	"charm.land/fantasy/providers/openaicompat"
 	"charm.land/fantasy/providers/openrouter"
 	"charm.land/fantasy/providers/vercel"
-	"github.com/mark3labs/kit/internal/auth"
+	"github.com/xnet-admin-1/Headhunter/internal/auth"
 	"github.com/spf13/viper"
 
-	"github.com/mark3labs/kit/internal/httpclient"
+	"github.com/xnet-admin-1/Headhunter/internal/httpclient"
 )
 
 const (
@@ -393,7 +393,7 @@ func createProvider(ctx context.Context, config *ProviderConfig) (*ProviderResul
 	// Each create*Provider function handles its own auth resolution and
 	// produces provider-specific error messages. The early env-var check
 	// was too narrow — it didn't account for stored credentials (e.g.
-	// OAuth tokens from 'kit auth login') and blocked valid auth paths.
+	// OAuth tokens from 'headhunter auth login') and blocked valid auth paths.
 
 	// A requested mode must be known and safely representable by its provider adapter.
 	if config.ModelMode != "" {
@@ -1519,7 +1519,7 @@ func createOpenAIProvider(ctx context.Context, config *ProviderConfig, modelName
 			Provider:     "openai",
 			ProviderName: "OpenAI",
 			EnvVars:      []string{"OPENAI_API_KEY"},
-			Hint:         "ChatGPT Plus/Pro users can run 'kit auth login openai' instead",
+			Hint:         "ChatGPT Plus/Pro users can run 'headhunter auth login openai' instead",
 		}
 	}
 
@@ -1596,10 +1596,10 @@ func createCopilotProvider(ctx context.Context, config *ProviderConfig, modelNam
 			return nil, &auth.MissingCredentialsError{
 				Provider:     "copilot",
 				ProviderName: "GitHub Copilot",
-				Hint:         "GitHub Copilot uses device login: run 'kit auth login copilot'",
+				Hint:         "GitHub Copilot uses device login: run 'headhunter auth login copilot'",
 			}
 		}
-		return nil, fmt.Errorf("GitHub Copilot credentials not available. Use 'kit auth login copilot': %w", err)
+		return nil, fmt.Errorf("GitHub Copilot credentials not available. Use 'headhunter auth login copilot': %w", err)
 	}
 
 	expiresAt := int64(0)
@@ -1978,7 +1978,7 @@ func createOpenRouterProvider(ctx context.Context, config *ProviderConfig, model
 }
 
 // bedrockCredentials returns the Bedrock API key stored in Kit's credentials
-// file (by 'kit auth login amazon-bedrock') and its region.
+// file (by 'headhunter auth login amazon-bedrock') and its region.
 //
 // The region is the one stored with the key, since a key belongs to one
 // account and region, else AWS_REGION, else AWS_DEFAULT_REGION. One of them
@@ -1993,7 +1993,7 @@ func bedrockCredentials() (apiKey, region string, err error) {
 	}
 	region = firstNonEmpty(region, os.Getenv("AWS_REGION"), os.Getenv("AWS_DEFAULT_REGION"))
 	if region == "" {
-		return "", "", fmt.Errorf("no AWS region for the Bedrock API key stored in Kit: store the key with 'kit auth login amazon-bedrock --region <region>', or set AWS_REGION")
+		return "", "", fmt.Errorf("no AWS region for the Bedrock API key stored in Kit: store the key with 'headhunter auth login amazon-bedrock --region <region>', or set AWS_REGION")
 	}
 	return apiKey, region, nil
 }

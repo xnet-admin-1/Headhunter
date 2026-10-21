@@ -5,9 +5,9 @@ import (
 	"sync"
 	"time"
 
-	"github.com/mark3labs/kit/internal/auth"
-	"github.com/mark3labs/kit/internal/extensions"
-	"github.com/mark3labs/kit/internal/models"
+	"github.com/xnet-admin-1/Headhunter/internal/auth"
+	"github.com/xnet-admin-1/Headhunter/internal/extensions"
+	"github.com/xnet-admin-1/Headhunter/internal/models"
 )
 
 // bridgeExtensions registers extension event handlers as SDK hooks and

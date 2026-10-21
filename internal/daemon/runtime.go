@@ -23,7 +23,7 @@ const (
 	stateFileName = "daemon.json"
 )
 
-// daemonState is the snapshot `kit daemon status` reports.
+// daemonState is the snapshot `headhunter daemon status` reports.
 type daemonState struct {
 	PID            int       `json:"pid"`
 	Endpoint       string    `json:"endpoint,omitempty"`
@@ -76,10 +76,10 @@ func acquireDaemonLock() (*daemonLock, error) {
 		_ = f.Close()
 		if st := readStateFile(dir); st != nil {
 			return nil, fmt.Errorf(
-				"daemon: another instance is already running (pid %d, started %s) — see 'kit daemon status'",
+				"daemon: another instance is already running (pid %d, started %s) — see 'headhunter daemon status'",
 				st.PID, st.StartedAt.Format("2006-01-02 15:04"))
 		}
-		return nil, errors.New("daemon: another instance is already running — see 'kit daemon status'")
+		return nil, errors.New("daemon: another instance is already running — see 'headhunter daemon status'")
 	}
 	return &daemonLock{f: f}, nil
 }
@@ -201,7 +201,7 @@ func readStateFile(dir string) *daemonState {
 	return &s
 }
 
-// Status describes a kit daemon on this machine (per user).
+// Status describes a headhunter daemon on this machine (per user).
 type Status struct {
 	// Running is true when a live process holds the daemon lock.
 	Running bool
@@ -229,7 +229,7 @@ func ReadStatus() Status {
 
 	// No daemon is running, so anything the state file says about live
 	// sessions is left over from a run that has ended. Report it as zero
-	// rather than passing stale counts to the caller: `kit daemon status`
+	// rather than passing stale counts to the caller: `headhunter daemon status`
 	// would otherwise claim active sessions for a dead daemon.
 	st := readStateFile(dir)
 	if st != nil {

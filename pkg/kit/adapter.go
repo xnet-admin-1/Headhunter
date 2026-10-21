@@ -6,7 +6,7 @@ import (
 	"time"
 
 	"charm.land/fantasy"
-	"github.com/mark3labs/kit/internal/session"
+	"github.com/xnet-admin-1/Headhunter/internal/session"
 )
 
 // treeManagerAdapter adapts TreeManager to SessionManager interface.

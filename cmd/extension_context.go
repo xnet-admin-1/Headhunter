@@ -7,12 +7,12 @@ import (
 
 	"golang.org/x/term"
 
-	"github.com/mark3labs/kit/internal/app"
-	"github.com/mark3labs/kit/internal/extbridge"
-	"github.com/mark3labs/kit/internal/extensions"
-	"github.com/mark3labs/kit/internal/models"
-	"github.com/mark3labs/kit/internal/ui"
-	kit "github.com/mark3labs/kit/pkg/kit"
+	"github.com/xnet-admin-1/Headhunter/internal/app"
+	"github.com/xnet-admin-1/Headhunter/internal/extbridge"
+	"github.com/xnet-admin-1/Headhunter/internal/extensions"
+	"github.com/xnet-admin-1/Headhunter/internal/models"
+	"github.com/xnet-admin-1/Headhunter/internal/ui"
+	kit "github.com/xnet-admin-1/Headhunter/pkg/kit"
 )
 
 // extensionContextDeps groups the runtime dependencies needed to wire up

@@ -5,7 +5,7 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/mark3labs/kit/internal/compaction"
+	"github.com/xnet-admin-1/Headhunter/internal/compaction"
 )
 
 // ContextStats contains current context usage information.

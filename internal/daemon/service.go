@@ -10,13 +10,13 @@ import (
 	"strings"
 )
 
-// systemd user-service management for `kit daemon`. The unit keeps the
+// systemd user-service management for `headhunter daemon`. The unit keeps the
 // daemon attached to the user session (no root, inherits HOME so the lock,
 // state, and session storage resolve to the same paths as interactive use).
 
 const (
 	serviceUnitName = "kit.service"
-	serviceDesc     = "kit daemon — remote kit sessions over iroh"
+	serviceDesc     = "headhunter daemon — remote headhunter sessions over iroh"
 )
 
 func systemdUnitPath() (string, error) {
@@ -99,8 +99,8 @@ func writeServiceEnvFile() (string, bool, error) {
 	}
 	vars := envFileVars()
 	var b strings.Builder
-	b.WriteString("# Environment for the kit daemon systemd service.\n")
-	b.WriteString("# Written by 'kit daemon service install' from the installing shell;\n# edit freely and restart with: systemctl --user restart kit\n\n")
+	b.WriteString("# Environment for the headhunter daemon systemd service.\n")
+	b.WriteString("# Written by 'headhunter daemon service install' from the installing shell;\n# edit freely and restart with: systemctl --user restart kit\n\n")
 	for _, kv := range vars {
 		b.WriteString(kv)
 		b.WriteString("\n")
@@ -146,7 +146,7 @@ func InstallSystemService(ctx context.Context) error {
 	}
 	unit := fmt.Sprintf(`[Unit]
 Description=%s
-Documentation=https://github.com/mark3labs/kit
+Documentation=https://github.com/xnet-admin-1/Headhunter
 After=network-online.target
 StartLimitIntervalSec=30
 StartLimitBurst=5
@@ -187,7 +187,7 @@ WantedBy=default.target
 		fmt.Println("  Add or change keys there and run: systemctl --user restart kit")
 	}
 	fmt.Println("  Manage it with: systemctl --user status kit")
-	fmt.Printf("  Show the pairing code with: kit daemon status\n")
+	fmt.Printf("  Show the pairing code with: headhunter daemon status\n")
 	return nil
 }
 

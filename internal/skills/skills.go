@@ -610,7 +610,7 @@ func finalizeSkills(loaded []*Skill) []*Skill {
 			continue
 		}
 		// Non-fatal spec deviations are recorded at debug level so they do
-		// not spam the TUI; `kit skill list` and `kit skill validate` surface
+		// not spam the TUI; `headhunter skill list` and `headhunter skill validate` surface
 		// them on demand.
 		for _, d := range diags {
 			log.Debug("skill spec warning", "name", s.Name, "path", s.Path, "field", d.Field, "reason", d.Message)

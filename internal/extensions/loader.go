@@ -434,7 +434,7 @@ type SearchPath struct {
 // disabled, so callers must not assume a fixed length.
 //
 // Git package roots are deliberately excluded: those are managed by
-// "kit install" rather than authored by hand.
+// "headhunter install" rather than authored by hand.
 func AuthoredSearchPaths() []SearchPath {
 	paths := make([]SearchPath, 0, 3)
 	for _, dir := range systemExtensionsDirs() {
@@ -455,7 +455,7 @@ func AuthoredSearchPaths() []SearchPath {
 //
 // Packagers can point it somewhere else at build time:
 //
-//	go build -ldflags "-X github.com/mark3labs/kit/internal/extensions.SystemExtensionsDir=/opt/kit/extensions" ./cmd/kit
+//	go build -ldflags "-X github.com/xnet-admin-1/Headhunter/internal/extensions.SystemExtensionsDir=/opt/kit/extensions" ./cmd/kit
 //
 // Set it to an empty string to disable system-wide discovery.
 var SystemExtensionsDir = "/usr/share/kit/extensions"

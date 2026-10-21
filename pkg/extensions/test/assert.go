@@ -5,7 +5,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/mark3labs/kit/pkg/extensions"
+	"github.com/xnet-admin-1/Headhunter/pkg/extensions"
 )
 
 // AssertNotBlocked fails the test if the tool call result indicates the tool was blocked.

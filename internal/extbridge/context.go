@@ -3,8 +3,8 @@ package extbridge
 import (
 	"context"
 
-	"github.com/mark3labs/kit/internal/extensions"
-	kit "github.com/mark3labs/kit/pkg/kit"
+	"github.com/xnet-admin-1/Headhunter/internal/extensions"
+	kit "github.com/xnet-admin-1/Headhunter/pkg/kit"
 )
 
 // BaseContext returns an extensions.Context populated with the headless,

@@ -6,8 +6,8 @@ import (
 
 	"github.com/spf13/viper"
 
-	"github.com/mark3labs/kit/internal/daemon"
-	"github.com/mark3labs/kit/internal/ui"
+	"github.com/xnet-admin-1/Headhunter/internal/daemon"
+	"github.com/xnet-admin-1/Headhunter/internal/ui"
 )
 
 // The routing gate decides whether a plain `kit` becomes a detachable

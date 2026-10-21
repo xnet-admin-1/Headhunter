@@ -3,7 +3,7 @@ package app
 import (
 	"time"
 
-	kit "github.com/mark3labs/kit/pkg/kit"
+	kit "github.com/xnet-admin-1/Headhunter/pkg/kit"
 )
 
 // Event is the sealed union of all events the app layer emits toward a

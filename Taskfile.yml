@@ -1,7 +1,7 @@
 version: "3"
 
 vars:
-  BINARY: kit
+  BINARY: headhunter
   OUTPUT_DIR: output
   BUILD_FLAGS: -o {{.OUTPUT_DIR}}/{{.BINARY}}
   LDFLAGS: -s -w -X main.version=dev
@@ -17,9 +17,9 @@ tasks:
   # -----------------------------------------------------------------------
 
   build:
-    desc: Build the kit binary
+    desc: Build the headhunter binary
     cmds:
-      - go build {{.BUILD_FLAGS}} -ldflags "{{.LDFLAGS}}" ./cmd/kit
+      - go build {{.BUILD_FLAGS}} -ldflags "{{.LDFLAGS}}" ./cmd/headhunter
     sources:
       - "**/*.go"
       - go.mod
@@ -30,16 +30,16 @@ tasks:
   build-all:
     desc: Build for all platforms (linux, darwin, windows)
     cmds:
-      - GOOS=linux   GOARCH=amd64 go build -o {{.OUTPUT_DIR}}/{{.BINARY}}-linux-amd64   -ldflags "{{.LDFLAGS}}" ./cmd/kit
-      - GOOS=linux   GOARCH=arm64 go build -o {{.OUTPUT_DIR}}/{{.BINARY}}-linux-arm64   -ldflags "{{.LDFLAGS}}" ./cmd/kit
-      - GOOS=darwin  GOARCH=amd64 go build -o {{.OUTPUT_DIR}}/{{.BINARY}}-darwin-amd64  -ldflags "{{.LDFLAGS}}" ./cmd/kit
-      - GOOS=darwin  GOARCH=arm64 go build -o {{.OUTPUT_DIR}}/{{.BINARY}}-darwin-arm64  -ldflags "{{.LDFLAGS}}" ./cmd/kit
-      - GOOS=windows GOARCH=amd64 go build -o {{.OUTPUT_DIR}}/{{.BINARY}}-windows-amd64.exe -ldflags "{{.LDFLAGS}}" ./cmd/kit
+      - GOOS=linux   GOARCH=amd64 go build -o {{.OUTPUT_DIR}}/{{.BINARY}}-linux-amd64   -ldflags "{{.LDFLAGS}}" ./cmd/headhunter
+      - GOOS=linux   GOARCH=arm64 go build -o {{.OUTPUT_DIR}}/{{.BINARY}}-linux-arm64   -ldflags "{{.LDFLAGS}}" ./cmd/headhunter
+      - GOOS=darwin  GOARCH=amd64 go build -o {{.OUTPUT_DIR}}/{{.BINARY}}-darwin-amd64  -ldflags "{{.LDFLAGS}}" ./cmd/headhunter
+      - GOOS=darwin  GOARCH=arm64 go build -o {{.OUTPUT_DIR}}/{{.BINARY}}-darwin-arm64  -ldflags "{{.LDFLAGS}}" ./cmd/headhunter
+      - GOOS=windows GOARCH=amd64 go build -o {{.OUTPUT_DIR}}/{{.BINARY}}-windows-amd64.exe -ldflags "{{.LDFLAGS}}" ./cmd/headhunter
 
   install:
-    desc: Install kit to $GOPATH/bin
+    desc: Install headhunter to $GOPATH/bin
     cmds:
-      - go install -ldflags "{{.LDFLAGS}}" ./cmd/kit
+      - go install -ldflags "{{.LDFLAGS}}" ./cmd/headhunter
 
   # -----------------------------------------------------------------------
   # Test

@@ -43,7 +43,7 @@ func TestLostConnectionIsNotAFinishedSession(t *testing.T) {
 // happened to my work", and the honest answer depends on what the daemon
 // said it could do.
 func TestReconnectPartingDescribesTheSession(t *testing.T) {
-	opts := AttachOptions{Reattach: "kit attach"}
+	opts := AttachOptions{Reattach: "headhunter attach"}
 
 	t.Run("a daemon that keeps its sessions", func(t *testing.T) {
 		run := clientRun{
@@ -79,16 +79,16 @@ func TestReconnectPartingDescribesTheSession(t *testing.T) {
 		if strings.Contains(got, "session 0") {
 			t.Errorf("a client with no session must not name session 0:\n%s", got)
 		}
-		if !strings.Contains(got, "kit ls") {
+		if !strings.Contains(got, "headhunter ls") {
 			t.Errorf("parting message should point at the session list:\n%s", got)
 		}
 	})
 
 	t.Run("a remote host", func(t *testing.T) {
-		remote := AttachOptions{Host: "homelab", Reattach: "kit attach --host homelab"}
+		remote := AttachOptions{Host: "homelab", Reattach: "headhunter attach --host homelab"}
 		run := clientRun{daemon: Hello{Version: ProtocolVersion, Features: FeatureReattach}}
 		got := reconnectParting(remote, run, nil)
-		if !strings.Contains(got, "kit ls --host homelab") {
+		if !strings.Contains(got, "headhunter ls --host homelab") {
 			t.Errorf("a remote client must be told how to list THAT host's sessions:\n%s", got)
 		}
 	})

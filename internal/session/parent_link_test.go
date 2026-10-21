@@ -6,7 +6,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/mark3labs/kit/internal/message"
+	"github.com/xnet-admin-1/Headhunter/internal/message"
 )
 
 // newTestMessage builds a minimal user message for session tests.

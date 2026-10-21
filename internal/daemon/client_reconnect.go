@@ -140,15 +140,15 @@ func reattachHint(opts AttachOptions) string {
 	if opts.Reattach != "" {
 		return opts.Reattach
 	}
-	return "kit attach"
+	return "headhunter attach"
 }
 
 // listHint is the command that lists a daemon's sessions.
 func listHint(opts AttachOptions) string {
 	if opts.Host != "" {
-		return "kit ls --host " + opts.Host
+		return "headhunter ls --host " + opts.Host
 	}
-	return "kit ls"
+	return "headhunter ls"
 }
 
 // reconnectStatus paints a one-line status over the alt screen while a

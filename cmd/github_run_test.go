@@ -30,7 +30,7 @@ const issueCommentEvent = `{
   "action": "created",
   "comment": {
     "id": 555,
-    "body": "/kit fix the broken parser",
+    "body": "/headhunter fix the broken parser",
     "author_association": "OWNER",
     "user": {"login": "alice"}
   },
@@ -45,12 +45,12 @@ func TestExtractRequest(t *testing.T) {
 		want    string
 		wantHit bool
 	}{
-		{"start with request", "/kit fix the bug", "fix the bug", true},
-		{"bare token", "/kit", "", true},
-		{"trailing token", "hey /kit", "", true},
-		{"mid-sentence ignored", "please review /kit behavior in the docs", "", false},
+		{"start with request", "/headhunter fix the bug", "fix the bug", true},
+		{"bare token", "/headhunter", "", true},
+		{"trailing token", "hey /headhunter", "", true},
+		{"mid-sentence ignored", "please review /headhunter behavior in the docs", "", false},
 		{"no token", "just a normal comment", "", false},
-		{"token in second line", "thanks!\n/kit add tests", "add tests", true},
+		{"token in second line", "thanks!\n/headhunter add tests", "add tests", true},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -119,7 +119,7 @@ func TestRunGitHub_UnauthorizedAssociation(t *testing.T) {
 
 func TestRunGitHub_CommentWithoutToken(t *testing.T) {
 	setupEvent(t, strings.Replace(issueCommentEvent,
-		`"/kit fix the broken parser"`, `"just a normal comment"`, 1))
+		`"/headhunter fix the broken parser"`, `"just a normal comment"`, 1))
 	if err := runGitHubRun(githubRunCmd, nil); err != nil {
 		t.Fatalf("runGitHubRun should be a no-op without /kit, got: %v", err)
 	}
@@ -127,7 +127,7 @@ func TestRunGitHub_CommentWithoutToken(t *testing.T) {
 
 func TestRunGitHub_MidSentenceMentionIgnored(t *testing.T) {
 	setupEvent(t, strings.Replace(issueCommentEvent,
-		`"/kit fix the broken parser"`, `"please review /kit behavior in the docs"`, 1))
+		`"/headhunter fix the broken parser"`, `"please review /headhunter behavior in the docs"`, 1))
 	if err := runGitHubRun(githubRunCmd, nil); err != nil {
 		t.Fatalf("runGitHubRun should ignore mid-sentence mentions, got: %v", err)
 	}
@@ -138,7 +138,7 @@ func TestRunGitHub_PullRequestReviewComment(t *testing.T) {
   "action": "created",
   "comment": {
     "id": 999,
-    "body": "/kit review this change",
+    "body": "/headhunter review this change",
     "author_association": "COLLABORATOR",
     "user": {"login": "bob"}
   },

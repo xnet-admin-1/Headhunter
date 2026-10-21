@@ -12,7 +12,7 @@ import (
 
 	"gopkg.in/yaml.v3"
 
-	"github.com/mark3labs/kit/internal/ui/prefs"
+	"github.com/xnet-admin-1/Headhunter/internal/ui/prefs"
 )
 
 // ---------------------------------------------------------------------------

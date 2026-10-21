@@ -6,7 +6,7 @@ import (
 	"log"
 	"os"
 
-	kit "github.com/mark3labs/kit/pkg/kit"
+	kit "github.com/xnet-admin-1/Headhunter/pkg/kit"
 )
 
 func main() {

@@ -5,12 +5,12 @@ const fs = require("fs");
 const path = require("path");
 const https = require("https");
 
-const REPO = "mark3labs/kit";
-const BINARY = "kit";
+const REPO = "xnet-admin-1/Headhunter";
+const BINARY = "headhunter";
 
 const binDir = __dirname;
 const isWindows = process.platform === "win32";
-const binaryName = isWindows ? "kit.exe" : "kit-bin";
+const binaryName = isWindows ? "headhunter.exe" : "headhunter-bin";
 const binaryPath = path.join(binDir, binaryName);
 
 // Platform/arch mapping
@@ -90,7 +90,7 @@ async function main() {
   });
 
   if (result.error) {
-    console.error(`Failed to run kit: ${result.error.message}`);
+    console.error(`Failed to run headhunter: ${result.error.message}`);
     process.exit(1);
   }
 

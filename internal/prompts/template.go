@@ -8,7 +8,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/mark3labs/kit/internal/fences"
+	"github.com/xnet-admin-1/Headhunter/internal/fences"
 )
 
 // PromptTemplate is a named prompt template with shell-style argument placeholders.

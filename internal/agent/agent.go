@@ -16,12 +16,12 @@ import (
 	"charm.land/fantasy"
 	log "github.com/charmbracelet/log"
 
-	"github.com/mark3labs/kit/internal/config"
-	"github.com/mark3labs/kit/internal/core"
-	"github.com/mark3labs/kit/internal/media"
-	"github.com/mark3labs/kit/internal/message"
-	"github.com/mark3labs/kit/internal/models"
-	"github.com/mark3labs/kit/internal/tools"
+	"github.com/xnet-admin-1/Headhunter/internal/config"
+	"github.com/xnet-admin-1/Headhunter/internal/core"
+	"github.com/xnet-admin-1/Headhunter/internal/media"
+	"github.com/xnet-admin-1/Headhunter/internal/message"
+	"github.com/xnet-admin-1/Headhunter/internal/models"
+	"github.com/xnet-admin-1/Headhunter/internal/tools"
 )
 
 // AgentConfig holds configuration options for creating a new Agent.

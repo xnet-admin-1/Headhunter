@@ -9,7 +9,7 @@ import (
 
 	"charm.land/fantasy"
 
-	"github.com/mark3labs/kit/internal/session"
+	"github.com/xnet-admin-1/Headhunter/internal/session"
 )
 
 // The default backend must present the StepAppender contract end to end:

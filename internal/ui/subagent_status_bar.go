@@ -6,8 +6,8 @@ import (
 
 	"charm.land/lipgloss/v2"
 
-	"github.com/mark3labs/kit/internal/ui/style"
-	kit "github.com/mark3labs/kit/pkg/kit"
+	"github.com/xnet-admin-1/Headhunter/internal/ui/style"
+	kit "github.com/xnet-admin-1/Headhunter/pkg/kit"
 )
 
 const subagentStatusRetention = 10 * time.Second

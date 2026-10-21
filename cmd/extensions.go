@@ -6,15 +6,15 @@ import (
 	"path/filepath"
 	"text/tabwriter"
 
-	"github.com/mark3labs/kit/internal/extensions"
+	"github.com/xnet-admin-1/Headhunter/internal/extensions"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
 
 var extensionsCmd = &cobra.Command{
 	Use:   "extensions",
-	Short: "Manage KIT extensions",
-	Long:  "Commands for listing, validating, and scaffolding KIT extensions",
+	Short: "Manage HEADHUNTER extensions",
+	Long:  "Commands for listing, validating, and scaffolding HEADHUNTER extensions",
 }
 
 var extensionsListCmd = &cobra.Command{
@@ -35,7 +35,7 @@ var extensionsListCmd = &cobra.Command{
 			}
 			fmt.Println()
 			fmt.Println("Subdirectories are scanned too, as <dir>/<name>/main.go.")
-			fmt.Println("Run 'kit extensions init' to create an example extension.")
+			fmt.Println("Run 'headhunter extensions init' to create an example extension.")
 			return nil
 		}
 
@@ -233,7 +233,7 @@ func Init(api ext.API) {
 
 		fmt.Printf("Created %s with example extension\n", path)
 		fmt.Println()
-		fmt.Println("The extension will be auto-loaded on the next kit run.")
+		fmt.Println("The extension will be auto-loaded on the next headhunter run.")
 		fmt.Println("Use --no-extensions to disable all extensions.")
 		return nil
 	},

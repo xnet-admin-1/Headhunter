@@ -6,7 +6,7 @@ import (
 
 	tea "charm.land/bubbletea/v2"
 
-	"github.com/mark3labs/kit/internal/app"
+	"github.com/xnet-admin-1/Headhunter/internal/app"
 )
 
 // newTestAppModelWithRealStream builds an AppModel wired to a REAL

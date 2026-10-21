@@ -11,7 +11,7 @@ import (
 
 	"github.com/spf13/cobra"
 
-	"github.com/mark3labs/kit/internal/daemon"
+	"github.com/xnet-admin-1/Headhunter/internal/daemon"
 )
 
 // TestRemoteSessionEntriesHonoursCancellation checks that a cancelled

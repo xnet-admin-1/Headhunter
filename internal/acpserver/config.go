@@ -9,8 +9,8 @@ import (
 
 	acp "github.com/coder/acp-go-sdk"
 
-	"github.com/mark3labs/kit/internal/models"
-	kit "github.com/mark3labs/kit/pkg/kit"
+	"github.com/xnet-admin-1/Headhunter/internal/models"
+	kit "github.com/xnet-admin-1/Headhunter/pkg/kit"
 )
 
 // Config option IDs Kit exposes through session config options.

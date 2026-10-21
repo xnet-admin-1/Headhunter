@@ -12,7 +12,7 @@ tape_dir="$repo_root/www/tapes"
 
 # Build a fresh kit and put it first on PATH so tapes can just call `kit`.
 echo "==> building kit"
-(cd "$repo_root" && go build -o output/kit ./cmd/kit)
+(cd "$repo_root" && go build -o output/kit ./cmd/headhunter)
 export PATH="$repo_root/output:$PATH"
 
 # Tapes may run stateful commands on camera (`/theme`, `/model`), which Kit

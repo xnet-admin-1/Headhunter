@@ -3,7 +3,7 @@ package ui
 import (
 	"testing"
 
-	"github.com/mark3labs/kit/internal/message"
+	"github.com/xnet-admin-1/Headhunter/internal/message"
 )
 
 // textMessage builds a single-text-part message for history fixtures.

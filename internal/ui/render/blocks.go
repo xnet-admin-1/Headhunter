@@ -10,8 +10,8 @@ import (
 	"charm.land/lipgloss/v2"
 	"github.com/indaco/herald"
 
-	"github.com/mark3labs/kit/internal/ui/fileutil"
-	"github.com/mark3labs/kit/internal/ui/style"
+	"github.com/xnet-admin-1/Headhunter/internal/ui/fileutil"
+	"github.com/xnet-admin-1/Headhunter/internal/ui/style"
 )
 
 // UserBlock-related rendering helpers and herald typography.

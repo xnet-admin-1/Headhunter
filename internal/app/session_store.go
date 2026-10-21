@@ -8,7 +8,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/mark3labs/kit/internal/session"
+	"github.com/xnet-admin-1/Headhunter/internal/session"
 )
 
 // ErrSessionNotPersisted is returned by operations that need the session's

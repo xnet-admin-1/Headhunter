@@ -14,10 +14,10 @@ import (
 	tea "charm.land/bubbletea/v2"
 	"charm.land/fantasy"
 
-	"github.com/mark3labs/kit/internal/extensions"
-	"github.com/mark3labs/kit/internal/message"
-	"github.com/mark3labs/kit/internal/session"
-	kit "github.com/mark3labs/kit/pkg/kit"
+	"github.com/xnet-admin-1/Headhunter/internal/extensions"
+	"github.com/xnet-admin-1/Headhunter/internal/message"
+	"github.com/xnet-admin-1/Headhunter/internal/session"
+	kit "github.com/xnet-admin-1/Headhunter/pkg/kit"
 )
 
 // queueItem holds a prompt and optional image attachments for the execution queue.

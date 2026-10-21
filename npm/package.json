@@ -1,18 +1,18 @@
 {
-  "name": "@mark3labs/kit",
+  "name": "@xnet-admin-1/headhunter",
   "version": "0.0.0",
   "description": "AI-powered CLI tool",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mark3labs/kit.git"
+    "url": "git+https://github.com/xnet-admin-1/Headhunter.git"
   },
-  "homepage": "https://github.com/mark3labs/kit",
+  "homepage": "https://github.com/xnet-admin-1/Headhunter",
   "bugs": {
-    "url": "https://github.com/mark3labs/kit/issues"
+    "url": "https://github.com/xnet-admin-1/Headhunter/issues"
   },
   "license": "MIT",
   "bin": {
-    "kit": "bin/kit"
+    "headhunter": "bin/headhunter"
   },
   "scripts": {
     "postinstall": "node install.js"
@@ -35,7 +35,7 @@
   ],
   "keywords": [
     "cli",
-    "kit",
+    "headhunter",
     "ai"
   ]
 }

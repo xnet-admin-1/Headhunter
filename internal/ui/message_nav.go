@@ -9,8 +9,8 @@ import (
 	"charm.land/lipgloss/v2"
 	xansi "github.com/charmbracelet/x/ansi"
 
-	"github.com/mark3labs/kit/internal/ui/clipboard"
-	"github.com/mark3labs/kit/internal/ui/style"
+	"github.com/xnet-admin-1/Headhunter/internal/ui/clipboard"
+	"github.com/xnet-admin-1/Headhunter/internal/ui/style"
 )
 
 // --------------------------------------------------------------------------

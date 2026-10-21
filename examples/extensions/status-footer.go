@@ -22,8 +22,8 @@ package main
 // Fields: mode, model, context, bar, cache, cost, clock, timer
 //
 // Design, field set, and the /footer command surface are based on Nuno do
-// Carmo's (@nunix) proposal in mark3labs/kit#95 and his implementation in
-// mark3labs/kit#96, rebuilt here as an extension so the layout stays
+// Carmo's (@nunix) proposal in xnet-admin-1/Headhunter#95 and his implementation in
+// xnet-admin-1/Headhunter#96, rebuilt here as an extension so the layout stays
 // user-configurable rather than hardcoded in the TUI.
 
 import (

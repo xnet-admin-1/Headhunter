@@ -3,7 +3,7 @@ package main
 import (
 	"testing"
 
-	"github.com/mark3labs/kit/pkg/extensions/test"
+	"github.com/xnet-admin-1/Headhunter/pkg/extensions/test"
 )
 
 // TestAllExtensions_Load is a smoke test that verifies every single-file

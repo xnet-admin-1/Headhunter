@@ -4,7 +4,7 @@ import (
 	"slices"
 	"testing"
 
-	"github.com/mark3labs/kit/internal/models"
+	"github.com/xnet-admin-1/Headhunter/internal/models"
 	"github.com/spf13/viper"
 )
 

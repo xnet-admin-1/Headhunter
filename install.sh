@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-# Kit install script
+# Headhunter install script
 # Usage:
-#   curl -fsSL https://raw.githubusercontent.com/mark3labs/kit/master/install.sh | bash
+#   curl -fsSL https://raw.githubusercontent.com/xnet-admin-1/Headhunter/master/install.sh | bash
 #   bash install.sh [--bin-dir <dir>] [--version <tag>] [--no-provider-check]
 set -euo pipefail
 
@@ -21,8 +21,8 @@ die()     { printf "%s  %s%s\n" >&2    "${RED}✗${RESET}"   "$*" "${RESET}"; ex
 header()  { printf "\n%s%s%s\n\n"      "${BOLD}" "$*" "${RESET}"; }
 
 # ── Defaults ────────────────────────────────────────────────────────────────
-REPO="mark3labs/kit"
-BIN_NAME="kit"
+REPO="xnet-admin-1/Headhunter"
+BIN_NAME="headhunter"
 VERSION="${KIT_VERSION:-}"   # empty = latest release tag
 BIN_DIR="${KIT_BIN_DIR:-}"   # empty = auto-detect
 CHECK_PROVIDER=true
@@ -42,7 +42,7 @@ while [[ $# -gt 0 ]]; do
 Usage: install.sh [options]
 
 Options:
-  --bin-dir <dir>       Directory to install kit into  (default: auto-detect, ~/.local/bin)
+  --bin-dir <dir>       Directory to install headhunter into  (default: auto-detect, ~/.local/bin)
   --version <tag>       Release tag to install         (default: latest)
   --no-provider-check   Skip the LLM provider API key reminder
   -h, --help            Show this help
@@ -65,7 +65,7 @@ detect_platform() {
     Linux)  os="linux"  ;;
     Darwin) os="darwin" ;;
     MINGW*|MSYS*|CYGWIN*)
-      die "Windows is not supported by this script. Use 'npm install -g @mark3labs/kit' or download the zip from https://github.com/${REPO}/releases" ;;
+      die "Windows is not supported by this script. Use 'npm install -g @xnet-admin-1/headhunter' or download the zip from https://github.com/${REPO}/releases" ;;
     *) die "Unsupported OS: $(uname -s)" ;;
   esac
 
@@ -225,13 +225,13 @@ check_provider() {
   echo ""
   printf "    %sexport ANTHROPIC_API_KEY=\"sk-ant-...\"%s\n" "${BOLD}" "${RESET}"
   echo ""
-  echo "    Or log in interactively:  kit auth login anthropic"
+  echo "    Or log in interactively:  headhunter auth login anthropic"
   echo "    See https://github.com/${REPO}#readme for all providers."
 }
 
 # ── Main ──────────────────────────────────────────────────────────────────────
 main() {
-  header "Installing Kit"
+  header "Installing Headhunter"
 
   local platform
   platform=$(detect_platform)
@@ -253,7 +253,7 @@ main() {
   check_provider
 
   echo ""
-  success "Done!  Run ${BOLD}kit${RESET}${GREEN} to start.${RESET}"
+  success "Done!  Run ${BOLD}headhunter${RESET}${GREEN} to start.${RESET}"
   echo ""
 }
 

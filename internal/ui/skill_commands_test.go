@@ -3,7 +3,7 @@ package ui
 import (
 	"testing"
 
-	"github.com/mark3labs/kit/internal/ui/commands"
+	"github.com/xnet-admin-1/Headhunter/internal/ui/commands"
 )
 
 // TestAppendSkillCommands verifies skills are exposed as bare /<name>

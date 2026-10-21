@@ -63,9 +63,9 @@ func (e *MissingCredentialsError) Error() string {
 	}
 	msg := fmt.Sprintf("no API key configured for %s", name)
 	if len(e.EnvVars) > 0 {
-		msg += " (set " + strings.Join(e.EnvVars, " or ") + ", or store a key with 'kit auth login " + e.Provider + "')"
+		msg += " (set " + strings.Join(e.EnvVars, " or ") + ", or store a key with 'headhunter auth login " + e.Provider + "')"
 	} else {
-		msg += " (store a key with 'kit auth login " + e.Provider + "')"
+		msg += " (store a key with 'headhunter auth login " + e.Provider + "')"
 	}
 	if e.Hint != "" {
 		msg += ". " + e.Hint
@@ -650,7 +650,7 @@ func GetAnthropicAPIKey(flagValue string, userAgents ...string) (string, string,
 	if cm != nil {
 		hasOpenAI, _ := cm.HasOpenAICredentials()
 		if hasOpenAI {
-			missing.Hint = "OpenAI credentials were detected: run with --model openai/gpt-5.4 or set it as default with 'kit auth login openai --set-default'"
+			missing.Hint = "OpenAI credentials were detected: run with --model openai/gpt-5.4 or set it as default with 'headhunter auth login openai --set-default'"
 		}
 	}
 
@@ -716,7 +716,7 @@ func (cm *CredentialManager) SetProviderAPIKeyWithRegion(providerID, apiKey, reg
 		store.OpenAI = &OpenAICredentials{Type: "api_key", APIKey: apiKey, CreatedAt: time.Now()}
 		return cm.SaveCredentials(store)
 	case "copilot":
-		return fmt.Errorf("GitHub Copilot does not use API keys; run 'kit auth login copilot'")
+		return fmt.Errorf("GitHub Copilot does not use API keys; run 'headhunter auth login copilot'")
 	}
 
 	store, err := cm.LoadCredentials()

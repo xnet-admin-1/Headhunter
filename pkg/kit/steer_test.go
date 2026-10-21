@@ -8,7 +8,7 @@ import (
 
 	"charm.land/fantasy"
 
-	"github.com/mark3labs/kit/internal/agent"
+	"github.com/xnet-admin-1/Headhunter/internal/agent"
 )
 
 // promptRecordingModel is an echoModel that records the prompt of every

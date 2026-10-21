@@ -14,7 +14,7 @@ import (
 
 	"charm.land/fantasy"
 
-	"github.com/mark3labs/kit/internal/core"
+	"github.com/xnet-admin-1/Headhunter/internal/core"
 	"github.com/spf13/viper"
 )
 

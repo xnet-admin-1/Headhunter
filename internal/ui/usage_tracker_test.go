@@ -4,7 +4,7 @@ import (
 	"math"
 	"testing"
 
-	"github.com/mark3labs/kit/internal/models"
+	"github.com/xnet-admin-1/Headhunter/internal/models"
 )
 
 func TestUsageTracker_OAuthCosts(t *testing.T) {

@@ -13,7 +13,7 @@ import (
 	"charm.land/fantasy"
 	"github.com/spf13/viper"
 
-	"github.com/mark3labs/kit/internal/auth"
+	"github.com/xnet-admin-1/Headhunter/internal/auth"
 )
 
 // withProviderSettings installs a copy of the global registry in which the

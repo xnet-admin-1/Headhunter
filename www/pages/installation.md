@@ -9,13 +9,13 @@ ogImage: /og-image.png
 ## Using the install script (macOS / Linux)
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/mark3labs/kit/master/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/xnet-admin-1/Headhunter/master/install.sh | bash
 ```
 
 The script:
 
 - Detects your OS (`linux`, `darwin`) and architecture (`amd64`, `arm64`)
-- Downloads the matching binary from the latest [GitHub release](https://github.com/mark3labs/kit/releases)
+- Downloads the matching binary from the latest [GitHub release](https://github.com/xnet-admin-1/Headhunter/releases)
 - Verifies the SHA-256 checksum against `checksums.txt` and stops if it does not match
 - Installs `kit` into the first writable directory of `~/.local/bin`, `~/bin`, or `/usr/local/bin` (it creates `~/.local/bin` if none exist)
 - Tells you if the install directory is not on your `$PATH`
@@ -23,7 +23,7 @@ The script:
 To pass options, use `bash -s --`:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/mark3labs/kit/master/install.sh | bash -s -- --version v0.111.0 --bin-dir /usr/local/bin
+curl -fsSL https://raw.githubusercontent.com/xnet-admin-1/Headhunter/master/install.sh | bash -s -- --version v0.111.0 --bin-dir /usr/local/bin
 ```
 
 | Option | Environment variable | Description |
@@ -33,26 +33,26 @@ curl -fsSL https://raw.githubusercontent.com/mark3labs/kit/master/install.sh | b
 | `--no-provider-check` | | Skip the LLM provider API key reminder |
 | `-h`, `--help` | | Show help |
 
-On Windows, use npm / bun / pnpm below, or download the `.zip` from the [releases page](https://github.com/mark3labs/kit/releases).
+On Windows, use npm / bun / pnpm below, or download the `.zip` from the [releases page](https://github.com/xnet-admin-1/Headhunter/releases).
 
 ## Using npm / bun / pnpm
 
 ```bash
-npm install -g @mark3labs/kit
+npm install -g @xnet-admin-1/headhunter
 ```
 
 ```bash
-bun install -g @mark3labs/kit
+bun install -g @xnet-admin-1/headhunter
 ```
 
 ```bash
-pnpm install -g @mark3labs/kit
+pnpm install -g @xnet-admin-1/headhunter
 ```
 
 ## Using Nix
 
 ```bash
-nix profile install github:mark3labs/kit --no-write-lock-file
+nix profile install github:xnet-admin-1/Headhunter --no-write-lock-file
 ```
 
 The flake ships no lock file: its only inputs are `nixpkgs` and the pinned
@@ -65,26 +65,26 @@ This installs the newest tagged release, built from source for linux and macOS
 on amd64 and arm64. To install a specific release instead, name its tag:
 
 ```bash
-nix profile install github:mark3labs/kit/v0.111.0 --no-write-lock-file
+nix profile install github:xnet-admin-1/Headhunter/v0.111.0 --no-write-lock-file
 ```
 
 Run `nix develop` in a clone to hack on kit with a Nix-provided toolchain: it
 puts `go` (the version `go.mod` asks for), `gopls`, and `golangci-lint` on
-`$PATH`; build the binary yourself with `go build ./cmd/kit`. See
+`$PATH`; build the binary yourself with `go build ./cmd/headhunter`. See
 [Development](/development) for details.
 
 ## Using Go
 
 ```bash
-go install github.com/mark3labs/kit/cmd/kit@latest
+go install github.com/xnet-admin-1/Headhunter/cmd/headhunter@latest
 ```
 
 ## Building from source
 
 ```bash
-git clone https://github.com/mark3labs/kit.git
+git clone https://github.com/xnet-admin-1/Headhunter.git
 cd kit
-go build -o kit ./cmd/kit
+go build -o kit ./cmd/headhunter
 ```
 
 ## Verifying the installation

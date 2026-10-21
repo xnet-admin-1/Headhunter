@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/mark3labs/kit/internal/tools"
+	"github.com/xnet-admin-1/Headhunter/internal/tools"
 	"github.com/mark3labs/mcp-go/mcp"
 )
 

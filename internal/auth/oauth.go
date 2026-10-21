@@ -14,7 +14,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/mark3labs/kit/internal/httpclient"
+	"github.com/xnet-admin-1/Headhunter/internal/httpclient"
 )
 
 // OAuthClient handles OAuth 2.0 authentication flow with Anthropic using the

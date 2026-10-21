@@ -6,7 +6,7 @@ import (
 	"os"
 
 	"github.com/charmbracelet/fang"
-	"github.com/mark3labs/kit/cmd"
+	"github.com/xnet-admin-1/Headhunter/cmd"
 )
 
 var version = "dev"
@@ -14,7 +14,7 @@ var version = "dev"
 func main() {
 	for _, arg := range os.Args[1:] {
 		if arg == "--version" || arg == "-v" {
-			fmt.Printf("kit version %s\n", version)
+			fmt.Printf("headhunter version %s\n", version)
 			os.Exit(0)
 		}
 	}

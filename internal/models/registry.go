@@ -11,7 +11,7 @@ import (
 	"sync"
 	"sync/atomic"
 
-	"github.com/mark3labs/kit/internal/auth"
+	"github.com/xnet-admin-1/Headhunter/internal/auth"
 )
 
 //go:embed embedded_models.json
@@ -396,7 +396,7 @@ func reasoningFrom(opts []modelsDBReasoningOption) (levels []string, graded bool
 
 // buildFromModelsDB converts models.dev provider data into our internal format.
 // It starts from the compile-time embedded database and merges on-disk cached
-// data from `kit update-models` on top. Cached provider metadata replaces
+// data from `headhunter update-models` on top. Cached provider metadata replaces
 // embedded metadata, and model entries are merged with cached models taking
 // precedence. This means newly synced models are available while embedded
 // models that haven't been synced yet are still reachable.
@@ -662,7 +662,7 @@ func (r *ModelsRegistry) ValidateEnvironment(provider string, apiKey string) err
 	}
 
 	// Any provider may have an API key stored in the credentials file
-	// (via /connect or 'kit auth login <provider>').
+	// (via /connect or 'headhunter auth login <provider>').
 	if auth.LookupStoredAPIKey(provider) != "" {
 		return nil
 	}

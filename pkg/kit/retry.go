@@ -1,6 +1,6 @@
 package kit
 
-import "github.com/mark3labs/kit/internal/agent"
+import "github.com/xnet-admin-1/Headhunter/internal/agent"
 
 // RetryPolicy limits retries for each model request and step resumes for
 // each turn.

@@ -9,14 +9,14 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/mark3labs/kit/pkg/extensions"
+	"github.com/xnet-admin-1/Headhunter/pkg/extensions"
 )
 
 // TestPublicSignaturesAvoidInternalTypes fails when an exported declaration of
 // this package names a type from internal/extensions. Such a signature cannot
 // be satisfied from outside Kit's module: Go refuses the import, so extension
 // authors cannot call the harness at all (issue #136). Signatures must use the
-// aliases in github.com/mark3labs/kit/pkg/extensions instead.
+// aliases in github.com/xnet-admin-1/Headhunter/pkg/extensions instead.
 func TestPublicSignaturesAvoidInternalTypes(t *testing.T) {
 	entries, err := os.ReadDir(".")
 	if err != nil {
@@ -72,7 +72,7 @@ func internalImportNames(file *ast.File) map[string]bool {
 	names := map[string]bool{}
 	for _, imp := range file.Imports {
 		path := strings.Trim(imp.Path.Value, `"`)
-		if path != "github.com/mark3labs/kit/internal/extensions" {
+		if path != "github.com/xnet-admin-1/Headhunter/internal/extensions" {
 			continue
 		}
 		if imp.Name != nil {

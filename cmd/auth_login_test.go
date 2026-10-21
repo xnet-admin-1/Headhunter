@@ -4,7 +4,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/mark3labs/kit/internal/auth"
+	"github.com/xnet-admin-1/Headhunter/internal/auth"
 )
 
 // TestLoginProviderAPIKeyRegion checks that 'kit auth login amazon-bedrock

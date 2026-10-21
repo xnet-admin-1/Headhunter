@@ -3,7 +3,7 @@ package app
 import (
 	"sync"
 
-	kit "github.com/mark3labs/kit/pkg/kit"
+	kit "github.com/xnet-admin-1/Headhunter/pkg/kit"
 )
 
 // MessageStore is a thread-safe in-memory store for the conversation history.

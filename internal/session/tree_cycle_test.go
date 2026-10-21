@@ -3,7 +3,7 @@ package session
 import (
 	"testing"
 
-	"github.com/mark3labs/kit/internal/message"
+	"github.com/xnet-admin-1/Headhunter/internal/message"
 )
 
 // TestDetectCycleWithCorruptedParentChain tests that cycle detection works

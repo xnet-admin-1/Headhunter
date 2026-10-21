@@ -12,17 +12,17 @@ import (
 	charmlog "github.com/charmbracelet/log"
 	"github.com/spf13/viper"
 
-	"github.com/mark3labs/kit/internal/app"
-	"github.com/mark3labs/kit/internal/config"
-	"github.com/mark3labs/kit/internal/daemon"
-	"github.com/mark3labs/kit/internal/extensions"
-	"github.com/mark3labs/kit/internal/models"
-	"github.com/mark3labs/kit/internal/prompts"
-	"github.com/mark3labs/kit/internal/ui"
-	"github.com/mark3labs/kit/internal/ui/commands"
-	"github.com/mark3labs/kit/internal/ui/progress"
-	"github.com/mark3labs/kit/internal/watcher"
-	kit "github.com/mark3labs/kit/pkg/kit"
+	"github.com/xnet-admin-1/Headhunter/internal/app"
+	"github.com/xnet-admin-1/Headhunter/internal/config"
+	"github.com/xnet-admin-1/Headhunter/internal/daemon"
+	"github.com/xnet-admin-1/Headhunter/internal/extensions"
+	"github.com/xnet-admin-1/Headhunter/internal/models"
+	"github.com/xnet-admin-1/Headhunter/internal/prompts"
+	"github.com/xnet-admin-1/Headhunter/internal/ui"
+	"github.com/xnet-admin-1/Headhunter/internal/ui/commands"
+	"github.com/xnet-admin-1/Headhunter/internal/ui/progress"
+	"github.com/xnet-admin-1/Headhunter/internal/watcher"
+	kit "github.com/xnet-admin-1/Headhunter/pkg/kit"
 )
 
 // ---------------------------------------------------------------------------

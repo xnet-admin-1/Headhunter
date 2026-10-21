@@ -5,7 +5,7 @@ import (
 	"encoding/json"
 	"testing"
 
-	kit "github.com/mark3labs/kit/pkg/kit"
+	kit "github.com/xnet-admin-1/Headhunter/pkg/kit"
 )
 
 func TestTypeExports(t *testing.T) {
@@ -275,7 +275,7 @@ func TestConvertFromLLMMessage(t *testing.T) {
 // [Kit.OnAfterToolResult] — whose hook payload types also use only
 // SDK-owned identifiers; see hooks_test.go.
 //
-// Regression test for https://github.com/mark3labs/kit/issues/30.
+// Regression test for https://github.com/xnet-admin-1/Headhunter/issues/30.
 func TestOptionsNoFantasyImport(t *testing.T) {
 	myTool := kit.NewTool[struct{}]("noop", "does nothing", func(_ context.Context, _ struct{}) (kit.ToolOutput, error) {
 		return kit.TextResult("ok"), nil

@@ -25,7 +25,7 @@ func TestResolveUserAgent(t *testing.T) {
 		got, err := ResolveUserAgent(value)
 		want := value
 		if want == "" {
-			want = "KIT"
+			want = "HEADHUNTER"
 		}
 		if err != nil || got != want {
 			t.Fatalf("resolve %q = %q, %v", value, got, err)
@@ -89,7 +89,7 @@ func TestClientPolicyAndImmutability(t *testing.T) {
 func TestRedirectAndCancellation(t *testing.T) {
 	seen := 0
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		if r.Header.Get("User-Agent") != "KIT" {
+		if r.Header.Get("User-Agent") != "HEADHUNTER" {
 			t.Errorf("identity = %q", r.Header.Get("User-Agent"))
 		}
 		seen++

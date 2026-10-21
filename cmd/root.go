@@ -13,15 +13,15 @@ import (
 	tea "charm.land/bubbletea/v2"
 	"github.com/charmbracelet/colorprofile"
 	charmlog "github.com/charmbracelet/log"
-	"github.com/mark3labs/kit/internal/app"
-	"github.com/mark3labs/kit/internal/config"
-	"github.com/mark3labs/kit/internal/daemon"
-	"github.com/mark3labs/kit/internal/extensions"
-	"github.com/mark3labs/kit/internal/models"
-	"github.com/mark3labs/kit/internal/ui"
-	"github.com/mark3labs/kit/internal/ui/commands"
-	"github.com/mark3labs/kit/internal/ui/termgfx"
-	kit "github.com/mark3labs/kit/pkg/kit"
+	"github.com/xnet-admin-1/Headhunter/internal/app"
+	"github.com/xnet-admin-1/Headhunter/internal/config"
+	"github.com/xnet-admin-1/Headhunter/internal/daemon"
+	"github.com/xnet-admin-1/Headhunter/internal/extensions"
+	"github.com/xnet-admin-1/Headhunter/internal/models"
+	"github.com/xnet-admin-1/Headhunter/internal/ui"
+	"github.com/xnet-admin-1/Headhunter/internal/ui/commands"
+	"github.com/xnet-admin-1/Headhunter/internal/ui/termgfx"
+	kit "github.com/xnet-admin-1/Headhunter/pkg/kit"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 	"golang.org/x/term"
@@ -101,7 +101,7 @@ var (
 	noPromptTemplates   bool
 
 	// The daemon's directory picker
-	// (--pick-dir, hidden — spawned by `kit daemon`).
+	// (--pick-dir, hidden — spawned by `headhunter daemon`).
 	pickDirFlag bool
 
 	// Detachable sessions. --daemon-session (hidden) marks a process the
@@ -152,14 +152,14 @@ func (a *kitUIAdapter) GetExtensionToolCount() int {
 // an interface to interact with various AI models through a unified interface
 // with support for MCP servers and tool integration.
 var rootCmd = &cobra.Command{
-	Use:   "kit [@file...] [prompt]",
+	Use:   "headhunter [@file...] [prompt]",
 	Short: "Chat with AI models through a unified interface",
-	Long: `KIT (Knowledge Inference Tool) — A lightweight AI agent for coding
+	Long: `HEADHUNTER — A lightweight AI agent for coding
 
-When the kit daemon is running, a session started here is detachable:
-Ctrl-] d leaves it working and 'kit attach' brings it back. Without a
-daemon, kit runs in this terminal as usual. Use --no-daemon to insist on
-this terminal, and 'kit daemon service install' to keep a daemon around.`,
+When the headhunter daemon is running, a session started here is detachable:
+Ctrl-] d leaves it working and 'headhunter attach' brings it back. Without a
+daemon, headhunter runs in this terminal as usual. Use --no-daemon to insist on
+this terminal, and 'headhunter daemon service install' to keep a daemon around.`,
 	Args: cobra.ArbitraryArgs,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		// Parse positional args: @-prefixed args are file attachments,
@@ -195,7 +195,7 @@ this terminal, and 'kit daemon service install' to keep a daemon around.`,
 func GetRootCommand(v string) *cobra.Command {
 	capturedDaemonSessionID = daemon.CaptureSessionID()
 	rootCmd.Version = v
-	// The daemon reports its release in `kit daemon status` and in the
+	// The daemon reports its release in `headhunter daemon status` and in the
 	// hello it sends every client, so a user can see when a running daemon
 	// predates the binary on disk. It is DISPLAY ONLY: whether a client
 	// and a daemon can talk is decided by daemon.ProtocolVersion, which
@@ -229,9 +229,9 @@ func InitConfig() {
 }
 
 // remoteSubcommandSelected reports whether the invoked command line
-// selects the `kit remote` subcommand. Flag-aware: global flags (with or
+// selects the `headhunter remote` subcommand. Flag-aware: global flags (with or
 // without values) before the subcommand are skipped, so
-// `kit --config x remote --list` is recognized just like `kit remote`.
+// `kit --config x remote --list` is recognized just like `headhunter remote`.
 func remoteSubcommandSelected(args []string) bool {
 	for i := 0; i < len(args); i++ {
 		arg := args[i]
@@ -471,7 +471,7 @@ func init() {
 		BoolVar(&daemonSessionFlag, daemon.SessionFlagName, false, "internal: this process is a daemon-hosted session")
 	_ = rootCmd.Flags().MarkHidden(daemon.SessionFlagName)
 	rootCmd.PersistentFlags().
-		BoolVar(&noDaemonFlag, "no-daemon", false, "run in this terminal even when the kit daemon could host a detachable session")
+		BoolVar(&noDaemonFlag, "no-daemon", false, "run in this terminal even when the headhunter daemon could host a detachable session")
 
 	flags := rootCmd.PersistentFlags()
 	flags.StringVar(&providerURL, "provider-url", "", "base URL for the provider API (applies to OpenAI, Anthropic, Ollama, and Google)")
@@ -695,7 +695,7 @@ func extensionCommandsForUI(k *kit.Kit) []commands.ExtensionCommand {
 // buildExtensionItems converts the loaded extensions into ui.ExtensionItem
 // values for the startup [Extensions] section. The display name is the file
 // basename without the .go suffix; for subdirectory extensions the parent
-// directory name is used (matching `kit extensions list`).
+// directory name is used (matching `headhunter extensions list`).
 func buildExtensionItems(k *kit.Kit, cwd string) []ui.ExtensionItem {
 	infos := k.Extensions().Loaded()
 	if len(infos) == 0 {

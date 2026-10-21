@@ -4,7 +4,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/mark3labs/kit/internal/ui/core"
+	"github.com/xnet-admin-1/Headhunter/internal/ui/core"
 )
 
 func TestKillCommandRequiresConfirmationAndCallsCallback(t *testing.T) {

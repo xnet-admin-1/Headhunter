@@ -20,8 +20,8 @@ import (
 	"github.com/muesli/cancelreader"
 	"golang.org/x/term"
 
-	"github.com/mark3labs/kit/internal/clipboard"
-	"github.com/mark3labs/kit/internal/ui/termgfx"
+	"github.com/xnet-admin-1/Headhunter/internal/clipboard"
+	"github.com/xnet-admin-1/Headhunter/internal/ui/termgfx"
 )
 
 // Client-side session driving, independent of how the frames get to the
@@ -604,7 +604,7 @@ func (c *clientConn) attach(ctx context.Context, id uint64) (assigned uint64, du
 		if id == 0 {
 			return 0, durabilityUnknown, fmt.Errorf("the daemon could not start a session")
 		}
-		return 0, durabilityUnknown, fmt.Errorf("no live session %d on this daemon — list the live ones with 'kit ls'", id)
+		return 0, durabilityUnknown, fmt.Errorf("no live session %d on this daemon — list the live ones with 'headhunter ls'", id)
 	}
 	// The flags byte is optional, so its ABSENCE must not read as "this
 	// session does not survive": that is a real answer, and an old daemon
@@ -684,7 +684,7 @@ func candidateSessions(ctx context.Context, local []SessionEntry, opts AttachOpt
 // listed session; that new session is always started on this daemon, so
 // the choice is tagged with host here. Left untagged, hostSwitch would
 // read it as a switch to the host named "" — the local daemon — which
-// 'kit remote --host' cannot serve at all, and 'kit attach --host' would
+// 'headhunter remote --host' cannot serve at all, and 'headhunter attach --host' would
 // serve by silently starting the session on the wrong machine.
 func runPicker(ctx context.Context, conn *clientConn, pick SessionPicker, entries []SessionEntry, host string) (SessionChoice, error) {
 	fd := int(os.Stdin.Fd())
@@ -933,7 +933,7 @@ func runClientSession(ctx context.Context, rw io.ReadWriter, opts AttachOptions,
 		case len(dropped) > 0:
 			fmt.Fprintf(os.Stderr,
 				"The environment is too large for this daemon (kit %s); %d variables were not passed to the session: %s\n"+
-					"Restart the daemon with this kit to pass the full environment.\n",
+					"Restart the daemon with this headhunter to pass the full environment.\n",
 				peer.Build, len(dropped), strings.Join(dropped, ", "))
 		}
 		for _, f := range frames {

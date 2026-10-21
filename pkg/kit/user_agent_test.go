@@ -11,7 +11,7 @@ func TestUserAgentPropagation(t *testing.T) {
 		t.Run(identity, func(t *testing.T) {
 			want := identity
 			if want == "" {
-				want = "KIT"
+				want = "HEADHUNTER"
 			}
 			calls := 0
 			factory := func(_ context.Context, cfg *ProviderConfig, name string) (*ProviderResult, error) {

@@ -15,7 +15,7 @@ import (
 	"github.com/charmbracelet/x/term"
 )
 
-// PairWindowOptions controls `kit daemon pair`. Zero values are valid.
+// PairWindowOptions controls `headhunter daemon pair`. Zero values are valid.
 type PairWindowOptions struct {
 	// Code forces a specific pairing code instead of a random one.
 	// Intended for tests.
@@ -35,7 +35,7 @@ type PairWindowOptions struct {
 // client learns this daemon's endpoint id; the code is then burned.
 //
 // The window is independent of the main daemon process: pairing writes
-// the allowlist to disk, and `kit daemon` (running or not) picks it up on
+// the allowlist to disk, and `headhunter daemon` (running or not) picks it up on
 // the next connection attempt.
 func RunPairWindow(ctx context.Context, opts PairWindowOptions) error {
 	window := opts.Window
@@ -75,7 +75,7 @@ func RunPairWindow(ctx context.Context, opts PairWindowOptions) error {
 	fmt.Println("  Pair a client with this host")
 	fmt.Println()
 	fmt.Printf("  Pairing code: %s\n", FormatCode(code))
-	fmt.Printf("  On the client run: kit remote --pair %s\n", code)
+	fmt.Printf("  On the client run: headhunter remote --pair %s\n", code)
 	fmt.Printf("  This window closes in %s or after one successful pairing.\n", window)
 	fmt.Println()
 
@@ -151,7 +151,7 @@ func RunPairWindow(ctx context.Context, opts PairWindowOptions) error {
 		// success is only reported once it fires.
 		select {
 		case <-tun.paired:
-			fmt.Println("  Client paired. It can now connect with: kit remote --host <name>")
+			fmt.Println("  Client paired. It can now connect with: headhunter remote --host <name>")
 			fmt.Println()
 			return nil
 		case <-time.After(15 * time.Second):
@@ -229,7 +229,7 @@ func (opts PairWindowOptions) askOperator(
 		return opts.Prompt(ctx, fp), nil
 	}
 	if answers == nil {
-		log.Warn("daemon: pairing request denied — no terminal to confirm on; run 'kit daemon pair' interactively", "fp", fp)
+		log.Warn("daemon: pairing request denied — no terminal to confirm on; run 'headhunter daemon pair' interactively", "fp", fp)
 		return false, nil
 	}
 	fmt.Printf("  Accept? [y/N]: ")

@@ -9,7 +9,7 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/mark3labs/kit/internal/fences"
+	"github.com/xnet-admin-1/Headhunter/internal/fences"
 )
 
 // FilePart represents a binary file attachment (image, audio, etc.) extracted

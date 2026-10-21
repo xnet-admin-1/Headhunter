@@ -9,7 +9,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/mark3labs/kit/pkg/kit"
+	"github.com/xnet-admin-1/Headhunter/pkg/kit"
 )
 
 // TestLoginProviderValidation checks unsupported providers and missing host callbacks.

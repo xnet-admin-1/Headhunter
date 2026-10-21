@@ -7,9 +7,9 @@ import (
 
 	"github.com/charmbracelet/colorprofile"
 
-	"github.com/mark3labs/kit/internal/daemon"
-	"github.com/mark3labs/kit/internal/ui"
-	"github.com/mark3labs/kit/internal/ui/style"
+	"github.com/xnet-admin-1/Headhunter/internal/daemon"
+	"github.com/xnet-admin-1/Headhunter/internal/ui"
+	"github.com/xnet-admin-1/Headhunter/internal/ui/style"
 )
 
 func TestSessionTerminalCapabilitiesPreferFile(t *testing.T) {

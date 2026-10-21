@@ -19,7 +19,7 @@ import (
 	"charm.land/fantasy"
 	"github.com/charmbracelet/log"
 
-	"github.com/mark3labs/kit/internal/message"
+	"github.com/xnet-admin-1/Headhunter/internal/message"
 )
 
 // TreeNode represents a node in the session tree for display purposes.

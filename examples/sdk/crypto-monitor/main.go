@@ -8,7 +8,7 @@ import (
 	"os/signal"
 	"time"
 
-	kit "github.com/mark3labs/kit/pkg/kit"
+	kit "github.com/xnet-admin-1/Headhunter/pkg/kit"
 )
 
 const systemPrompt = `You are a cryptocurrency price monitor. Your job is to:

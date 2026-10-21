@@ -5,9 +5,9 @@ import (
 	"slices"
 	"strings"
 
-	"github.com/mark3labs/kit/internal/extensions"
-	"github.com/mark3labs/kit/internal/message"
-	"github.com/mark3labs/kit/internal/session"
+	"github.com/xnet-admin-1/Headhunter/internal/extensions"
+	"github.com/xnet-admin-1/Headhunter/internal/message"
+	"github.com/xnet-admin-1/Headhunter/internal/session"
 )
 
 // ==== Extension Types ====

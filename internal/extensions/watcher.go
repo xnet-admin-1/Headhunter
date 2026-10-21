@@ -4,7 +4,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/mark3labs/kit/internal/watcher"
+	"github.com/xnet-admin-1/Headhunter/internal/watcher"
 )
 
 // Watcher monitors extension directories for .go file changes and triggers

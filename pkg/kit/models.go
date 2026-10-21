@@ -3,7 +3,7 @@ package kit
 import (
 	"fmt"
 
-	"github.com/mark3labs/kit/internal/models"
+	"github.com/xnet-admin-1/Headhunter/internal/models"
 )
 
 // LookupModel returns information about a model, or nil if unknown.

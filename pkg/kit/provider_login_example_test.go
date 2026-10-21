@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/mark3labs/kit/pkg/kit"
+	"github.com/xnet-admin-1/Headhunter/pkg/kit"
 )
 
 // ExampleLoginProvider shows host-controlled URL display and the standard credential store.

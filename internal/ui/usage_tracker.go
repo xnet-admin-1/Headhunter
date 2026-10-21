@@ -8,7 +8,7 @@ import (
 	"charm.land/lipgloss/v2"
 	"image/color"
 
-	"github.com/mark3labs/kit/internal/models"
+	"github.com/xnet-admin-1/Headhunter/internal/models"
 )
 
 // UsageStats encapsulates detailed token usage and cost breakdown for a set of

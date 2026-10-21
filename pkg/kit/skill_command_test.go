@@ -6,7 +6,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/mark3labs/kit/internal/skills"
+	"github.com/xnet-admin-1/Headhunter/internal/skills"
 )
 
 func TestParseSkillCommand(t *testing.T) {

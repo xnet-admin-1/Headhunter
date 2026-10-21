@@ -343,7 +343,7 @@ func (i *Installer) validatePackage(dir string) error {
 	_, err = loadSingleExtension(goFiles[0])
 	if err != nil {
 		// Log but don't fail - the extension might need runtime deps
-		// User can use `kit extensions validate` to check later
+		// User can use `headhunter extensions validate` to check later
 		return nil
 	}
 

@@ -16,7 +16,7 @@ import (
 	"github.com/tmc/go-iroh/netaddr"
 )
 
-// Client-side transport for `kit remote --host <name>`: dial the pinned
+// Client-side transport for `headhunter remote --host <name>`: dial the pinned
 // endpoint id, authenticate with the client signing key, and hand the
 // verified frame stream to RunClient.
 
@@ -69,7 +69,7 @@ func (r *remoteConn) Close() {
 func dialHostIroh(ctx context.Context, endpointIDHex string, clientSeed []byte) (*remoteConn, error) {
 	idBytes, err := hex.DecodeString(strings.TrimSpace(endpointIDHex))
 	if err != nil || len(idBytes) != ed25519PubLen {
-		return nil, fmt.Errorf("daemon: bad stored endpoint id — pair again with 'kit remote --pair <code>'")
+		return nil, fmt.Errorf("daemon: bad stored endpoint id — pair again with 'headhunter remote --pair <code>'")
 	}
 	endpointID, err := key.EndpointIDFromSlice(idBytes)
 	if err != nil {

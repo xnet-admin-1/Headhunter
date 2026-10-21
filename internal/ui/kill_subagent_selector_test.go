@@ -7,8 +7,8 @@ import (
 
 	tea "charm.land/bubbletea/v2"
 
-	"github.com/mark3labs/kit/internal/ui/core"
-	kit "github.com/mark3labs/kit/pkg/kit"
+	"github.com/xnet-admin-1/Headhunter/internal/ui/core"
+	kit "github.com/xnet-admin-1/Headhunter/pkg/kit"
 )
 
 // pressKillKey sends a key press and then runs the command it returns (one

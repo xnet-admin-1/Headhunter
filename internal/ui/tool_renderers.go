@@ -13,8 +13,8 @@ import (
 	xansi "github.com/charmbracelet/x/ansi"
 	"github.com/indaco/herald"
 
-	"github.com/mark3labs/kit/internal/core"
-	"github.com/mark3labs/kit/internal/ui/style"
+	"github.com/xnet-admin-1/Headhunter/internal/core"
+	"github.com/xnet-admin-1/Headhunter/internal/ui/style"
 )
 
 // Maximum visible lines per tool type before truncation.

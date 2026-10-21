@@ -19,7 +19,7 @@ const cacheFile = "providers.json"
 // caches written by earlier versions are missing it and would silently mask
 // the embedded catalog, which does have it. Bumping this constant retires
 // those caches: a mismatched version is ignored in favour of the embedded
-// data, and the next `kit update-models` writes a complete cache.
+// data, and the next `headhunter update-models` writes a complete cache.
 //
 // Bump this whenever a field is added to modelsDBProvider or modelsDBModel.
 //
@@ -79,7 +79,7 @@ func cachePath() (string, error) {
 // written under an older schema. A stale-schema cache is discarded rather than
 // merged: it would shadow the embedded catalog with entries missing whatever
 // fields the old binary did not model. Returning no ETag as well forces the
-// next `kit update-models` to make an unconditional fetch, so the cache is
+// next `headhunter update-models` to make an unconditional fetch, so the cache is
 // rewritten in full instead of being confirmed as "not modified".
 func LoadCachedProviders() (map[string]modelsDBProvider, string) {
 	path, err := cachePath()

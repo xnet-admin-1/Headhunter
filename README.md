@@ -1,19 +1,34 @@
 <p align="center">
-  <img src="logo.jpg" alt="KIT" width="400">
+  <img src="logo.jpg" alt="HEADHUNTER" width="400">
 </p>
 
 <p align="center">
-  <a href="https://github.com/mark3labs/kit/actions/workflows/ci.yml"><img src="https://github.com/mark3labs/kit/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
-  <a href="https://github.com/mark3labs/kit/releases/latest"><img src="https://img.shields.io/github/v/release/mark3labs/kit?style=flat&color=blue" alt="Release"></a>
-  <a href="https://www.npmjs.com/package/@mark3labs/kit"><img src="https://img.shields.io/npm/v/@mark3labs/kit?style=flat&color=cb3837" alt="npm"></a>
-  <a href="https://pkg.go.dev/github.com/mark3labs/kit"><img src="https://pkg.go.dev/badge/github.com/mark3labs/kit.svg" alt="Go Reference"></a>
-  <a href="https://github.com/mark3labs/kit/blob/master/LICENSE"><img src="https://img.shields.io/github/license/mark3labs/kit?style=flat" alt="License"></a>
-  <a href="https://discord.gg/RqSS2NQVsY"><img src="https://img.shields.io/badge/Discord-community-5865F2?style=flat&logo=discord&logoColor=white" alt="Discord"></a>
+  <a href="https://github.com/xnet-admin-1/Headhunter/actions/workflows/ci.yml"><img src="https://github.com/xnet-admin-1/Headhunter/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
+  <a href="https://github.com/xnet-admin-1/Headhunter/releases/latest"><img src="https://img.shields.io/github/v/release/xnet-admin-1/Headhunter?style=flat&color=blue" alt="Release"></a>
+  <a href="https://www.npmjs.com/package/@xnet-admin-1/headhunter"><img src="https://img.shields.io/npm/v/@xnet-admin-1/headhunter?style=flat&color=cb3837" alt="npm"></a>
+  <a href="https://pkg.go.dev/github.com/xnet-admin-1/Headhunter"><img src="https://pkg.go.dev/badge/github.com/xnet-admin-1/Headhunter.svg" alt="Go Reference"></a>
+  <a href="https://github.com/xnet-admin-1/Headhunter/blob/master/LICENSE"><img src="https://img.shields.io/github/license/xnet-admin-1/Headhunter?style=flat" alt="License"></a>
 </p>
 
-# KIT (Knowledge Inference Tool)
+```
+╔═══════════════════════════════════════════════════════════════════════╗
+║                    ·  ·  ·        ╬        ·  ·  ·                    ║
+║                       [ ⊕  TARGET ACQUIRED  ⊕ ]                       ║
+║      ┌─────────────────────────────────────────────────────────┐      ║
+║  ╬   │    █  █ ████  ██  ███  █  █ █  █ █  █ ████ ████ ███     │   ╬  ║
+║  ╬   │    █  █ █    █  █ █  █ █  █ █  █ ██ █   █  █    █  █    │   ╬  ║
+║──╬── │    ████ ███  ████ █  █ ████ █  █ █ ██   █  ███  ███     │ ──╬──║
+║  ╬   │    █  █ █    █  █ █  █ █  █ █  █ █  █   █  █    █ █     │   ╬  ║
+║  ╬   │    █  █ ████ █  █ ███  █  █  ██  █  █   █  ████ █  █    │   ╬  ║
+║      └─────────────────────────────────────────────────────────┘      ║
+║                    ·  ·  ·        ╬        ·  ·  ·                    ║
+╚═══════════════════════════════════════════════════════════════════════╝
+░░ ▒▒ ▓▓ ██ »———————————————————————[ ⊕ ]————————————————————————« ██ ▓▓ ▒▒ ░░
+```
 
-A powerful, extensible AI coding agent CLI with multi-provider support, built-in tools, and a rich extension system.
+# HEADHUNTER
+
+A powerful, extensible AI coding agent CLI with multi-provider support, built-in tools, and a rich extension system. Lock on, line up the shot, ship the fix.
 
 ## Features
 
@@ -29,18 +44,18 @@ A powerful, extensible AI coding agent CLI with multi-provider support, built-in
 - **Interactive TUI**: Rich terminal interface powered by Bubble Tea with streaming, syntax highlighting, and custom rendering
 - **Session Management**: Tree-based conversation history with branching support
 - **Non-Interactive Mode**: Script-friendly positional args with JSON output
-- **GitHub Integration**: Scaffold a GitHub Actions workflow with `kit github install` to run Kit as a collaborator/reviewer on `/kit` comments
-- **ACP Server**: Run Kit as an [Agent Client Protocol](https://agentclientprotocol.com) agent over stdio
-- **Sessions**: with the daemon running, a plain `kit` is already a detachable session in the directory you ran it from (tmux-style: `Ctrl+]` `d` detach, `s` switch, `c` new, `n`/`p` cycle); `kit session attach` picks which session to return to, across this machine *and* every paired host, and `kit session ls` lists them
-- **Remote Sessions**: `kit daemon` on one machine; pair a client once with `kit daemon pair` + `kit remote --pair <code>` (accept/reject on the host), then connect any time with `kit remote --host <name>` — sessions can be detached (`Ctrl+] d`) and reattached from the in-client session list, or shared by several clients at once (tmux-style mirrored view) — end-to-end encrypted iroh transport, revocable public-key credentials, clipboard image paste from the client machine, systemd service support
-- **Go SDK**: Embed Kit in your own applications with full agent lifecycle events (30+ event types) and behavior-modifying hooks
+- **GitHub Integration**: Scaffold a GitHub Actions workflow with `headhunter github install` to run Headhunter as a collaborator/reviewer on `/kit` comments
+- **ACP Server**: Run Headhunter as an [Agent Client Protocol](https://agentclientprotocol.com) agent over stdio
+- **Sessions**: with the daemon running, a plain `headhunter` is already a detachable session in the directory you ran it from (tmux-style: `Ctrl+]` `d` detach, `s` switch, `c` new, `n`/`p` cycle); `headhunter session attach` picks which session to return to, across this machine *and* every paired host, and `headhunter session ls` lists them
+- **Remote Sessions**: `headhunter daemon` on one machine; pair a client once with `headhunter daemon pair` + `headhunter remote --pair <code>` (accept/reject on the host), then connect any time with `headhunter remote --host <name>` — sessions can be detached (`Ctrl+] d`) and reattached from the in-client session list, or shared by several clients at once (tmux-style mirrored view) — end-to-end encrypted iroh transport, revocable public-key credentials, clipboard image paste from the client machine, systemd service support
+- **Go SDK**: Embed Headhunter in your own applications with full agent lifecycle events (30+ event types) and behavior-modifying hooks
 
 ## Installation
 
 ### Using the install script (macOS / Linux)
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/mark3labs/kit/master/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/xnet-admin-1/Headhunter/master/install.sh | bash
 ```
 
 The script downloads the latest release binary for your platform, verifies its
@@ -49,7 +64,7 @@ directory on your system). Options:
 
 ```bash
 # Install a specific version into a custom directory
-curl -fsSL https://raw.githubusercontent.com/mark3labs/kit/master/install.sh | bash -s -- --version v0.111.0 --bin-dir /usr/local/bin
+curl -fsSL https://raw.githubusercontent.com/xnet-admin-1/Headhunter/master/install.sh | bash -s -- --version v0.111.0 --bin-dir /usr/local/bin
 ```
 
 | Option | Description |
@@ -61,17 +76,17 @@ curl -fsSL https://raw.githubusercontent.com/mark3labs/kit/master/install.sh | b
 ### Using npm / bun / pnpm
 
 ```bash
-npm install -g @mark3labs/kit
+npm install -g @xnet-admin-1/headhunter
 # or
-bun install -g @mark3labs/kit
+bun install -g @xnet-admin-1/headhunter
 # or
-pnpm install -g @mark3labs/kit
+pnpm install -g @xnet-admin-1/headhunter
 ```
 
 ### Using Nix
 
 ```bash
-nix profile install github:mark3labs/kit --no-write-lock-file
+nix profile install github:xnet-admin-1/Headhunter --no-write-lock-file
 ```
 
 The flake ships no lock file: its only inputs are `nixpkgs` and the pinned
@@ -84,26 +99,26 @@ This installs the newest tagged release, built from source for linux and macOS
 on amd64 and arm64. To install a specific release instead, name its tag:
 
 ```bash
-nix profile install github:mark3labs/kit/v0.111.0 --no-write-lock-file
+nix profile install github:xnet-admin-1/Headhunter/v0.111.0 --no-write-lock-file
 ```
 
 Run `nix develop` in a clone to hack on kit with a Nix-provided toolchain: it
 puts `go` (the version `go.mod` asks for), `gopls`, and `golangci-lint` on
-`$PATH`; build the binary yourself with `go build ./cmd/kit`. See
+`$PATH`; build the binary yourself with `go build ./cmd/headhunter`. See
 [Development](/development) for details.
 
 ### Using Go
 
 ```bash
-go install github.com/mark3labs/kit/cmd/kit@latest
+go install github.com/xnet-admin-1/Headhunter/cmd/headhunter@latest
 ```
 
 ### Building from source
 
 ```bash
-git clone https://github.com/mark3labs/kit.git
+git clone https://github.com/xnet-admin-1/Headhunter.git
 cd kit
-go build -o kit ./cmd/kit
+go build -o kit ./cmd/headhunter
 ```
 
 ## Quick Start
@@ -112,22 +127,22 @@ go build -o kit ./cmd/kit
 
 ```bash
 # Start interactive session
-kit
+headhunter
 
 # Run a one-off prompt
-kit "List files in src/"
+headhunter "List files in src/"
 
 # Attach files as context
-kit @main.go @test.go "Review these files"
+headhunter @main.go @test.go "Review these files"
 
 # Continue the most recent session
-kit --continue
+headhunter --continue
 
 # Model and thinking level selections are automatically persisted
 # across sessions and restored on next launch
 
 # Use specific model
-kit --model anthropic/claude-sonnet-latest
+headhunter --model anthropic/claude-sonnet-latest
 ```
 
 ### Non-Interactive Mode
@@ -135,35 +150,35 @@ kit --model anthropic/claude-sonnet-latest
 ```bash
 # Get JSON output for scripting (stdout carries only the JSON envelope,
 # so it pipes straight into jq; banners and warnings go to stderr)
-kit "Explain main.go" --json | jq -r .response
+headhunter "Explain main.go" --json | jq -r .response
 
 # Quiet mode (final response only)
-kit "Run tests" --quiet
+headhunter "Run tests" --quiet
 
 # Ephemeral mode (no session file)
-kit "Quick question" --no-session
+headhunter "Quick question" --no-session
 ```
 
 ### ACP Server Mode
 
-Kit can run as an [ACP (Agent Client Protocol)](https://agentclientprotocol.com) agent server, enabling ACP-compatible clients (such as [OpenCode](https://github.com/sst/opencode)) to drive Kit as a remote coding agent over stdio.
+Headhunter can run as an [ACP (Agent Client Protocol)](https://agentclientprotocol.com) agent server, enabling ACP-compatible clients (such as [OpenCode](https://github.com/sst/opencode)) to drive Headhunter as a remote coding agent over stdio.
 
 ```bash
-# Start Kit as an ACP server (communicates via JSON-RPC 2.0 on stdin/stdout)
-kit acp
+# Start Headhunter as an ACP server (communicates via JSON-RPC 2.0 on stdin/stdout)
+headhunter acp
 
 # With debug logging to stderr
-kit acp --debug
+headhunter acp --debug
 ```
 
-The ACP server exposes Kit's full capabilities — LLM execution, tool calls (shell, read, write, edit, grep, etc.), and session persistence — over the standard ACP protocol (protocol version 1). Sessions are persisted to Kit's normal JSONL session files.
+The ACP server exposes Headhunter's full capabilities — LLM execution, tool calls (shell, read, write, edit, grep, etc.), and session persistence — over the standard ACP protocol (protocol version 1). Sessions are persisted to Headhunter's normal JSONL session files.
 
 Supported ACP features:
 
 - **Sessions**: `session/new`, `session/load` (replays the history), `session/resume`, `session/list`, `session/close`, `session/cancel`
 - **Working directory**: each session uses the `cwd` the client sends for project discovery (AGENTS.md, skills, `.kit.yml`) and as the base directory of the file and shell tools
-- **MCP servers**: servers the client passes in `mcpServers` (stdio, HTTP, SSE) are connected in addition to the ones in Kit's config
-- **Tool approval**: before edits, commands, subagents and MCP/extension tools, Kit asks the client with `session/request_permission` (allow/reject, once or always). Set the default with `kit acp --approval ask|auto_edit|auto`; clients change it per session with the `approval` config option
+- **MCP servers**: servers the client passes in `mcpServers` (stdio, HTTP, SSE) are connected in addition to the ones in Headhunter's config
+- **Tool approval**: before edits, commands, subagents and MCP/extension tools, Headhunter asks the client with `session/request_permission` (allow/reject, once or always). Set the default with `headhunter acp --approval ask|auto_edit|auto`; clients change it per session with the `approval` config option
 - **Editor integration**: when the client supports them, file reads and writes go through `fs/read_text_file` / `fs/write_text_file` (so the agent sees unsaved buffers), and shell commands run in client terminals (`terminal/*`) that are shown in the tool call
 - **Config options**: `approval`, `model` and, for reasoning models, `thinking_level`, set with `session/set_config_option`
 - **Slash commands**: prompt templates and skills are sent as `available_commands_update`; `/name args` expands them
@@ -176,7 +191,7 @@ To check an ACP build end to end, run `python3 scripts/acp_smoke_test.py` (set `
 
 ## Configuration
 
-Kit looks for configuration in the following locations (in order of priority):
+Headhunter looks for configuration in the following locations (in order of priority):
 
 1. CLI flags
 2. Environment variables (with `KIT_` prefix)
@@ -232,7 +247,7 @@ without touching config files — see [SDK options](#with-options).
 
 ### Model-specific reasoning effort
 
-`/thinking` lists the current model's catalog choices. Kit preserves their exact
+`/thinking` lists the current model's catalog choices. Headhunter preserves their exact
 spelling and order, including `xhigh`, `max`, and future named efforts. `off`
 omits the effort field; it does not guarantee that the model stops reasoning.
 `none` is a literal provider effort. Explicit CLI and SDK requests for an
@@ -243,7 +258,7 @@ When metadata is missing, the default ladder is `off`, `none`, `minimal`, `low`,
 `medium`, `high`, `xhigh`. Unknown-capability OpenAI-compatible endpoints also
 accept explicit effort strings; the remote provider decides whether they are
 valid. Token-budget adapters retain their finite controls. If an adapter cannot
-encode a selected effort, Kit returns an error instead of silently dropping it.
+encode a selected effort, Headhunter returns an error instead of silently dropping it.
 
 Custom endpoints can declare an authoritative list in YAML or JSON:
 
@@ -368,83 +383,83 @@ mcpServers:
 
 ```bash
 # Authentication (OAuth for anthropic/openai/copilot, API key for everything else)
-kit auth login [provider]          # Start OAuth flow (e.g., anthropic) or prompt for an API key
-kit auth login groq --api-key ...  # Store an API key without prompting
-kit auth login [provider] --set-default  # Set provider's default model as system default
-kit auth logout [provider]         # Remove credentials for provider
-kit auth status                    # Check authentication status
+headhunter auth login [provider]          # Start OAuth flow (e.g., anthropic) or prompt for an API key
+headhunter auth login groq --api-key ...  # Store an API key without prompting
+headhunter auth login [provider] --set-default  # Set provider's default model as system default
+headhunter auth logout [provider]         # Remove credentials for provider
+headhunter auth status                    # Check authentication status
 # Stored keys ($XDG_CONFIG_HOME/.kit/credentials.json) win over env vars; env vars stay the fallback.
-# No key yet? Kit still starts — use /connect inside the TUI to add one.
+# No key yet? Headhunter still starts — use /connect inside the TUI to add one.
 
 # GitHub Copilot login (experimental; requires active Copilot subscription)
-kit auth login copilot
-kit --model copilot/gpt-5.5 "Hello"
+headhunter auth login copilot
+headhunter --model copilot/gpt-5.5 "Hello"
 
 # Model database
-kit models [provider]        # List available models (optionally filter by provider)
-kit models --all             # Show all providers (not just LLM-compatible)
-kit update-models [source]   # Update model database (from models.dev, URL, file, or 'embedded')
+headhunter models [provider]        # List available models (optionally filter by provider)
+headhunter models --all             # Show all providers (not just LLM-compatible)
+headhunter update-models [source]   # Update model database (from models.dev, URL, file, or 'embedded')
 
 # Extension management
-kit extensions list          # List discovered extensions
-kit extensions validate      # Validate extension files
-kit extensions init          # Generate example extension template
-kit install <git-url>        # Install extensions from git repositories
-kit install -l <git-url>     # Install to project-local .kit/git/ directory
-kit install -u <git-url>     # Update an already-installed package
-kit install --uninstall <pkg> # Remove an installed package
+headhunter extensions list          # List discovered extensions
+headhunter extensions validate      # Validate extension files
+headhunter extensions init          # Generate example extension template
+headhunter install <git-url>        # Install extensions from git repositories
+headhunter install -l <git-url>     # Install to project-local .kit/git/ directory
+headhunter install -u <git-url>     # Update an already-installed package
+headhunter install --uninstall <pkg> # Remove an installed package
 
 # Skills
-kit skill list               # List discovered skills with scope and spec warnings
-kit skill validate <path>    # Validate a skill against the agentskills.io spec
-kit skill install            # Install the Kit skills (kit-extensions, kit-sdk) via skills.sh
+headhunter skill list               # List discovered skills with scope and spec warnings
+headhunter skill validate <path>    # Validate a skill against the agentskills.io spec
+headhunter skill install            # Install the Headhunter skills (kit-extensions, kit-sdk) via skills.sh
 
 # GitHub integration
-kit github install           # Scaffold .github/workflows/kit.yml (run Kit on '/kit' comments)
-kit github install --model anthropic/claude-sonnet-4-5-20250929
-kit github install --force   # Overwrite an existing workflow file
-kit github install --no-secret # Skip the offer to set the provider secret via the gh CLI
+headhunter github install           # Scaffold .github/workflows/kit.yml (run Headhunter on '/kit' comments)
+headhunter github install --model anthropic/claude-sonnet-4-5-20250929
+headhunter github install --force   # Overwrite an existing workflow file
+headhunter github install --no-secret # Skip the offer to set the provider secret via the gh CLI
 
 # ACP server
-kit acp                      # Start as ACP agent (stdio JSON-RPC)
-kit acp --debug              # With debug logging to stderr
+headhunter acp                      # Start as ACP agent (stdio JSON-RPC)
+headhunter acp --debug              # With debug logging to stderr
 
 # Detachable sessions (survive closing the terminal; Ctrl+] is the prefix)
-kit daemon service install   # Start the daemon once; after this, plain `kit` is detachable
-cd ~/project && kit          # A detachable session, right here — Ctrl+] d to leave it working
-kit session attach           # Pick a live session (local or paired host), or start one
-kit session attach 3         # Attach straight to session 3
-kit session attach --new     # Skip the picker, start a new session
-kit session ls               # List live sessions
-kit session ls --all         # Include sessions on every paired host
-kit session rename 3 work    # Name session 3
-kit session kill 3           # Confirm, then stop session 3
-kit --no-daemon              # Run in this terminal, daemon or no daemon
+headhunter daemon service install   # Start the daemon once; after this, plain `headhunter` is detachable
+cd ~/project && headhunter          # A detachable session, right here — Ctrl+] d to leave it working
+headhunter session attach           # Pick a live session (local or paired host), or start one
+headhunter session attach 3         # Attach straight to session 3
+headhunter session attach --new     # Skip the picker, start a new session
+headhunter session ls               # List live sessions
+headhunter session ls --all         # Include sessions on every paired host
+headhunter session rename 3 work    # Name session 3
+headhunter session kill 3           # Confirm, then stop session 3
+headhunter --no-daemon              # Run in this terminal, daemon or no daemon
 
 # Remote sessions (host)
-kit daemon                   # Host sessions for local and paired clients
-kit daemon pair              # One-time pairing: show code, confirm here
-kit daemon status            # Endpoint, paired clients, active sessions
-kit daemon service install   # Install + start the systemd user service
+headhunter daemon                   # Host sessions for local and paired clients
+headhunter daemon pair              # One-time pairing: show code, confirm here
+headhunter daemon status            # Endpoint, paired clients, active sessions
+headhunter daemon service install   # Install + start the systemd user service
 
 # Remote sessions (client)
-kit remote --pair A1B2C3D4   # Pair with a host and save it under a name
-kit session attach --host homelab # Attach to the paired host
-kit session attach --all     # Pick across paired hosts without starting a local daemon
-kit session rename --host homelab 3 work
-kit session kill --host homelab --yes 3
+headhunter remote --pair A1B2C3D4   # Pair with a host and save it under a name
+headhunter session attach --host homelab # Attach to the paired host
+headhunter session attach --all     # Pick across paired hosts without starting a local daemon
+headhunter session rename --host homelab 3 work
+headhunter session kill --host homelab --yes 3
 ```
 
 While attached, use `Ctrl+] ,` to edit the session name, or `Ctrl+] k` to
 kill the session with confirmation. `/name <name>` updates the live-session
 picker name. `/kill` asks you to enter `/kill` again to confirm; `/kill cancel`
 cancels the request. Killing a session retains its saved conversation history.
-The old `kit attach`, `kit ls`, and `kit remote --host` attachment commands
+The old `headhunter attach`, `headhunter ls`, and `headhunter remote --host` attachment commands
 remain as deprecated aliases.
 
 ## Themes
 
-Kit ships with 22 built-in color themes that control all UI elements. Switch at runtime:
+Headhunter ships with 22 built-in color themes that control all UI elements. Switch at runtime:
 
 ```
 /theme dracula
@@ -495,7 +510,7 @@ func Init(api ext.API) {
 **Usage:**
 
 ```bash
-kit -e examples/extensions/minimal.go
+headhunter -e examples/extensions/minimal.go
 ```
 
 ### Extension Capabilities
@@ -520,7 +535,7 @@ kit -e examples/extensions/minimal.go
 - **Message Renderers**: Custom rendering for assistant messages
 - **Editor Interceptors**: Handle key events and wrap rendering
 - **Interactive Prompts**: Select, confirm, input, and multi-select dialogs
-- **Subagents**: Spawn in-process child Kit instances
+- **Subagents**: Spawn in-process child Headhunter instances
 - **LLM Completion**: Direct model calls via `Complete()`
 - **Themes**: Register, switch, and read color themes via `RegisterTheme`, `SetTheme`, `ListThemes`, `GetTheme` (read the active palette to paint widgets in the user's theme)
 - **Custom Events**: Inter-extension communication via `EmitCustomEvent`
@@ -551,7 +566,7 @@ See the `examples/extensions/` directory:
 - [`header-footer-demo.go`](examples/extensions/header-footer-demo.go) - Custom headers and footers
 - [`inline-bash.go`](examples/extensions/inline-bash.go) - Inline bash execution
 - [`interactive-shell.go`](examples/extensions/interactive-shell.go) - Interactive shell integration
-- [`kit-kit.go`](examples/extensions/kit-kit.go) - Kit-in-Kit (sub-agent spawning)
+- [`kit-kit.go`](examples/extensions/kit-kit.go) - Headhunter-in-Headhunter (sub-agent spawning)
 - [`lsp-diagnostics.go`](examples/extensions/lsp-diagnostics.go) - LSP diagnostic integration
 - [`notify.go`](examples/extensions/notify.go) - Desktop notifications
 - [`overlay-demo.go`](examples/extensions/overlay-demo.go) - Modal dialogs
@@ -592,22 +607,22 @@ The system-wide directory serves packaged installs (rpm, deb, ...). Set
 list separator: `:` on Unix, `;` on Windows), or set it empty to disable
 system-wide discovery. Packagers can change the
 compiled-in default with
-`-ldflags "-X github.com/mark3labs/kit/internal/extensions.SystemExtensionsDir=/opt/kit/extensions"`.
+`-ldflags "-X github.com/xnet-admin-1/Headhunter/internal/extensions.SystemExtensionsDir=/opt/kit/extensions"`.
 
 **Explicit loading**:
 ```bash
-kit -e path/to/extension.go
-kit -e ext1.go -e ext2.go  # Multiple extensions
+headhunter -e path/to/extension.go
+headhunter -e ext1.go -e ext2.go  # Multiple extensions
 ```
 
 **Disable auto-load**:
 ```bash
-kit --no-extensions
+headhunter --no-extensions
 ```
 
 ### Testing Extensions
 
-Kit provides a testing package to help you write unit tests for your extensions.
+Headhunter provides a testing package to help you write unit tests for your extensions.
 `pkg/extensions/test` holds the harness and the assertions; `pkg/extensions`
 holds the event, result, and config types the harness speaks in. Both are
 public, so these tests build from your own repository:
@@ -618,8 +633,8 @@ package main
 import (
     "testing"
 
-    "github.com/mark3labs/kit/pkg/extensions"
-    "github.com/mark3labs/kit/pkg/extensions/test"
+    "github.com/xnet-admin-1/Headhunter/pkg/extensions"
+    "github.com/xnet-admin-1/Headhunter/pkg/extensions/test"
 )
 
 func TestMyExtension(t *testing.T) {
@@ -681,7 +696,7 @@ Define reusable subagent presets as markdown files. Named agents are advertised 
 **Discovery locations** (highest to lowest precedence):
 
 1. `<project>/.agents/agents/*.md` — project-local (cross-client convention)
-2. `<project>/.kit/agents/*.md` — project-local (Kit-specific)
+2. `<project>/.kit/agents/*.md` — project-local (Headhunter-specific)
 3. `~/.config/kit/agents/*.md` — user-level (`$XDG_CONFIG_HOME` aware)
 4. Built-in agents: `general` (full tool access) and `explore` (read-only: `read`, `grep`, `find`, `ls`)
 
@@ -732,13 +747,13 @@ See the [subagent documentation](https://go-kit.dev/advanced/subagents#inspectin
 
 ## GitHub Integration
 
-Kit can run as an automated collaborator/reviewer inside GitHub Actions. The
-`kit github install` command scaffolds a workflow that triggers when someone
+Headhunter can run as an automated collaborator/reviewer inside GitHub Actions. The
+`headhunter github install` command scaffolds a workflow that triggers when someone
 comments `/kit ...` on an issue or pull request review, runs the agent
 non-interactively in the runner, and lets it respond.
 
 ```bash
-kit github install
+headhunter github install
 ```
 
 This writes `.github/workflows/kit.yml`. By default the command prompts for the
@@ -757,10 +772,10 @@ The generated workflow:
   the provider via a repository secret (e.g. `ANTHROPIC_API_KEY`).
 
 After committing the workflow and setting the provider secret, comment
-`/kit <your request>` on any issue or pull request to trigger Kit.
+`/kit <your request>` on any issue or pull request to trigger Headhunter.
 
-The generated workflow uses the bundled [`mark3labs/kit`](action.yml) composite
-action, which installs the Kit binary and runs `kit github run`. That command
+The generated workflow uses the bundled [`xnet-admin-1/Headhunter`](action.yml) composite
+action, which installs the Headhunter binary and runs `headhunter github run`. That command
 reads the triggering event, enforces permissions, reacts with an emoji, runs the
 agent against the issue thread or pull request, posts the response as a comment,
 and — if the agent changed files — pushes a `kit-agent[bot]` branch and opens a
@@ -774,7 +789,7 @@ pull request.
 
 ## Session Management
 
-Kit uses a tree-based session model that supports branching and forking conversations.
+Headhunter uses a tree-based session model that supports branching and forking conversations.
 
 ### Session Locations
 
@@ -787,19 +802,19 @@ Kit uses a tree-based session model that supports branching and forking conversa
 
 ```bash
 # Resume most recent session for current directory
-kit --continue
-kit -c
+headhunter --continue
+headhunter -c
 
 # Interactive session picker
-kit --resume
-kit -r
+headhunter --resume
+headhunter -r
 
 # Open specific session file
-kit --session path/to/session.jsonl
-kit -s path/to/session.jsonl
+headhunter --session path/to/session.jsonl
+headhunter -s path/to/session.jsonl
 
 # Ephemeral mode (no file persistence)
-kit --no-session
+headhunter --no-session
 ```
 
 ### Interactive Session Commands
@@ -822,18 +837,18 @@ During an interactive session, use these slash commands:
 
 | Shortcut | Description |
 |----------|-------------|
-| `Ctrl+V` | Paste an image from the clipboard — shows an inline low-res thumbnail preview (tmux/zellij-safe); over `kit remote` it pastes from the **local** machine's clipboard |
+| `Ctrl+V` | Paste an image from the clipboard — shows an inline low-res thumbnail preview (tmux/zellij-safe); over `headhunter remote` it pastes from the **local** machine's clipboard |
 | `Ctrl+U` | Clear all pending image attachments |
 | `Ctrl+X e` | Open `$VISUAL`/`$EDITOR` to compose or edit your prompt |
 | `Ctrl+X s` | Steer — inject a system-level instruction mid-turn |
-| `Ctrl+]` | Session prefix in any daemon-hosted session (`kit` with a daemon running, `kit attach`, `kit remote`): `d` detach · `s` switch · `c` new · `n`/`p` cycle · `w` across hosts |
+| `Ctrl+]` | Session prefix in any daemon-hosted session (`headhunter` with a daemon running, `headhunter attach`, `headhunter remote`): `d` detach · `s` switch · `c` new · `n`/`p` cycle · `w` across hosts |
 | `ESC ESC` | Cancel the current operation (tool call or streaming) |
 | `↑` / `↓` | Navigate prompt history |
-| Mouse drag | Select text in the conversation. Kit copies it on release and keeps it highlighted until the next key or click, or until the text changes. On Linux and the BSDs it also sets the primary selection for middle-click paste in other windows |
+| Mouse drag | Select text in the conversation. Headhunter copies it on release and keeps it highlighted until the next key or click, or until the text changes. On Linux and the BSDs it also sets the primary selection for middle-click paste in other windows |
 
 ## Go SDK
 
-Embed Kit in your Go applications:
+Embed Headhunter in your Go applications:
 
 ```go
 package main
@@ -842,13 +857,13 @@ import (
     "context"
     "log"
     
-    kit "github.com/mark3labs/kit/pkg/kit"
+    kit "github.com/xnet-admin-1/Headhunter/pkg/kit"
 )
 
 func main() {
     ctx := context.Background()
     
-    // Create Kit instance with default configuration
+    // Create Headhunter instance with default configuration
     host, err := kit.New(ctx, nil)
     if err != nil {
         log.Fatal(err)
@@ -868,7 +883,7 @@ func main() {
 
 ### HTTP request identity
 
-Kit-controlled HTTP requests use `User-Agent: KIT` by default. Set a per-instance
+Headhunter-controlled HTTP requests use `User-Agent: KIT` by default. Set a per-instance
 identity with either API:
 
 ```go
@@ -889,10 +904,10 @@ and their OAuth requests, and provider token refresh. The identity replaces
 conflicting user-agent headers from model defaults, catalog headers, per-call
 headers and MCP configuration, case-insensitively. Other headers stay unchanged.
 Custom provider factories receive `ProviderConfig.UserAgent` and must enforce it
-on their own requests; Kit does not intercept arbitrary factory traffic.
+on their own requests; Headhunter does not intercept arbitrary factory traffic.
 
 Two inference paths keep their fixed compatibility identities, even with an
-SDK override. Their token endpoints still use the configured Kit identity.
+SDK override. Their token endpoints still use the configured Headhunter identity.
 These exceptions follow existing source requirements; they were not live-tested.
 
 | Inference path | Fixed user agent |
@@ -901,16 +916,16 @@ These exceptions follow existing source requirements; they were not live-tested.
 | Copilot | `GitHubCopilotChat/0.31.0` |
 
 Standalone `kit.LoginProvider` has a separate `kit.LoginOptions.UserAgent` field
-(default `KIT`), independent of any Kit instance or supplied credential manager.
+(default `KIT`), independent of any Headhunter instance or supplied credential manager.
 Standalone CLI OAuth and model-catalog downloads use `KIT`.
 
 This policy does not change global HTTP defaults. It does not cover subprocesses
 (shell, git/gh/curl, installers, npm or MCP server processes), extension/application
-code, browser navigation, or remote services acting for Kit. Third-party cloud
+code, browser navigation, or remote services acting for Headhunter. Third-party cloud
 credential discovery (metadata services or default credential chains) inherits
-the identity only when it uses the HTTP client Kit supplies; model endpoint
+the identity only when it uses the HTTP client Headhunter supplies; model endpoint
 requests use the configured identity. A custom transport can rewrite headers
-after Kit's boundary and is responsible for its own policy.
+after Headhunter's boundary and is responsible for its own policy.
 
 ### With Options
 
@@ -964,7 +979,7 @@ host, err := kit.New(ctx, &kit.Options{
 ```
 
 **Generation & provider fields** (added in v0.55+) let SDK consumers configure
-Kit entirely in-code without `viper.Set()` workarounds or shipping a `.kit.yml`.
+Headhunter entirely in-code without `viper.Set()` workarounds or shipping a `.kit.yml`.
 Precedence is `Options` > `KIT_*` env vars > `.kit.yml` > per-model defaults
 (`modelSettings` / `customModels`) > provider-level defaults. Sampling params
 are pointer types so explicit `0.0` is distinguishable from "leave alone"; a
@@ -994,7 +1009,7 @@ Available options: `WithModel`, `WithSystemPrompt`, `WithStreaming`,
 the helpers (custom MCP config, in-process MCP servers, session backends, MCP
 task tuning) construct an `Options` value explicitly and call `kit.New`.
 
-An embedded Kit discovers `.kit.yml`, `AGENTS.md`, skills, extensions and
+An embedded Headhunter discovers `.kit.yml`, `AGENTS.md`, skills, extensions and
 named agents on the host, as the CLI does. It also writes session files and
 enables the core file and shell tools. `kit.NewIsolatedAgent` turns all of
 this off. The opt-in options (`WithConfig`, `WithContextFiles`, `WithSkills`,
@@ -1014,15 +1029,15 @@ host, err := kit.NewIsolatedAgent(ctx,
 ### Per-instance config isolation
 
 Each `kit.New` / `kit.NewAgent` call owns an **isolated configuration store**,
-so constructing multiple Kit instances in the same process is safe: setting the
+so constructing multiple Headhunter instances in the same process is safe: setting the
 model, thinking level, or generation parameters on one never affects another,
 and runtime mutators (`SetModel`, `SetThinkingLevel`) only touch the owning
-instance. This makes subagent spawning and multi-Kit embedding race-free with
+instance. This makes subagent spawning and multi-Headhunter embedding race-free with
 no external synchronization required.
 
 ### MCP OAuth (remote MCP servers)
 
-When a remote MCP server returns 401, Kit runs the full OAuth flow (dynamic
+When a remote MCP server returns 401, Headhunter runs the full OAuth flow (dynamic
 client registration → PKCE → token exchange → persistence) but delegates the
 user-facing step — showing the authorization URL and receiving the callback —
 to an `MCPAuthHandler` that you pass explicitly via `Options.MCPAuthHandler`.
@@ -1054,9 +1069,9 @@ the full matrix.
 
 ### MCP Tasks (long-running tools)
 
-Kit advertises [MCP task support](https://modelcontextprotocol.io/specification/2025-11-25/basic/utilities/tasks)
+Headhunter advertises [MCP task support](https://modelcontextprotocol.io/specification/2025-11-25/basic/utilities/tasks)
 during `initialize`, so cooperating MCP servers can respond to `tools/call`
-with a `taskId` instead of blocking the connection. Kit then polls
+with a `taskId` instead of blocking the connection. Headhunter then polls
 `tasks/get` / `tasks/result` until the task reaches a terminal state, and
 best-effort `tasks/cancel`s on context cancellation.
 
@@ -1180,7 +1195,7 @@ host, _ := kit.New(ctx, &kit.Options{
 ### Runtime Skills & Context Files
 
 For multi-tenant hosts (chatbots, per-user agents, web services), the SDK
-lets you swap skills and `AGENTS.md`-style context files **after** Kit
+lets you swap skills and `AGENTS.md`-style context files **after** Headhunter
 construction. Every mutation recomposes the system prompt and applies it to
 the agent so the next turn picks up the new instructions — no restart needed.
 
@@ -1253,10 +1268,10 @@ and MCP tools are unaffected. Mutations take effect on the next LLM step.
 
 ### Subagent Pattern
 
-Spawn Kit as a subprocess for multi-agent orchestration:
+Spawn Headhunter as a subprocess for multi-agent orchestration:
 
 ```bash
-kit "Analyze codebase" \
+headhunter "Analyze codebase" \
     --json \
     --no-session \
     --no-extensions \
@@ -1297,7 +1312,7 @@ Parse the JSON output:
 Test the TUI non-interactively:
 
 ```bash
-# Start Kit in detached tmux session
+# Start Headhunter in detached tmux session
 tmux new-session -d -s kittest -x 120 -y 40 \
   "kit -e ext.go --no-session 2>kit.log"
 
@@ -1320,7 +1335,7 @@ tmux kill-session -t kittest
 
 ```bash
 # Build
-go build -o output/kit ./cmd/kit
+go build -o output/kit ./cmd/headhunter
 
 # Run tests
 go test -race ./...
@@ -1338,9 +1353,9 @@ go fmt ./...
 ### Project Structure
 
 ```
-cmd/kit/             - CLI entry point (main.go)
+cmd/headhunter/             - CLI entry point (main.go)
 cmd/                 - CLI command implementations (root, auth, models, etc.)
-pkg/kit/             - Go SDK for embedding Kit
+pkg/kit/             - Go SDK for embedding Headhunter
 internal/app/        - Application orchestrator (agent loop, message store, queue)
 internal/agent/      - Agent execution and tool dispatch
 internal/auth/       - OAuth authentication and credential storage
@@ -1379,10 +1394,10 @@ npm/                 - NPM package wrapper for distribution
 
 ### Custom Provider
 
-Use `custom/custom` when pointing Kit at any OpenAI-compatible endpoint with `--provider-url`:
+Use `custom/custom` when pointing Headhunter at any OpenAI-compatible endpoint with `--provider-url`:
 
 ```bash
-kit --provider-url "http://localhost:8080/v1" "Hello"
+headhunter --provider-url "http://localhost:8080/v1" "Hello"
 ```
 
 This automatically defaults to `custom/custom` without needing to specify a model. The custom provider routes through the `openaicompat` provider and supports:
@@ -1395,7 +1410,7 @@ This automatically defaults to `custom/custom` without needing to specify a mode
 ### Auto-routed Providers
 
 Any provider in the [models.dev](https://models.dev) database can be used as
-`provider/model` without a dedicated native integration. Kit auto-routes the
+`provider/model` without a dedicated native integration. Headhunter auto-routes the
 request through the matching **wire protocol** based on the provider's npm package
 (or per-model override), using its `api` URL as the base:
 
@@ -1412,16 +1427,16 @@ providers work across all of their models — including Claude, GPT, *and* Gemin
 routes:
 
 ```bash
-kit --model opencode/claude-haiku-4-5 "Hello"     # → Anthropic wire
-kit --model opencode/gpt-5 "Hello"                # → OpenAI wire
-kit --model opencode/gemini-3.5-flash "Hello"     # → Google wire
-kit --model opencode/grok-4.6 "Hello"             # → OpenAI Responses wire
+headhunter --model opencode/claude-haiku-4-5 "Hello"     # → Anthropic wire
+headhunter --model opencode/gpt-5 "Hello"                # → OpenAI wire
+headhunter --model opencode/gemini-3.5-flash "Hello"     # → Google wire
+headhunter --model opencode/grok-4.6 "Hello"             # → OpenAI Responses wire
 ```
 
 When an aggregator mixes wires inside one catalog without publishing a hint for
-every family, Kit pins the family itself. opencode's `gpt-*` and `grok-*` models
+every family, Headhunter pins the family itself. opencode's `gpt-*` and `grok-*` models
 answer only on the OpenAI Responses API — their `/chat/completions` route
-returns HTTP 500/503 — so Kit routes them to the Responses wire automatically.
+returns HTTP 500/503 — so Headhunter routes them to the Responses wire automatically.
 
 ### Provider Overrides
 
@@ -1503,5 +1518,5 @@ Contributions are welcome! Please see the [contribution guide](contribute/contri
 ## Community
 
 - [Discord](https://discord.gg/RqSS2NQVsY)
-- [GitHub Issues](https://github.com/mark3labs/kit/issues)
-- [Documentation](https://github.com/mark3labs/kit/wiki)
+- [GitHub Issues](https://github.com/xnet-admin-1/Headhunter/issues)
+- [Documentation](https://github.com/xnet-admin-1/Headhunter/wiki)

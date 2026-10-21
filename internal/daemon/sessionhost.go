@@ -41,7 +41,7 @@ import (
 // stays in the daemon. The supervisor is a terminal on a socket.
 
 // RunSessionHost is the supervisor's entry point, run as
-// `kit daemon session-host --config <path>`.
+// `headhunter daemon session-host --config <path>`.
 //
 // It returns when the session's child has exited, which is the only thing
 // that ends a session. Losing the daemon does not: that is the point.

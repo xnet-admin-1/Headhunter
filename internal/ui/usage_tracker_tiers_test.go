@@ -4,7 +4,7 @@ import (
 	"math"
 	"testing"
 
-	"github.com/mark3labs/kit/internal/models"
+	"github.com/xnet-admin-1/Headhunter/internal/models"
 )
 
 // tieredModel mirrors a real long-context model: 3/15 per million at the base

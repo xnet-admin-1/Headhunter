@@ -4,7 +4,7 @@ import (
 	"context"
 	"testing"
 
-	kit "github.com/mark3labs/kit/pkg/kit"
+	kit "github.com/xnet-admin-1/Headhunter/pkg/kit"
 )
 
 // TestAdjustPostCompactionTokens verifies the post-compaction token baseline

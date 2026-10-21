@@ -7,8 +7,8 @@ import (
 
 	acp "github.com/coder/acp-go-sdk"
 
-	"github.com/mark3labs/kit/internal/message"
-	kit "github.com/mark3labs/kit/pkg/kit"
+	"github.com/xnet-admin-1/Headhunter/internal/message"
+	kit "github.com/xnet-admin-1/Headhunter/pkg/kit"
 )
 
 // replayHistory streams the conversation of the current session branch to

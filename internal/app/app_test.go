@@ -9,9 +9,9 @@ import (
 	"time"
 
 	"charm.land/fantasy"
-	kit "github.com/mark3labs/kit/pkg/kit"
+	kit "github.com/xnet-admin-1/Headhunter/pkg/kit"
 
-	"github.com/mark3labs/kit/internal/session"
+	"github.com/xnet-admin-1/Headhunter/internal/session"
 )
 
 // --------------------------------------------------------------------------

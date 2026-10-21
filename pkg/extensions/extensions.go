@@ -4,7 +4,7 @@
 // import this package themselves — they use the "kit/ext" import path that the
 // interpreter provides. This package exists for the Go code AROUND an
 // extension: unit tests, build tooling, and any program that drives the test
-// harness in github.com/mark3labs/kit/pkg/extensions/test.
+// harness in github.com/xnet-admin-1/Headhunter/pkg/extensions/test.
 //
 // Every declaration here is an alias for the corresponding Kit-internal type,
 // so values cross the boundary with no conversion:
@@ -14,8 +14,8 @@
 //	import (
 //	    "testing"
 //
-//	    ext "github.com/mark3labs/kit/pkg/extensions"
-//	    "github.com/mark3labs/kit/pkg/extensions/test"
+//	    ext "github.com/xnet-admin-1/Headhunter/pkg/extensions"
+//	    "github.com/xnet-admin-1/Headhunter/pkg/extensions/test"
 //	)
 //
 //	func TestBlocksDangerousTool(t *testing.T) {
@@ -34,7 +34,7 @@
 package extensions
 
 import (
-	internalext "github.com/mark3labs/kit/internal/extensions"
+	internalext "github.com/xnet-admin-1/Headhunter/internal/extensions"
 )
 
 // ---------------------------------------------------------------------------

@@ -4,7 +4,7 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/mark3labs/kit/internal/auth"
+	"github.com/xnet-admin-1/Headhunter/internal/auth"
 )
 
 // LoginInstructions contains the information needed to authorize a provider.
@@ -17,7 +17,7 @@ type LoginInstructions struct {
 
 // LoginOptions configures a provider OAuth login.
 type LoginOptions struct {
-	// UserAgent identifies login HTTP requests independently of any Kit instance. Empty means "KIT".
+	// UserAgent identifies login HTTP requests independently of any Kit instance. Empty means "HEADHUNTER".
 	UserAgent string
 	// CredentialManager selects the credential store. If nil, login uses the
 	// standard store at $XDG_CONFIG_HOME/.kit/credentials.json, or

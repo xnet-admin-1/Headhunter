@@ -523,28 +523,28 @@ func ApplyGradient(text string, colorA, colorB color.Color) string {
 	return result.String()
 }
 
-// kitLogoArt is the KIT wordmark in block letters. Lines are left-aligned and
-// not padded to a uniform width — trailing space would only be invisible
-// gradient — so the widest line (the top row and the scanner bar) sets the
-// block's footprint. The block can be placed at any left offset without
-// re-centering.
+// kitLogoArt is the HEADHUNTER wordmark in block letters, flanked by a
+// crosshair reticle. Lines are left-aligned and not padded to a uniform width
+// — trailing space would only be invisible gradient — so the widest line (the
+// scanner bar) sets the block's footprint. The block can be placed at any left
+// offset without re-centering.
 var kitLogoArt = []string{
-	"██╗  ██╗ ██╗ ████████╗",
-	"██║ ██╔╝ ██║ ╚══██╔══╝",
-	"█████╔╝  ██║    ██║",
-	"██╔═██╗  ██║    ██║",
-	"██║  ██╗ ██║    ██║",
-	"╚═╝  ╚═╝ ╚═╝    ╚═╝",
-	// KITT's scanner bar, sized to the wordmark's widest row.
-	"░░ ▒▒ ▓▓ ████ ▓▓ ▒▒ ░░",
+	"         ╬",
+	"         ┆",
+	"  ╬┈┈┈┈┈┈┼┈┈┈┈┈┈╬   HEADHUNTER",
+	"         ┆          lock · aim · ship",
+	"         ╬",
+	"  ⊕ no target gets a second shot",
+	// Reticle scanner bar, sized to the wordmark's widest row.
+	"░░ ▒▒ ▓▓ »———[ ⊕ ]———« ▓▓ ▒▒ ░░",
 }
 
 // kitLogoWidth is the width of the widest line in kitLogoArt, i.e. the number
 // of columns the block needs to render without wrapping. KitLogoLines falls
 // back to a plain wordmark below this width.
-const kitLogoWidth = 22
+const kitLogoWidth = 37
 
-// kitLogoScannerRow is the index of the KITT scanner bar within kitLogoArt.
+// kitLogoScannerRow is the index of the reticle scanner bar within kitLogoArt.
 // The startup animation drives that row separately from the wordmark above it.
 const kitLogoScannerRow = 6
 
@@ -717,7 +717,7 @@ func KitLogoLines(contentWidth int) []string {
 func KitLogoLinesAt(contentWidth, frame int) []string {
 	theme := GetTheme()
 	if contentWidth < kitLogoWidth {
-		return []string{lipgloss.NewStyle().Bold(true).Foreground(theme.Primary).Render("KIT")}
+		return []string{lipgloss.NewStyle().Bold(true).Foreground(theme.Primary).Render("HEADHUNTER")}
 	}
 
 	shine := logoShineColor()
@@ -768,8 +768,8 @@ func kitLogoHighlight(x, y, frame int) float64 {
 	}
 }
 
-// KitBanner returns the KIT ASCII art title with KITT scanner lights,
-// rendered with a KITT red gradient.
+// KitBanner returns the HEADHUNTER ASCII art title inside a targeting-box
+// frame with a crosshair reticle, rendered with a blood-red gradient.
 //
 // This is the banner used in `--help` output, where the art stands alone and
 // is centered by its own leading padding. The TUI splash uses KitLogoLines
@@ -778,13 +778,19 @@ func KitBanner() string {
 	kittDark := lipgloss.Color("#8B0000")
 	kittBright := lipgloss.Color("#FF2200")
 	lines := []string{
-		"             ██╗  ██╗ ██╗ ████████╗",
-		"             ██║ ██╔╝ ██║ ╚══██╔══╝",
-		"             █████╔╝  ██║    ██║",
-		"             ██╔═██╗  ██║    ██║",
-		"             ██║  ██╗ ██║    ██║",
-		"             ╚═╝  ╚═╝ ╚═╝    ╚═╝",
-		"░░ ░░ ░░ ▒▒ ▒▒ ▓▓ ▓▓ ████ ▓▓ ▓▓ ▒▒ ▒▒ ░░ ░░ ░░",
+		"╔═══════════════════════════════════════════════════════════════════════╗",
+		"║                    ·  ·  ·        ╬        ·  ·  ·                    ║",
+		"║                       [ ⊕  TARGET ACQUIRED  ⊕ ]                       ║",
+		"║      ┌─────────────────────────────────────────────────────────┐      ║",
+		"║  ╬   │    █  █ ████  ██  ███  █  █ █  █ █  █ ████ ████ ███     │   ╬  ║",
+		"║  ╬   │    █  █ █    █  █ █  █ █  █ █  █ ██ █   █  █    █  █    │   ╬  ║",
+		"║──╬── │    ████ ███  ████ █  █ ████ █  █ █ ██   █  ███  ███     │ ──╬──║",
+		"║  ╬   │    █  █ █    █  █ █  █ █  █ █  █ █  █   █  █    █ █     │   ╬  ║",
+		"║  ╬   │    █  █ ████ █  █ ███  █  █  ██  █  █   █  ████ █  █    │   ╬  ║",
+		"║      └─────────────────────────────────────────────────────────┘      ║",
+		"║                    ·  ·  ·        ╬        ·  ·  ·                    ║",
+		"╚═══════════════════════════════════════════════════════════════════════╝",
+		"░░ ▒▒ ▓▓ ██ »———————————————————————[ ⊕ ]————————————————————————« ██ ▓▓ ▒▒ ░░",
 	}
 
 	var result strings.Builder

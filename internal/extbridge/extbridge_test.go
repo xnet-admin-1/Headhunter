@@ -7,7 +7,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/mark3labs/kit/internal/extensions"
+	"github.com/xnet-admin-1/Headhunter/internal/extensions"
 )
 
 // Regression tests for issue #86: SpawnSubagent with Blocking=false must

@@ -56,8 +56,8 @@ Packagers can change the compiled-in default at build time:
 
 ```bash
 go build -ldflags \
-  "-X github.com/mark3labs/kit/internal/extensions.SystemExtensionsDir=/opt/kit/extensions" \
-  ./cmd/kit
+  "-X github.com/xnet-admin-1/Headhunter/internal/extensions.SystemExtensionsDir=/opt/kit/extensions" \
+  ./cmd/headhunter
 ```
 
 ## Explicit loading

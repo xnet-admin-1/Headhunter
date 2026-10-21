@@ -4,8 +4,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/mark3labs/kit/internal/ui/commands"
-	kit "github.com/mark3labs/kit/pkg/kit"
+	"github.com/xnet-admin-1/Headhunter/internal/ui/commands"
+	kit "github.com/xnet-admin-1/Headhunter/pkg/kit"
 )
 
 type inspectorTestController struct {

@@ -5,7 +5,7 @@ import (
 
 	"github.com/charmbracelet/colorprofile"
 
-	"github.com/mark3labs/kit/internal/ui/termgfx"
+	"github.com/xnet-admin-1/Headhunter/internal/ui/termgfx"
 )
 
 func TestColorTermFor(t *testing.T) {

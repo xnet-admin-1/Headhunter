@@ -15,7 +15,7 @@ import (
 
 	"charm.land/fantasy"
 
-	"github.com/mark3labs/kit/internal/media"
+	"github.com/xnet-admin-1/Headhunter/internal/media"
 )
 
 // writePNG writes a PNG of the given size to dir/name and returns its path.

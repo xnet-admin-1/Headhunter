@@ -6,8 +6,8 @@ import (
 
 	tea "charm.land/bubbletea/v2"
 
-	"github.com/mark3labs/kit/internal/ui/render"
-	"github.com/mark3labs/kit/internal/ui/style"
+	"github.com/xnet-admin-1/Headhunter/internal/ui/render"
+	"github.com/xnet-admin-1/Headhunter/internal/ui/style"
 )
 
 func TestAdaptiveStreamFlushInterval(t *testing.T) {

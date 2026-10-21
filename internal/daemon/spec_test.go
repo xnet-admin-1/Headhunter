@@ -7,8 +7,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/mark3labs/kit/internal/clipboard"
-	"github.com/mark3labs/kit/internal/ui/termgfx"
+	"github.com/xnet-admin-1/Headhunter/internal/clipboard"
+	"github.com/xnet-admin-1/Headhunter/internal/ui/termgfx"
 )
 
 // envValueIn reads a key out of an environment slice.

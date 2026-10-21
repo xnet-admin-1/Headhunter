@@ -11,11 +11,11 @@ import (
 
 	"github.com/spf13/cobra"
 
-	"github.com/mark3labs/kit/pkg/kit"
+	"github.com/xnet-admin-1/Headhunter/pkg/kit"
 )
 
 // skillCmd groups the skill-related subcommands. Running it bare keeps the
-// historical behaviour of installing the Kit skills via skills.sh so existing
+// historical behaviour of installing the Headhunter skills via skills.sh so existing
 // scripts and docs do not break.
 var skillCmd = &cobra.Command{
 	Use:   "skill",
@@ -23,24 +23,24 @@ var skillCmd = &cobra.Command{
 	Long: `Manage Agent Skills (https://agentskills.io/specification).
 
 Skills are directories with a SKILL.md file that teach the agent a workflow.
-Kit discovers them from ~/.agents/skills, ~/.config/kit/skills,
+Headhunter discovers them from ~/.agents/skills, ~/.config/kit/skills,
 <project>/.agents/skills and <project>/.kit/skills. Activate a skill in the
 TUI with /<skill-name> [args], or let the model call the activate_skill tool.
 
 Subcommands:
 
-  kit skill list              List discovered skills with scope and spec warnings
-  kit skill validate <dir>    Validate a skill directory against the spec
-  kit skill install           Install the Kit skills (extensions + SDK) via skills.sh
+  headhunter skill list              List discovered skills with scope and spec warnings
+  headhunter skill validate <dir>    Validate a skill directory against the spec
+  headhunter skill install           Install the Headhunter skills (extensions + SDK) via skills.sh
 
-Running "kit skill" with no subcommand is the same as "kit skill install".`,
+Running "headhunter skill" with no subcommand is the same as "headhunter skill install".`,
 	RunE: runSkillInstall,
 }
 
 var skillListCmd = &cobra.Command{
 	Use:   "list",
 	Short: "List discovered skills with scope and spec warnings",
-	Long: `List the skills Kit would load from the current directory, honoring the
+	Long: `List the skills Headhunter would load from the current directory, honoring the
 --skill, --skills-dir and --no-skills flags. For each skill the scope
 (user or project), the path and any agentskills.io spec warnings are shown.
 Project-local skills are listed without a trust prompt because nothing is
@@ -62,16 +62,16 @@ from the spec. The exit code is non-zero when any error is found.`,
 
 var skillInstallCmd = &cobra.Command{
 	Use:   "install",
-	Short: "Install the Kit skills (extensions + SDK) via skills.sh",
-	Long: `Install the Kit skills that teach AI agents how to build with Kit. Uses
-the skills.sh CLI (npx skills) to install all skills from the Kit repository:
+	Short: "Install the Headhunter skills (extensions + SDK) via skills.sh",
+	Long: `Install the Headhunter skills that teach AI agents how to build with Headhunter. Uses
+the skills.sh CLI (npx skills) to install all skills from the Headhunter repository:
 
-  kit-extensions — creating Kit extensions with full knowledge of the
+  kit-extensions — creating Headhunter extensions with full knowledge of the
                    extension API, lifecycle events, widgets, tools,
                    commands, editor interceptors, tool renderers, and
                    Yaegi interpreter constraints.
 
-  kit-sdk        — building AI-powered applications with the Kit Go SDK,
+  kit-sdk        — building AI-powered applications with the Headhunter Go SDK,
                    including providers, agents, tools, and MCP integration.`,
 	RunE: runSkillInstall,
 }
@@ -211,7 +211,7 @@ func runSkillList(_ *cobra.Command, _ []string) error {
 			}
 		}
 		fmt.Println()
-		fmt.Println("Run 'kit skill validate <path>' for details on a single skill.")
+		fmt.Println("Run 'headhunter skill validate <path>' for details on a single skill.")
 	}
 	return nil
 }

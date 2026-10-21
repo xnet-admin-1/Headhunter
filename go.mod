@@ -1,4 +1,4 @@
-module github.com/mark3labs/kit
+module github.com/xnet-admin-1/Headhunter
 
 go 1.27.0
 

@@ -13,9 +13,9 @@ import (
 	"github.com/spf13/cobra"
 )
 
-// commandToken is the mention that triggers Kit from a comment, mirroring the
-// `if:` guard in the generated workflow (.github/workflows/kit.yml).
-const commandToken = "/kit"
+// commandToken is the mention that triggers Headhunter from a comment, mirroring the
+// `if:` guard in the generated workflow (.github/workflows/headhunter.yml).
+const commandToken = "/headhunter"
 
 // subprocessTimeout bounds each git/gh invocation so a stalled network call or
 // an unexpected auth prompt cannot hang the Actions job indefinitely.
@@ -27,10 +27,10 @@ const subprocessTimeout = 30 * time.Second
 const agentTimeout = 20 * time.Minute
 
 // botName / botEmail are the dedicated identity commits are attributed to, so
-// Kit's changes are clearly distinguishable from human authors in history.
+// Headhunter's changes are clearly distinguishable from human authors in history.
 const (
-	botName  = "kit-agent[bot]"
-	botEmail = "kit-agent[bot]@users.noreply.github.com"
+	botName  = "headhunter-agent[bot]"
+	botEmail = "headhunter-agent[bot]@users.noreply.github.com"
 )
 
 // writeAssociations are the GitHub author_association values that imply
@@ -48,21 +48,21 @@ var (
 
 // githubRunCmd is the runtime half of the GitHub integration. It is invoked by
 // the bundled composite action (action.yml) inside a GitHub Actions runner once
-// a collaborator comments '/kit <request>' on an issue or pull request. It reads
+// a collaborator comments '/headhunter <request>' on an issue or pull request. It reads
 // the triggering event, enforces permissions, runs the agent headlessly against
 // the comment/PR context, and responds by posting a comment and — when the agent
 // leaves changes — opening a pull request.
 var githubRunCmd = &cobra.Command{
 	Use:   "run",
-	Short: "Run Kit against the current GitHub Actions event (used by the kit action)",
-	Long: `Run Kit against the current GitHub Actions event.
+	Short: "Run Headhunter against the current GitHub Actions event (used by the headhunter action)",
+	Long: `Run Headhunter against the current GitHub Actions event.
 
 This command is normally invoked by the bundled composite action inside a
 GitHub Actions runner; you rarely run it by hand. It reads the triggering
 event from GITHUB_EVENT_PATH, verifies the commenter has write/admin access,
 reacts with an emoji while it works, runs the agent non-interactively against
 the issue thread or pull request, posts the response as a comment, and — if the
-agent modified files — pushes a kit-agent[bot] branch and opens a pull request.
+agent modified files — pushes a headhunter-agent[bot] branch and opens a pull request.
 
 Set --dry-run (or KIT_GITHUB_DRY_RUN=1) to log every git/gh side effect and
 skip the agent run instead of executing them.`,
@@ -131,12 +131,12 @@ type trigger struct {
 	body          string
 }
 
-// runGitHubRun is the entry point wired to `kit github run`.
+// runGitHubRun is the entry point wired to `headhunter github run`.
 func runGitHubRun(cmd *cobra.Command, _ []string) error {
 	ctx := cmd.Context()
 
 	if !inGitHubActions() && !githubDryRun() {
-		return fmt.Errorf("kit github run is meant to run inside GitHub Actions (set GITHUB_ACTIONS=true or pass --dry-run)")
+		return fmt.Errorf("headhunter github run is meant to run inside GitHub Actions (set GITHUB_ACTIONS=true or pass --dry-run)")
 	}
 
 	event, err := loadGitHubEvent()
@@ -152,7 +152,7 @@ func runGitHubRun(cmd *cobra.Command, _ []string) error {
 	}
 
 	if !writeAssociations[strings.ToUpper(tr.association)] {
-		log.Warn("github run: ignoring /kit from unauthorized author",
+		log.Warn("github run: ignoring /headhunter from unauthorized author",
 			"author", tr.author, "association", tr.association)
 		return nil
 	}
@@ -161,7 +161,7 @@ func runGitHubRun(cmd *cobra.Command, _ []string) error {
 	log.Info("github run: handling trigger",
 		"repo", tr.repo, "number", tr.number, "pr", tr.isPR, "author", tr.author, "model", model)
 
-	// React with 👀 so the human sees Kit picked up the request.
+	// React with 👀 so the human sees Headhunter picked up the request.
 	addReaction(ctx, tr, "eyes")
 
 	gathered := gatherContext(ctx, tr)
@@ -169,14 +169,14 @@ func runGitHubRun(cmd *cobra.Command, _ []string) error {
 
 	response, runErr := runAgent(ctx, model, prompt)
 	if runErr != nil {
-		postComment(ctx, tr, "⚠️ Kit hit an error while processing this request:\n\n```\n"+runErr.Error()+"\n```")
+		postComment(ctx, tr, "⚠️ Headhunter hit an error while processing this request:\n\n```\n"+runErr.Error()+"\n```")
 		addReaction(ctx, tr, "confused")
 		return runErr
 	}
 
 	response = strings.TrimSpace(response)
 	if response == "" {
-		response = "Kit finished without a textual response."
+		response = "Headhunter finished without a textual response."
 	}
 
 	prURL := ""
@@ -231,7 +231,7 @@ func loadGitHubEvent() (*ghEvent, error) {
 }
 
 // buildTrigger normalises an event into a trigger, or returns an error when the
-// event is not an actionable `/kit` comment.
+// event is not an actionable `/headhunter` comment.
 func buildTrigger(event *ghEvent) (*trigger, error) {
 	if event.Comment == nil {
 		return nil, fmt.Errorf("event has no comment; nothing to do")
@@ -280,7 +280,7 @@ func buildTrigger(event *ghEvent) (*trigger, error) {
 // extractRequest pulls the instruction text out of a comment body that mentions
 // the command token. It only recognizes the token at the start of a line
 // (mirroring the workflow guard) or at the very end, so incidental mid-sentence
-// mentions like "please review /kit behavior" do not trigger the handler. It
+// mentions like "please review /headhunter behavior" do not trigger the handler. It
 // returns the remainder of the matching line as the request.
 func extractRequest(body string) (string, bool) {
 	for line := range strings.SplitSeq(body, "\n") {
@@ -347,7 +347,7 @@ func buildPrompt(tr *trigger, gathered string) string {
 	}
 
 	var b strings.Builder
-	fmt.Fprintf(&b, "You are Kit, operating as an automated collaborator on the GitHub repository %s.\n\n", tr.repo)
+	fmt.Fprintf(&b, "You are Headhunter, operating as an automated collaborator on the GitHub repository %s.\n\n", tr.repo)
 	fmt.Fprintf(&b, "@%s (access: %s) triggered you on %s #%d with this request:\n\n", tr.author, tr.association, target, tr.number)
 	fmt.Fprintf(&b, "%s\n\n", request)
 	fmt.Fprintf(&b, "## Context\n%s\n\n", strings.TrimSpace(gathered))
@@ -397,10 +397,10 @@ func hasUncommittedChanges(ctx context.Context) bool {
 	return strings.TrimSpace(gitOutput(ctx, "status", "--porcelain")) != ""
 }
 
-// openPullRequest commits the working tree as kit-agent[bot], pushes a branch,
+// openPullRequest commits the working tree as headhunter-agent[bot], pushes a branch,
 // and opens a PR. It returns the PR URL, or "" on failure / dry-run.
 func openPullRequest(ctx context.Context, tr *trigger, summary string) string {
-	branch := fmt.Sprintf("kit/issue-%d-%d", tr.number, time.Now().Unix())
+	branch := fmt.Sprintf("headhunter/issue-%d-%d", tr.number, time.Now().Unix())
 
 	runGit(ctx, "checkout", "-b", branch)
 	runGit(ctx, "add", "-A")
@@ -416,7 +416,7 @@ func openPullRequest(ctx context.Context, tr *trigger, summary string) string {
 	runGit(ctx, "push", "origin", "HEAD:"+branch)
 
 	title := fmt.Sprintf("kit: changes for #%d", tr.number)
-	body := fmt.Sprintf("Automated changes from Kit in response to #%d.\n\n%s", tr.number, summary)
+	body := fmt.Sprintf("Automated changes from Headhunter in response to #%d.\n\n%s", tr.number, summary)
 	if githubDryRun() {
 		log.Info("github run: [dry-run] would open PR", "branch", branch, "base", tr.defaultBranch)
 		return ""

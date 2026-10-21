@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/mark3labs/kit/internal/httpclient"
+	"github.com/xnet-admin-1/Headhunter/internal/httpclient"
 )
 
 // LoginInstructions describes the browser authorization step.

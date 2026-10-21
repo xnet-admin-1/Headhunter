@@ -9,7 +9,7 @@ import (
 	"testing"
 	"time"
 
-	kit "github.com/mark3labs/kit/pkg/kit"
+	kit "github.com/xnet-admin-1/Headhunter/pkg/kit"
 )
 
 // Run explicitly with KIT_CONTINUATION_LIVE=1. This test makes a paid live

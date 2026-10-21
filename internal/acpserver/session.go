@@ -9,9 +9,9 @@ import (
 	acp "github.com/coder/acp-go-sdk"
 	"github.com/spf13/viper"
 
-	"github.com/mark3labs/kit/internal/extbridge"
-	"github.com/mark3labs/kit/internal/extensions"
-	kit "github.com/mark3labs/kit/pkg/kit"
+	"github.com/xnet-admin-1/Headhunter/internal/extbridge"
+	"github.com/xnet-admin-1/Headhunter/internal/extensions"
+	kit "github.com/xnet-admin-1/Headhunter/pkg/kit"
 )
 
 // acpSession maps an ACP session to a Kit instance with its own tree session.
@@ -138,7 +138,7 @@ func (r *sessionRegistry) create(ctx context.Context, opts sessionOptions) (*acp
 	// per-session SetModel / SetThinkingLevel calls cannot race or bleed across
 	// the sessionRegistry. We seed the relevant root-command flag values from
 	// the process-global store (which cobra populated from flags) so launching
-	// `kit acp -m <model> [--thinking-level ...] [--provider-url ...]
+	// `headhunter acp -m <model> [--thinking-level ...] [--provider-url ...]
 	// [--shell ...]` is still honored; .kit.yml and KIT_* env vars are loaded
 	// per session by kit.New.
 	streamOn := true
@@ -163,13 +163,13 @@ func (r *sessionRegistry) create(ctx context.Context, opts sessionOptions) (*acp
 		if kit.IsMissingCredentialsError(err) {
 			return nil, authRequired(err)
 		}
-		return nil, fmt.Errorf("create kit instance: %w", err)
+		return nil, fmt.Errorf("create headhunter instance: %w", err)
 	}
 
 	sessionID := kitInstance.GetSessionID()
 	if sessionID == "" {
 		_ = kitInstance.Close()
-		return nil, fmt.Errorf("kit instance has no session ID")
+		return nil, fmt.Errorf("headhunter instance has no session ID")
 	}
 
 	// Wire extension context with headless implementations so extensions
@@ -345,6 +345,6 @@ func (s *acpSession) clearCancel() {
 // missing provider credentials, with steps to fix it. Kit offers no ACP
 // auth methods: credentials come from Kit's own config.
 func authRequired(err error) *acp.RequestError {
-	msg := fmt.Sprintf("%v. Run 'kit auth login <provider>' or set the provider's API key environment variable, then restart 'kit acp'.", err)
+	msg := fmt.Sprintf("%v. Run 'headhunter auth login <provider>' or set the provider's API key environment variable, then restart 'headhunter acp'.", err)
 	return acp.NewAuthRequired(map[string]any{"message": msg})
 }

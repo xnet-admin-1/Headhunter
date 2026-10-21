@@ -8,7 +8,7 @@ import (
 
 	"golang.org/x/term"
 
-	"github.com/mark3labs/kit/pkg/kit"
+	"github.com/xnet-admin-1/Headhunter/pkg/kit"
 )
 
 // skillTrustPrompt returns a callback that gates project-local skill loading
@@ -17,7 +17,7 @@ import (
 // could smuggle instructions into the agent. The prompt asks the user whether
 // to trust the directory before any project skill is loaded.
 //
-// It returns nil — meaning "load without prompting" — when Kit is not running
+// It returns nil — meaning "load without prompting" — when Headhunter is not running
 // interactively (a non-TTY stdin, --quiet, or a non-interactive one-shot
 // prompt), so scripted and piped invocations keep their existing behaviour.
 func skillTrustPrompt() func(projectDir string, skillCount int) kit.TrustDecision {

@@ -332,9 +332,9 @@ func dialPairWindow(ctx context.Context, seed []byte, clientPub ed25519.PublicKe
 	cancel()
 	if err != nil {
 		if errors.Is(err, iroh.ErrNoAddress) {
-			return "", errors.New("no host is listening for that pairing code — check the code, or run 'kit daemon pair' on the host for a fresh one")
+			return "", errors.New("no host is listening for that pairing code — check the code, or run 'headhunter daemon pair' on the host for a fresh one")
 		}
-		return "", errors.New("could not reach the host's pairing window — it may have closed (run 'kit daemon pair' again on the host), or the network is blocking the connection")
+		return "", errors.New("could not reach the host's pairing window — it may have closed (run 'headhunter daemon pair' again on the host), or the network is blocking the connection")
 	}
 	defer func() { _ = conn.Close() }()
 

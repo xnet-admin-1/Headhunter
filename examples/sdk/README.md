@@ -34,7 +34,7 @@ CRYPTO_INTERVAL=5m go run ./examples/sdk/crypto-monitor
 ## Getting Started
 
 ```go
-import kit "github.com/mark3labs/kit/pkg/kit"
+import kit "github.com/xnet-admin-1/Headhunter/pkg/kit"
 
 host, err := kit.New(ctx, nil)        // uses ~/.kit.yml defaults
 defer host.Close()

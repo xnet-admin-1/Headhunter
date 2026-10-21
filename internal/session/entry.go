@@ -9,7 +9,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/mark3labs/kit/internal/message"
+	"github.com/xnet-admin-1/Headhunter/internal/message"
 )
 
 // EntryType identifies the kind of entry stored in a JSONL session file.

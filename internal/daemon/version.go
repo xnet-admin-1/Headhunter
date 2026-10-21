@@ -10,7 +10,7 @@ import (
 
 // The daemon's compatibility contract.
 //
-// A kit client and a kit daemon are two independent installations of the
+// A kit client and a headhunter daemon are two independent installations of the
 // same binary, and there is no rule that says they were released
 // together: a package upgrade replaces the binary on disk while the
 // daemon started from the old one keeps running, a nix devshell puts a
@@ -31,7 +31,7 @@ import (
 //     confused with a version bump.
 //
 // The build version travels too, but purely as information: it is what
-// `kit daemon status` reports and what a message can quote when a user
+// `headhunter daemon status` reports and what a message can quote when a user
 // wonders why a brand new feature is missing from a daemon they started
 // three weeks ago. It is never a reason to refuse a connection.
 
@@ -112,7 +112,7 @@ const ProtocolFeatures = FeatureTerminalInfo |
 // Has reports whether every bit in want is present.
 func (f Feature) Has(want Feature) bool { return f&want == want }
 
-// featureNames labels the bits for logs and `kit daemon status`. A bit
+// featureNames labels the bits for logs and `headhunter daemon status`. A bit
 // with no name here is reported by number, which is what a peer from the
 // future looks like.
 var featureNames = []struct {
@@ -245,7 +245,7 @@ func (h Hello) Compatible() error {
 	}
 	if h.Version != ProtocolVersion {
 		return fmt.Errorf(
-			"daemon: protocol mismatch — this kit speaks protocol %d, the other end speaks %d%s",
+			"daemon: protocol mismatch — this headhunter speaks protocol %d, the other end speaks %d%s",
 			ProtocolVersion, h.Version, h.buildHint())
 	}
 	return nil
@@ -258,7 +258,7 @@ func (h Hello) buildHint() string {
 		return ""
 	}
 	if h.Role == RoleDaemon {
-		return fmt.Sprintf(" (the daemon is kit %s; restart it with 'kit daemon restart')", h.Build)
+		return fmt.Sprintf(" (the daemon is kit %s; restart it with 'headhunter daemon restart')", h.Build)
 	}
 	return fmt.Sprintf(" (the client is kit %s)", h.Build)
 }
@@ -268,7 +268,7 @@ func (h Hello) buildHint() string {
 var buildVersion atomic.Value
 
 // SetBuildVersion records the release version for the hello and for
-// `kit daemon status`. It is display-only: compatibility is decided by
+// `headhunter daemon status`. It is display-only: compatibility is decided by
 // ProtocolVersion, never by this.
 func SetBuildVersion(v string) {
 	v = strings.TrimSpace(v)

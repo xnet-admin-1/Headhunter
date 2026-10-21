@@ -5,7 +5,7 @@ import (
 	"testing"
 
 	tea "charm.land/bubbletea/v2"
-	uicore "github.com/mark3labs/kit/internal/ui/core"
+	uicore "github.com/xnet-admin-1/Headhunter/internal/ui/core"
 )
 
 // drainCmds runs a tea.Cmd chain back through m.Update like the BubbleTea

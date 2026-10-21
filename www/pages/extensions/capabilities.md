@@ -237,8 +237,8 @@ interpreter crossings.
 > No network calls, no locks held across the call. Compute in an event handler
 > or goroutine, store the result, and format it here.
 
-See [`arbitrary-ui.go`](https://github.com/mark3labs/kit/blob/master/examples/extensions/arbitrary-ui.go)
-for a live dashboard and [`bad-apple.go`](https://github.com/mark3labs/kit/blob/master/examples/extensions/bad-apple.go)
+See [`arbitrary-ui.go`](https://github.com/xnet-admin-1/Headhunter/blob/master/examples/extensions/arbitrary-ui.go)
+for a live dashboard and [`bad-apple.go`](https://github.com/xnet-admin-1/Headhunter/blob/master/examples/extensions/bad-apple.go)
 for 30fps playback.
 
 ## Headers and footers

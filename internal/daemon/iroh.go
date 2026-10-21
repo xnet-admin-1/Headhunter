@@ -117,7 +117,7 @@ type irohEndpoint struct {
 // reported once on stderr through the standard logger. The larger buffer
 // only matters for bulk throughput; a remote session is keystrokes and
 // screen updates, and the socket works either way, so the line is noise
-// on 'kit remote --pair' and on every daemon start. A user who wants to
+// on 'headhunter remote --pair' and on every daemon start. A user who wants to
 // see it can set the variable to "false" themselves.
 const quicBufferWarningEnv = "QUIC_GO_DISABLE_RECEIVE_BUFFER_WARNING"
 

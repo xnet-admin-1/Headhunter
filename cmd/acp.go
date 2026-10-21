@@ -14,21 +14,21 @@ import (
 	"github.com/charmbracelet/log"
 	acp "github.com/coder/acp-go-sdk"
 
-	"github.com/mark3labs/kit/internal/acpserver"
+	"github.com/xnet-admin-1/Headhunter/internal/acpserver"
 	"github.com/spf13/cobra"
 )
 
 var acpCmd = &cobra.Command{
 	Use:   "acp",
-	Short: "Start Kit as an ACP agent server",
-	Long: `Start Kit as an ACP (Agent Client Protocol) agent server.
+	Short: "Start Headhunter as an ACP agent server",
+	Long: `Start Headhunter as an ACP (Agent Client Protocol) agent server.
 
 Communicates over stdio (stdin/stdout) using JSON-RPC 2.0 with
 newline-delimited JSON, compatible with OpenCode and other ACP clients.
 
-The server exposes Kit's LLM execution, tool system, and session
+The server exposes Headhunter's LLM execution, tool system, and session
 management via the Agent Client Protocol. Sessions are persisted
-to Kit's standard JSONL session files.
+to Headhunter's standard JSONL session files.
 
 Tool approval (--approval, and the "approval" session config option):
   ask        ask the client before edits, commands and other tools that
@@ -38,7 +38,7 @@ Tool approval (--approval, and the "approval" session config option):
 	RunE: runACP,
 }
 
-// acpApproval is the --approval flag of `kit acp`.
+// acpApproval is the --approval flag of `headhunter acp`.
 var acpApproval string
 
 func init() {

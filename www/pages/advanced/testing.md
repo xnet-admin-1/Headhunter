@@ -46,7 +46,7 @@ When testing extensions, the pattern is:
 
 ```bash
 # Build first
-go build -o output/kit ./cmd/kit
+go build -o output/headhunter ./cmd/headhunter
 
 # Start with extension
 tmux new-session -d -s kittest -x 120 -y 40 \

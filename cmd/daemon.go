@@ -8,15 +8,15 @@ import (
 
 	"github.com/spf13/cobra"
 
-	"github.com/mark3labs/kit/internal/daemon"
+	"github.com/xnet-admin-1/Headhunter/internal/daemon"
 )
 
 var pairCode string
 
 var daemonCmd = &cobra.Command{
 	Use:   "daemon",
-	Short: "Run Kit as a remote daemon, hosting sessions for paired clients",
-	Long: `Run Kit as a remote daemon.
+	Short: "Run Headhunter as a remote daemon, hosting sessions for paired clients",
+	Long: `Run Headhunter as a remote daemon.
 
 Hosts sessions for clients on this machine and for paired remote
 clients. With a daemon running, a plain 'kit' on this machine is a
@@ -33,10 +33,10 @@ upgrading the daemon costs the connection and not the work. The next
 daemon adopts them again, and a client that was attached reconnects on
 its own. 'kit ls' lists them; 'kit attach <id>' picks one up.
 
-Pair a new client with 'kit daemon pair' — it shows a one-time code and
+Pair a new client with 'headhunter daemon pair' — it shows a one-time code and
 asks you to accept or reject the client on this terminal. Only one
-daemon may run per user; use 'kit daemon status' to inspect a running
-instance and 'kit daemon service install' to manage it via systemd.`,
+daemon may run per user; use 'headhunter daemon status' to inspect a running
+instance and 'headhunter daemon service install' to manage it via systemd.`,
 	RunE: func(cmd *cobra.Command, _ []string) error {
 		// Stop on SIGINT/SIGTERM so the daemon tears its sessions down
 		// itself. Without this, `systemctl stop` kills the process
@@ -84,7 +84,7 @@ func runPairList() error {
 		return err
 	}
 	if len(clients) == 0 {
-		fmt.Println("No paired clients. Pair one with: kit daemon pair")
+		fmt.Println("No paired clients. Pair one with: headhunter daemon pair")
 		return nil
 	}
 	fmt.Printf("%-18s %-10s %s\n", "FINGERPRINT", "PAIRED", "LAST SEEN")
@@ -104,8 +104,8 @@ var daemonStatusCmd = &cobra.Command{
 	RunE: func(_ *cobra.Command, _ []string) error {
 		st := daemon.ReadStatus()
 		if !st.Running {
-			fmt.Println("kit daemon is not running.")
-			fmt.Println("Start one with: kit daemon  (or: kit daemon service install)")
+			fmt.Println("headhunter daemon is not running.")
+			fmt.Println("Start one with: headhunter daemon  (or: headhunter daemon service install)")
 			if st.State != nil {
 				fmt.Printf("(stale state on disk from pid %d, started %s)\n",
 					st.State.PID, st.State.StartedAt.Format("2006-01-02 15:04"))
@@ -114,11 +114,11 @@ var daemonStatusCmd = &cobra.Command{
 		}
 		s := st.State
 		if s == nil {
-			fmt.Println("kit daemon is running (pid unknown — state file not written yet)")
+			fmt.Println("headhunter daemon is running (pid unknown — state file not written yet)")
 			return nil
 		}
 		uptime := time.Since(s.StartedAt).Round(time.Second)
-		fmt.Printf("kit daemon is running (pid %d, up %s)\n", s.PID, uptime)
+		fmt.Printf("headhunter daemon is running (pid %d, up %s)\n", s.PID, uptime)
 		if s.Build != "" {
 			// The RUNNING daemon's build, which is not necessarily this
 			// binary's: an upgrade replaces the file on disk and leaves the
@@ -128,7 +128,7 @@ var daemonStatusCmd = &cobra.Command{
 			// feature is missing needs to be able to see it.
 			fmt.Printf("  Build:            %s\n", s.Build)
 			if s.Build != daemon.BuildVersion() {
-				fmt.Printf("                    (this kit is %s — restart the daemon to match)\n",
+				fmt.Printf("                    (this headhunter is %s — restart the daemon to match)\n",
 					daemon.BuildVersion())
 			}
 		}
@@ -173,7 +173,7 @@ var daemonSessionHostCmd = &cobra.Command{
 
 var daemonServiceCmd = &cobra.Command{
 	Use:   "service",
-	Short: "Manage the kit daemon systemd user service",
+	Short: "Manage the headhunter daemon systemd user service",
 	Args:  cobra.NoArgs,
 }
 

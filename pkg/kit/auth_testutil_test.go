@@ -3,7 +3,7 @@ package kit_test
 import (
 	"testing"
 
-	"github.com/mark3labs/kit/internal/auth"
+	"github.com/xnet-admin-1/Headhunter/internal/auth"
 )
 
 // requireAnthropicAuth skips the test when Anthropic credentials are missing

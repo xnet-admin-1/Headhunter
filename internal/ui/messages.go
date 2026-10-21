@@ -10,8 +10,8 @@ import (
 	"charm.land/lipgloss/v2"
 	"github.com/indaco/herald"
 
-	"github.com/mark3labs/kit/internal/ui/render"
-	"github.com/mark3labs/kit/internal/ui/style"
+	"github.com/xnet-admin-1/Headhunter/internal/ui/render"
+	"github.com/xnet-admin-1/Headhunter/internal/ui/style"
 )
 
 // MessageType represents different categories of messages displayed in the UI,

@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/mark3labs/kit/internal/app"
+	"github.com/xnet-admin-1/Headhunter/internal/app"
 )
 
 // CLIEventHandler routes app-layer events to CLI display methods for

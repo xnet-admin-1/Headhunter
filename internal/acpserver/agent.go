@@ -22,8 +22,8 @@ import (
 	"github.com/charmbracelet/log"
 	acp "github.com/coder/acp-go-sdk"
 
-	"github.com/mark3labs/kit/internal/session"
-	kit "github.com/mark3labs/kit/pkg/kit"
+	"github.com/xnet-admin-1/Headhunter/internal/session"
+	kit "github.com/xnet-admin-1/Headhunter/pkg/kit"
 )
 
 // Version is injected at build time; fallback to "dev".

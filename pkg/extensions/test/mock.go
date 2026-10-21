@@ -3,7 +3,7 @@ package test
 import (
 	"sync"
 
-	"github.com/mark3labs/kit/pkg/extensions"
+	"github.com/xnet-admin-1/Headhunter/pkg/extensions"
 )
 
 // MockContext records all interactions with the extension context.

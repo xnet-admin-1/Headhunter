@@ -10,7 +10,7 @@ import (
 
 	"charm.land/huh/v2"
 	"github.com/charmbracelet/log"
-	kit "github.com/mark3labs/kit/pkg/kit"
+	kit "github.com/xnet-admin-1/Headhunter/pkg/kit"
 	"github.com/spf13/cobra"
 )
 
@@ -19,8 +19,8 @@ import (
 const defaultGitHubModel = "anthropic/claude-sonnet-4-5-20250929"
 
 // githubWorkflowPath is the repository-relative location of the generated
-// GitHub Actions workflow that wires Kit into a repository as a collaborator.
-const githubWorkflowPath = ".github/workflows/kit.yml"
+// GitHub Actions workflow that wires Headhunter into a repository as a collaborator.
+const githubWorkflowPath = ".github/workflows/headhunter.yml"
 
 var (
 	githubInstallModel    string
@@ -29,31 +29,31 @@ var (
 )
 
 // githubCmd is the parent command for GitHub integration subcommands. It groups
-// the turnkey setup tooling that wires Kit into a repository as an automated
+// the turnkey setup tooling that wires Headhunter into a repository as an automated
 // collaborator/reviewer driven by GitHub Actions.
 var githubCmd = &cobra.Command{
 	Use:   "github",
-	Short: "Set up Kit as a GitHub collaborator/reviewer",
-	Long: `Set up Kit as an automated collaborator/reviewer in a GitHub repository.
+	Short: "Set up Headhunter as a GitHub collaborator/reviewer",
+	Long: `Set up Headhunter as an automated collaborator/reviewer in a GitHub repository.
 
-Kit runs inside a GitHub Actions runner, reads the relevant context (an issue
+Headhunter runs inside a GitHub Actions runner, reads the relevant context (an issue
 thread or pull request), runs the agent non-interactively, and responds by
 posting comments and opening pull requests.
 
-Use 'kit github install' to scaffold the GitHub Actions workflow.`,
+Use 'headhunter github install' to scaffold the GitHub Actions workflow.`,
 }
 
-// githubInstallCmd scaffolds the GitHub Actions workflow that runs Kit on
-// '/kit' comment triggers. It writes .github/workflows/kit.yml and, when the
+// githubInstallCmd scaffolds the GitHub Actions workflow that runs Headhunter on
+// '/headhunter' comment triggers. It writes .github/workflows/headhunter.yml and, when the
 // 'gh' CLI is available, offers to set the provider API key as a repository
 // secret.
 var githubInstallCmd = &cobra.Command{
 	Use:   "install",
-	Short: "Scaffold the GitHub Actions workflow that runs Kit",
-	Long: `Scaffold the GitHub Actions workflow that runs Kit as a collaborator.
+	Short: "Scaffold the GitHub Actions workflow that runs Headhunter",
+	Long: `Scaffold the GitHub Actions workflow that runs Headhunter as a collaborator.
 
-This writes .github/workflows/kit.yml configured to trigger when someone
-comments '/kit ...' on an issue or pull request review. The workflow runs Kit
+This writes .github/workflows/headhunter.yml configured to trigger when someone
+comments '/headhunter ...' on an issue or pull request review. The workflow runs Headhunter
 inside an ephemeral Actions runner with least-privilege permissions and
 'persist-credentials: false', mirroring established security practice.
 
@@ -66,9 +66,9 @@ Flags:
   --no-secret   Skip the offer to set the provider secret via the gh CLI
 
 Examples:
-  kit github install
-  kit github install --model anthropic/claude-sonnet-4-5-20250929
-  kit github install --force --no-secret`,
+  headhunter github install
+  headhunter github install --model anthropic/claude-sonnet-4-5-20250929
+  headhunter github install --force --no-secret`,
 	Args: cobra.NoArgs,
 	RunE: runGitHubInstall,
 }
@@ -122,7 +122,7 @@ func resolveGitHubModel() (string, error) {
 	model := defaultGitHubModel
 	err := huh.NewInput().
 		Title("Model").
-		Description("Provider/model Kit should use in CI (e.g. anthropic/claude-sonnet-4-5)").
+		Description("Provider/model Headhunter should use in CI (e.g. anthropic/claude-sonnet-4-5)").
 		Value(&model).
 		Run()
 	if err != nil {
@@ -150,20 +150,20 @@ func providerSecretEnvVar(provider string) string {
 // renderGitHubWorkflow builds the workflow YAML for the given model and
 // provider secret name.
 func renderGitHubWorkflow(model, secretName string) string {
-	return fmt.Sprintf(`name: kit
+	return fmt.Sprintf(`name: headhunter
 on:
   issue_comment:
     types: [created]
   pull_request_review_comment:
     types: [created]
 jobs:
-  kit:
+  headhunter:
     if: |
       (github.event.comment.author_association == 'OWNER' ||
        github.event.comment.author_association == 'MEMBER' ||
        github.event.comment.author_association == 'COLLABORATOR') &&
-      (startsWith(github.event.comment.body, '/kit ') ||
-       github.event.comment.body == '/kit')
+      (startsWith(github.event.comment.body, '/headhunter ') ||
+       github.event.comment.body == '/headhunter')
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -173,7 +173,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           persist-credentials: false
-      - uses: mark3labs/kit@v0
+      - uses: xnet-admin-1/Headhunter@v0
         with:
           model: %s
         env:
@@ -249,7 +249,7 @@ func maybeSetProviderSecret(ctx context.Context, secretName string) {
 // take after the workflow is scaffolded.
 func printGitHubInstallNextSteps(secretName string) {
 	fmt.Println("\nNext steps:")
-	fmt.Printf("  1. Commit the workflow:  git add %s && git commit -m \"ci: add kit workflow\"\n", githubWorkflowPath)
+	fmt.Printf("  1. Commit the workflow:  git add %s && git commit -m \"ci: add headhunter workflow\"\n", githubWorkflowPath)
 	fmt.Printf("  2. Set the %s repository secret (Settings → Secrets → Actions), if not already set.\n", secretName)
-	fmt.Println("  3. Comment '/kit <your request>' on an issue or pull request to trigger Kit.")
+	fmt.Println("  3. Comment '/headhunter <your request>' on an issue or pull request to trigger Headhunter.")
 }

@@ -7,8 +7,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/mark3labs/kit/internal/extensions"
-	"github.com/mark3labs/kit/internal/session"
+	"github.com/xnet-admin-1/Headhunter/internal/extensions"
+	"github.com/xnet-admin-1/Headhunter/internal/session"
 )
 
 // --- Package-level session operations (no Kit instance required) ---

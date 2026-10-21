@@ -14,7 +14,7 @@ import (
 
 	"charm.land/fantasy"
 
-	"github.com/mark3labs/kit/internal/media"
+	"github.com/xnet-admin-1/Headhunter/internal/media"
 )
 
 // ToolOption configures tool behavior.

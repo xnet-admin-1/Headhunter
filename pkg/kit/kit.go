@@ -18,17 +18,17 @@ import (
 
 	"charm.land/fantasy"
 
-	"github.com/mark3labs/kit/internal/agent"
-	"github.com/mark3labs/kit/internal/config"
-	"github.com/mark3labs/kit/internal/core"
-	"github.com/mark3labs/kit/internal/extensions"
-	"github.com/mark3labs/kit/internal/kitsetup"
-	"github.com/mark3labs/kit/internal/message"
-	"github.com/mark3labs/kit/internal/models"
-	"github.com/mark3labs/kit/internal/session"
-	"github.com/mark3labs/kit/internal/skills"
-	"github.com/mark3labs/kit/internal/toolargs"
-	"github.com/mark3labs/kit/internal/tools"
+	"github.com/xnet-admin-1/Headhunter/internal/agent"
+	"github.com/xnet-admin-1/Headhunter/internal/config"
+	"github.com/xnet-admin-1/Headhunter/internal/core"
+	"github.com/xnet-admin-1/Headhunter/internal/extensions"
+	"github.com/xnet-admin-1/Headhunter/internal/kitsetup"
+	"github.com/xnet-admin-1/Headhunter/internal/message"
+	"github.com/xnet-admin-1/Headhunter/internal/models"
+	"github.com/xnet-admin-1/Headhunter/internal/session"
+	"github.com/xnet-admin-1/Headhunter/internal/skills"
+	"github.com/xnet-admin-1/Headhunter/internal/toolargs"
+	"github.com/xnet-admin-1/Headhunter/internal/tools"
 
 	"github.com/spf13/viper"
 )
@@ -1266,7 +1266,7 @@ func (m *Kit) ExecuteCompletion(ctx context.Context, req CompleteRequest) (Compl
 // through to the precedence chain (env → .kit.yml → per-model defaults)
 // resolved within the instance's own store.
 type Options struct {
-	// UserAgent identifies Kit-controlled HTTP requests. Empty means "KIT".
+	// UserAgent identifies Kit-controlled HTTP requests. Empty means "HEADHUNTER".
 	// Codex and Copilot inference retain their fixed compatibility identities.
 	UserAgent string
 

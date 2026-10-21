@@ -3,10 +3,10 @@ package cmd
 import (
 	"strings"
 
-	"github.com/mark3labs/kit/internal/app"
-	"github.com/mark3labs/kit/internal/config"
-	"github.com/mark3labs/kit/internal/ui"
-	kit "github.com/mark3labs/kit/pkg/kit"
+	"github.com/xnet-admin-1/Headhunter/internal/app"
+	"github.com/xnet-admin-1/Headhunter/internal/config"
+	"github.com/xnet-admin-1/Headhunter/internal/ui"
+	kit "github.com/xnet-admin-1/Headhunter/pkg/kit"
 	"github.com/spf13/viper"
 )
 

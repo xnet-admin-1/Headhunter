@@ -8,7 +8,7 @@ import (
 	"strings"
 	"testing"
 
-	uicore "github.com/mark3labs/kit/internal/ui/core"
+	uicore "github.com/xnet-admin-1/Headhunter/internal/ui/core"
 )
 
 // makeTestPNG builds a small solid-color PNG for transcript preview tests.

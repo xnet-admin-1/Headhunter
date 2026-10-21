@@ -5,11 +5,11 @@ package ui
 // from subpackages directly.
 
 import (
-	"github.com/mark3labs/kit/internal/ui/commands"
-	"github.com/mark3labs/kit/internal/ui/core"
-	"github.com/mark3labs/kit/internal/ui/fileutil"
-	"github.com/mark3labs/kit/internal/ui/prefs"
-	"github.com/mark3labs/kit/internal/ui/style"
+	"github.com/xnet-admin-1/Headhunter/internal/ui/commands"
+	"github.com/xnet-admin-1/Headhunter/internal/ui/core"
+	"github.com/xnet-admin-1/Headhunter/internal/ui/fileutil"
+	"github.com/xnet-admin-1/Headhunter/internal/ui/prefs"
+	"github.com/xnet-admin-1/Headhunter/internal/ui/style"
 )
 
 // Re-export from core package

@@ -91,7 +91,7 @@ func listenLocal(path string) (net.Listener, error) {
 	if _, err := os.Stat(path); err == nil {
 		if socketIsLive(path) {
 			return nil, fmt.Errorf(
-				"daemon: another kit daemon is already listening on %s\n"+
+				"daemon: another headhunter daemon is already listening on %s\n"+
 					"(it holds a different lock, so its state directory differs from this one — "+
 					"check XDG_CACHE_HOME and XDG_RUNTIME_DIR)", path)
 		}
@@ -330,7 +330,7 @@ func waitForLocalDaemonStartup(ctx context.Context, timeout time.Duration, exite
 func RunLocal(ctx context.Context, opts AttachOptions) error {
 	conn, err := DialLocal(ctx)
 	if errors.Is(err, ErrNoLocalDaemon) {
-		fmt.Fprintln(os.Stderr, "Starting the kit daemon…")
+		fmt.Fprintln(os.Stderr, "Starting the headhunter daemon…")
 		if serr := StartLocalDaemon(ctx); serr != nil {
 			return serr
 		}
@@ -348,7 +348,7 @@ func RunLocal(ctx context.Context, opts AttachOptions) error {
 	// client's identity is the empty string, not the display name.
 	opts.Host = ""
 	if opts.Reattach == "" {
-		opts.Reattach = "kit attach"
+		opts.Reattach = "headhunter attach"
 	}
 	opts.Redial = localRedialer
 	return RunClient(ctx, conn, opts)
