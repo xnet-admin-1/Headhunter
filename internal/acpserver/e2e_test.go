@@ -568,6 +568,12 @@ func TestEndToEndMissingCredentialsIsAuthRequired(t *testing.T) {
 	// environment variable is cleared.
 	t.Setenv("ANTHROPIC_API_KEY", "")
 	t.Setenv("ANTHROPIC_OAUTH_TOKEN", "")
+	// The config key "provider-api-key" reads the environment variable
+	// KIT_PROVIDER_API_KEY. Clear it, or a key in the shell of the person who
+	// runs the test removes the error.
+	t.Setenv("KIT_PROVIDER_API_KEY", "")
+	// The freeinference provider reads this variable. Clear it too.
+	t.Setenv("FREEINFERENCE_API_KEY", "")
 	viper.Set("model", "anthropic/claude-sonnet-4-5")
 
 	_, err := h.conn.NewSession(context.Background(), acp.NewSessionRequest{Cwd: h.cwd, McpServers: []acp.McpServer{}})
