@@ -17,6 +17,7 @@ import (
 	"github.com/xnet-admin-1/Headhunter/internal/config"
 	"github.com/xnet-admin-1/Headhunter/internal/daemon"
 	"github.com/xnet-admin-1/Headhunter/internal/extensions"
+	"github.com/xnet-admin-1/Headhunter/internal/httpclient"
 	"github.com/xnet-admin-1/Headhunter/internal/models"
 	"github.com/xnet-admin-1/Headhunter/internal/ui"
 	"github.com/xnet-admin-1/Headhunter/internal/ui/commands"
@@ -201,6 +202,9 @@ func GetRootCommand(v string) *cobra.Command {
 	// and a daemon can talk is decided by daemon.ProtocolVersion, which
 	// changes far less often than a release does.
 	daemon.SetBuildVersion(v)
+	// The default User-Agent carries the build version. Some gateways answer
+	// HTTP 403 to a bare product name, so the identity must name a version.
+	httpclient.SetDefaultUserAgentVersion(v)
 	return rootCmd
 }
 

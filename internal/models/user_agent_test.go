@@ -14,6 +14,7 @@ import (
 
 	"charm.land/fantasy"
 	"github.com/xnet-admin-1/Headhunter/internal/auth"
+	"github.com/xnet-admin-1/Headhunter/internal/httpclient"
 )
 
 func TestNativeProviderUserAgents(t *testing.T) {
@@ -23,7 +24,7 @@ func TestNativeProviderUserAgents(t *testing.T) {
 			t.Run(model+identity, func(t *testing.T) {
 				want := identity
 				if want == "" {
-					want = "HEADHUNTER"
+					want = httpclient.DefaultUserAgentValue()
 				}
 				seen := 0
 				mockDefaultTransport(t, func(req *http.Request) (*http.Response, error) {
@@ -54,7 +55,7 @@ func TestAutoRoutedUserAgents(t *testing.T) {
 			t.Run(wire+identity, func(t *testing.T) {
 				want := identity
 				if want == "" {
-					want = "HEADHUNTER"
+					want = httpclient.DefaultUserAgentValue()
 				}
 				seen := false
 				srv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
@@ -179,7 +180,7 @@ func TestCopilotRefreshIdentity(t *testing.T) {
 				refreshes++
 				want := identity
 				if want == "" {
-					want = "HEADHUNTER"
+					want = httpclient.DefaultUserAgentValue()
 				}
 				if r.Header.Get("User-Agent") != want || r.Header.Get("Authorization") != "token fake-github" {
 					t.Errorf("refresh headers = %v", r.Header)
@@ -250,7 +251,7 @@ func TestCloudProviderIdentityAndAuth(t *testing.T) {
 
 func TestNonStreamingIdentityResponse(t *testing.T) {
 	srv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		if r.Header.Get("User-Agent") != "HEADHUNTER" || r.Header.Get("Authorization") != "Bearer fake" {
+		if r.Header.Get("User-Agent") != httpclient.DefaultUserAgentValue() || r.Header.Get("Authorization") != "Bearer fake" {
 			t.Errorf("headers = %v", r.Header)
 		}
 		w.Header().Set("Content-Type", "application/json")

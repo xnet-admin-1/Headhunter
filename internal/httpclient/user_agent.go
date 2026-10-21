@@ -5,15 +5,45 @@ import (
 	"fmt"
 	"net/http"
 	"strings"
+	"sync/atomic"
 )
 
 // DefaultUserAgent identifies Headhunter-controlled requests.
 const DefaultUserAgent = "HEADHUNTER"
 
+// defaultUserAgentVersion is the build version of the default identity.
+// It is empty until the CLI records it.
+var defaultUserAgentVersion atomic.Value
+
+// SetDefaultUserAgentVersion records the build version of the default
+// identity. Call it once at startup.
+func SetDefaultUserAgentVersion(v string) {
+	v = strings.TrimSpace(v)
+	if v == "" {
+		return
+	}
+	defaultUserAgentVersion.Store(v)
+}
+
+// DefaultUserAgentValue returns the User-Agent value for requests that carry
+// no explicit identity. It is the product name and the build version.
+//
+// The version is not decoration. Some gateways, including the endpoint that
+// freeinference.org runs, answer HTTP 403 to a bare product name. They read
+// the User-Agent as a bot signature. A name and a version is what a command
+// line tool normally sends, so the default identity carries the version.
+func DefaultUserAgentValue() string {
+	version := "dev"
+	if v, ok := defaultUserAgentVersion.Load().(string); ok && v != "" {
+		version = v
+	}
+	return DefaultUserAgent + "/" + version
+}
+
 // ResolveUserAgent validates identity without trimming valid input.
 func ResolveUserAgent(value string) (string, error) {
 	if value == "" {
-		return DefaultUserAgent, nil
+		return DefaultUserAgentValue(), nil
 	}
 	for _, b := range []byte(value) {
 		if b < 32 || b == 127 {
@@ -27,7 +57,7 @@ func ResolveUserAgent(value string) (string, error) {
 // Callers must validate non-empty values with ResolveUserAgent first.
 func WithUserAgent(client *http.Client, value string) *http.Client {
 	if value == "" {
-		value = DefaultUserAgent
+		value = DefaultUserAgentValue()
 	}
 	copy := http.Client{}
 	if client != nil {

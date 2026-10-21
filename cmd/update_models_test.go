@@ -5,6 +5,7 @@ import (
 	"net/http/httptest"
 	"testing"
 
+	"github.com/xnet-admin-1/Headhunter/internal/httpclient"
 	"github.com/xnet-admin-1/Headhunter/internal/models"
 )
 
@@ -13,7 +14,7 @@ func TestCatalogDownloadUserAgentAndETag(t *testing.T) {
 	calls := 0
 	srv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		calls++
-		if r.Header.Get("User-Agent") != "HEADHUNTER" {
+		if r.Header.Get("User-Agent") != httpclient.DefaultUserAgentValue() {
 			t.Errorf("identity = %q", r.Header.Get("User-Agent"))
 		}
 		if calls == 1 {

@@ -7,6 +7,8 @@ import (
 	"net/http/httptest"
 	"testing"
 	"time"
+
+	"github.com/xnet-admin-1/Headhunter/internal/httpclient"
 )
 
 func TestCopilotStartDeviceFlow(t *testing.T) {
@@ -98,7 +100,7 @@ func TestCopilotRefreshToken(t *testing.T) {
 		if r.Header.Get("Authorization") != "token github-token" {
 			t.Fatalf("unexpected authorization header: %q", r.Header.Get("Authorization"))
 		}
-		if r.Header.Get("User-Agent") != "HEADHUNTER" {
+		if r.Header.Get("User-Agent") != httpclient.DefaultUserAgentValue() {
 			t.Fatalf("unexpected user agent: %q", r.Header.Get("User-Agent"))
 		}
 		_ = json.NewEncoder(w).Encode(map[string]any{

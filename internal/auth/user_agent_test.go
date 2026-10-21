@@ -8,6 +8,8 @@ import (
 	"net/http/httptest"
 	"testing"
 	"time"
+
+	"github.com/xnet-admin-1/Headhunter/internal/httpclient"
 )
 
 func TestOAuthUserAgents(t *testing.T) {
@@ -15,7 +17,7 @@ func TestOAuthUserAgents(t *testing.T) {
 		t.Run(identity, func(t *testing.T) {
 			want := identity
 			if want == "" {
-				want = "HEADHUNTER"
+				want = httpclient.DefaultUserAgentValue()
 			}
 			seen := 0
 			srv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {

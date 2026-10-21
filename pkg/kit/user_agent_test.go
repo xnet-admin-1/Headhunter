@@ -3,6 +3,8 @@ package kit
 import (
 	"context"
 	"testing"
+
+	"github.com/xnet-admin-1/Headhunter/internal/httpclient"
 )
 
 func TestUserAgentPropagation(t *testing.T) {
@@ -11,7 +13,7 @@ func TestUserAgentPropagation(t *testing.T) {
 		t.Run(identity, func(t *testing.T) {
 			want := identity
 			if want == "" {
-				want = "HEADHUNTER"
+				want = httpclient.DefaultUserAgentValue()
 			}
 			calls := 0
 			factory := func(_ context.Context, cfg *ProviderConfig, name string) (*ProviderResult, error) {

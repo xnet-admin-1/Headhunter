@@ -25,7 +25,7 @@ func TestResolveUserAgent(t *testing.T) {
 		got, err := ResolveUserAgent(value)
 		want := value
 		if want == "" {
-			want = "HEADHUNTER"
+			want = DefaultUserAgentValue()
 		}
 		if err != nil || got != want {
 			t.Fatalf("resolve %q = %q, %v", value, got, err)
@@ -38,6 +38,36 @@ func TestResolveUserAgent(t *testing.T) {
 		if _, err := ResolveUserAgent("x" + string(rune(b))); err == nil {
 			t.Errorf("accepted control %d", b)
 		}
+	}
+}
+
+func TestDefaultUserAgentValueCarriesVersion(t *testing.T) {
+	t.Cleanup(func() { defaultUserAgentVersion.Store("") })
+	if got := DefaultUserAgentValue(); got != DefaultUserAgent+"/dev" {
+		t.Fatalf("default identity = %q", got)
+	}
+	SetDefaultUserAgentVersion("1.2.3")
+	if got := DefaultUserAgentValue(); got != DefaultUserAgent+"/1.2.3" {
+		t.Fatalf("versioned identity = %q", got)
+	}
+	// A bare product name is refused by some gateways, so the version must
+	// never disappear from the default identity.
+	if got := DefaultUserAgentValue(); !strings.Contains(got, "/") {
+		t.Fatalf("identity without a version = %q", got)
+	}
+	seen := ""
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		seen = r.Header.Get("User-Agent")
+	}))
+	defer server.Close()
+	client := WithUserAgent(&http.Client{Timeout: time.Second}, "")
+	resp, err := client.Get(server.URL)
+	if err != nil {
+		t.Fatal(err)
+	}
+	_ = resp.Body.Close()
+	if seen != DefaultUserAgentValue() {
+		t.Fatalf("sent identity = %q", seen)
 	}
 }
 
@@ -89,7 +119,7 @@ func TestClientPolicyAndImmutability(t *testing.T) {
 func TestRedirectAndCancellation(t *testing.T) {
 	seen := 0
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		if r.Header.Get("User-Agent") != "HEADHUNTER" {
+		if r.Header.Get("User-Agent") != DefaultUserAgentValue() {
 			t.Errorf("identity = %q", r.Header.Get("User-Agent"))
 		}
 		seen++
